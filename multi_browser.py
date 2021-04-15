@@ -9,7 +9,10 @@ import settings
 #driver = webdriver.Chrome(executable_path=settings.driver_path)
 
 # Firefox nesnesi oluşturalım
-driver = webdriver.Firefox(executable_path=settings.firefox_path)
+#driver = webdriver.Firefox(executable_path=settings.firefox_path)
+
+# Internet Explorer nesnesi oluşturalım
+driver = webdriver.Ie(executable_path=settings.ie_path)
 
 # bir adrese git
 driver.get("https://istanbulakademi.meb.gov.tr/")
