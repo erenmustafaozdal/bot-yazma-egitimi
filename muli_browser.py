@@ -10,7 +10,10 @@ import settings
 #driver = webdriver.Chrome(executable_path=settings.driver_path)
 
 #firefox nesnesi oluşturalım
-driver = webdriver.Chrome(executable_path=settings.firefox_path)
+#driver = webdriver.Firefox(executable_path=settings.firefox_path)
+
+#IE Explorer
+driver = webdriver.Ie(executable_path=settings.ie_path)
 
 #bir adrese git
 driver.get("https://giris.eba.gov.tr/EBA_GIRIS/student.jsp")
