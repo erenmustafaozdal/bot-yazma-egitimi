@@ -13,28 +13,24 @@ driver.get("https://istanbulakademi.meb.gov.tr")
 
 # bulunduğum adresi yazdıralım
 print(driver.current_url)
-
 time.sleep(2)
 
-# yeni adrese git
+# Yeni adrese git
 driver.get("https://istanbulakademi.meb.gov.tr/akademiler.php?pID=615")
 print(driver.current_url)
-
 time.sleep(2)
 
-# bir önceki sayfaya dön
+#Bir önceki sayfaya geri dön
 driver.back()
 print(driver.current_url)
-
 time.sleep(2)
 
-# bir sonraki sayfa dön
+# Bir sonraki sayfaya dön
 driver.forward()
 print(driver.current_url)
-
 time.sleep(2)
 
-# sayfa başlığını yazdıralım
+# Sayfanın başlığı yazdıralım
 print(driver.title)
 
 time.sleep(2)
