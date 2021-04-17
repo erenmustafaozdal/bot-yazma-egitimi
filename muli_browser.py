@@ -7,7 +7,10 @@ from selenium import webdriver
 import settings
 
 #chrome nesnesi oluşturalım
-driver = webdriver.Chrome(executable_path=settings.driver_path)
+#driver = webdriver.Chrome(executable_path=settings.driver_path)
+
+#firefox nesnesi oluşturalım
+driver = webdriver.Chrome(executable_path=settings.firefox_path)
 
 #bir adrese git
 driver.get("https://giris.eba.gov.tr/EBA_GIRIS/student.jsp")
