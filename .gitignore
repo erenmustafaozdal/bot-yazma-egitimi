@@ -1,11 +1,5 @@
 .idea
-<<<<<<< HEAD
-
-settings.py
-
-__pycache__
-=======
 settings.py
 __pycache__
 geckodriver.log
->>>>>>> a1b0bc8829726ae7d1be36b5b3414386bfd2c073
+venv
