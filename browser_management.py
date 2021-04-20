@@ -2,11 +2,11 @@
 browser_management: Tarayıcı yönetimi
 """
 from selenium import webdriver
-import settings
+import settings_example
 import time
 
 # tarayıcı nesnesini oluşturalım
-driver = webdriver.Chrome(settings.driver_path)
+driver = webdriver.Chrome(settings_example.driver_path)
 
 # bir sayfaya git
 driver.get("https://istanbulakademi.meb.gov.tr/akademiler.php?pID=615")
