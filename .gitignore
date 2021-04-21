@@ -1,5 +1,14 @@
+# PyCharm klasörünü GitHub'a gönderme
 .idea
+
+# Her geliştiricinin ayarlarını barındıran dosyayı GitHub'a gönderme
 settings.py
+
+# Python'ın oluşturduğu ön bellek dosyalarını GitHub'a gönderme
 __pycache__
+
+# Mozilla FireFox tarayıcısının oluşturduğu log dosyasını GitHub'a gönderme
 geckodriver.log
+
+# Sanal geliştirme ortamı (venv klasörü) oluşturulduysa GitHub'a gönderme
 venv
