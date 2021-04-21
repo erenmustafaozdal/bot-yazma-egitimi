@@ -1,6 +1,6 @@
 # Chrome driver tam yolu
 # Örnek: C:\\Development\\drivers\\chromedriver.exe
-driver_path = "C:\\Development\\drivers\\chromedriver.exe"
+driver_path = ""
 # Firefox driver tam yolu
 # Örnek: C:\\Development\\drivers\\geckodriver.exe
 firefox_path = ""

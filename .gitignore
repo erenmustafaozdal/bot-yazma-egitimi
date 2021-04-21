@@ -1,5 +1,5 @@
 .idea
-settings_example.py
+settings.py
 __pycache__
 geckodriver.log
 venv

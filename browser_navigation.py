@@ -2,11 +2,11 @@
 browser_navigation: Tarayıcıda gezinme işlemleri
 """
 from selenium import webdriver
-import settings_example
+import settings
 import time
 
 # tarayıcı nesnesi oluşturalım
-driver = webdriver.Chrome(settings_example.driver_path)
+driver = webdriver.Chrome(settings.driver_path)
 
 # adrese git
 driver.get("https://istanbulakademi.meb.gov.tr")
