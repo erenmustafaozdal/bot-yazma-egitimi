@@ -19,4 +19,3 @@ driver.get("https://istanbulakademi.meb.gov.tr/")
 
 # tarayıcı kapat
 driver.close()
-
