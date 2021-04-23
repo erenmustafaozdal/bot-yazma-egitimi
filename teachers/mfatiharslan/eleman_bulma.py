@@ -16,11 +16,11 @@ button= driver.find_element_by_xpath("//button[@title='edevlet girişi']//div[2]
 button.click()
 
 tc = driver.find_element_by_id("tridField")
-tc.click()
+#tc.click()
 tc.send_keys("12345678912")
 
 sifre = driver.find_element_by_id("egpField")
-sifre.click()
+#sifre.click()
 sifre.send_keys("1145555")
 
 giris= driver.find_element_by_class_name("submitButton")
