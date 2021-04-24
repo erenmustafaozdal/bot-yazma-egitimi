@@ -12,3 +12,12 @@ geckodriver.log
 
 # Sanal geliştirme ortamı (venv klasörü) oluşturulduysa GitHub'a gönderme
 venv
+Pipfile
+Pipfile.lock
+
+# Kişisel bilgisayarın eklediği cash dosyaları
+.DS_Store
+.teachers/.DS_Store
+
+# geckodriver.log
+geckodriver.log
