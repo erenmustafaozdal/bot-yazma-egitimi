@@ -15,9 +15,6 @@ venv
 Pipfile
 Pipfile.lock
 
-# Kişisel bilgisayarın eklediği cash dosyaları
-.DS_Store
-.teachers/.DS_Store
-
-# geckodriver.log
-geckodriver.log
+# operating system-related files
+# file properties cache/storage on macOS
+*.DS_Store

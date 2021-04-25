@@ -17,7 +17,4 @@ Pipfile.lock
 
 # Kişisel bilgisayarın eklediği cash dosyaları
 .DS_Store
-.teachers/.DS_Store
-
-# geckodriver.log
-geckodriver.log
+.DS_Store
