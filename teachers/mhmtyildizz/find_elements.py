@@ -14,7 +14,7 @@ driver.save_screenshot("./images/ekran-goruntusu.png")
 
 #çıkan pencereyi kapatmak için ekledik
 #button = driver.find_element(By.CLASS_NAME, "btn-warning")
-button = driver.find_element_by_name("btn-warning")
+button = driver.find_element_by_class_name("btn-warning")
 button.click()
 
 driver.close()
