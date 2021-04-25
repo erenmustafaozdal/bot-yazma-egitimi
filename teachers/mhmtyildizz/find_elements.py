@@ -18,3 +18,5 @@ button = driver.find_element_by_class_name("btn-warning")
 button.click()
 
 driver.close()
+
+#PYCHARMDA PROJE OLARAK OLUŞTURULMADIĞI İÇİN HATA ALDIK (KLASÖR OLARAK AÇILMIŞ) DÜZELDİ
