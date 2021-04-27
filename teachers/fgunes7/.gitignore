@@ -4,6 +4,10 @@
 # Her geliştiricinin ayarlarını barındıran dosyayı GitHub'a gönderme
 settings.py
 
+# Denemelerimi gerçekleştirdiğim dosyalar
+deneme.py
+ses_metin.py
+
 # Python'ın oluşturduğu ön bellek dosyalarını GitHub'a gönderme
 __pycache__
 
