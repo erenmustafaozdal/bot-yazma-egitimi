@@ -1,13 +1,14 @@
 
+
 # BOT YAZMA EĞİTİMİ ATÖLYESİ
 
 İstanbul Öğretmen Akademileri "Python ile Eğitim Ortamlarında Verimliliği Artırma / BOT Yazma Eğitimi - EBA Örnekleri" atölyesi kod örneklerinin bulunduğu depo
 
 ## Web Otomasyon Nedir?
 
-> İnternet üzerindeki iş ve işlemlerin yazılım aracılığıyla otomatik
-> yapılmasıdır. Size izin verilen işlemleri daha hızlı, daha kolay ve
-> daha hatasız yapmanızı sağlar. **Web sitelerini "hack’lemek" (kırmak)**
+> İnternet üzerindeki iş ve işlemlerin yazılım aracılığıyla otomatik  
+> yapılmasıdır. Size izin verilen işlemleri daha hızlı, daha kolay ve  
+> daha hatasız yapmanızı sağlar. **Web sitelerini "hack’lemek" (kırmak)**  
 > **değildir.** Sistemin size izin vermediği işlemleri yapamazsınız.
 
 ## NASIL BAŞLANIR?
@@ -25,8 +26,7 @@ Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz �
 ### Selenium Kurun
 Bilgisayarınızda komu istemini (CMD) açın ve aşağıdaki kod ile Selenium'u kurun.
 
-    pip install U selenium
-
+pip install U selenium  
 Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz 👉 [https://youtu.be/aUqnZrpmPHU?t=2802](https://youtu.be/aUqnZrpmPHU?t=2802)
 
 ### PyCharm Kurun
@@ -60,11 +60,43 @@ Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz �
 - [Selenium komutları ve diğer dokümantasyonlar](https://www.selenium.dev/documentation/en)
 - [Atölyemizin Google Drive Klasörü](https://drive.google.com/drive/folders/1P6b4wvA9Guqq7ODGiU7MHOsOSjc_oHne?usp=sharing)
 
+Web elemanları bulmak için özellikle CSS ve XPATH seçicilerini belirlemede bize yardımcı olacak bazı eklentiler var. Bunlar için aşağıdaki adresleri ziyaret edebilirsiniz.
+- [ChroPath Chrome eklentisi](https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo)
+- [SelectorsHub Chrome eklentisi](https://chrome.google.com/webstore/detail/selectorshub/ndgimibanhlabgdgjcpbbndiehljcpfh)
+- [SelectorsHub resmi web sitesi](https://selectorshub.com/)
+
+## Proje İçinde Nasıl Geliştirme Yaparsınız
+
+Her öğretmen için [teachers](https://github.com/erenmustafaozdal/bot-yazma-egitimi/tree/main/teachers) klasörü içinde kendine özel bir klasör oluşturulmuştur. Bu klasörler her öğretmenin GitHub kullanıcı adı ile isimlendirilmiştir.
+
+Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan (**main**) ayrı bir geliştirme dalı vardır. Bu dal ana dalın bir kopyasını barındırmaktadır.
+
+> **❗ NOT:** Kendi bilgisayarınıza özel bilgiler (tarayıcı sürücülerinin yolları ve ön bellek dosyaları gibi)
+> ve kişisel bilgiler (tc, şifre gibi) `settings.py` dosyasında saklanması çok önemlidir.
+> Ana proje klasörü dahil, her öğretmen klasöründe `settings.py` dosyaları
+> `.gitignore` ile gizlenmiştir. Yani hiçbir bilgisayar ile eşitleme
+> yapılmaz ve GitHub'a gönderilmez.
+>
+> **❗❗❗ DİKKAT:** Her öğretmen kendi klasöründe ve kendi dalında geliştirme yapmalıdır. Ana dal sadece eğitim veren Eren Mustafa Özdal
+> tarafından kontrol edilecek ve değişiklikler yansıtılacaktır.
+
+#### Geliştirme yaparken aşağıdaki adımları takip etmek çok önemlidir.
+
+1. Kodlamaya başlamadan önce ana **`(main)`** dala geç. Yapılan değişiklik var mı? Karşılaştır **`(fetch)`**.
+2. Eğer varsa değişiklikleri kendi bilgisayarındaki ana dala **`(main)`** çek. **`(pull)`**
+3. Kendi dalına geç
+4. Ana dalda **`(main)`** yapılan değişiklikleri kendi dalına birleştir. **`(merge)`**
+5. Kendi dalında kodlamanı yap. Kodlama basamaklarını işle. **`(commit)`**
+6. Biten geliştirmeni Github’a it. **`(push)`**
+7. Gönderdiğin değişikliğin ana dala birleşmesi için çekme isteği oluştur. **`(pull request)`** **Çekme isteği gönderdikten sonra birleştirme işlemini `(merge)` siz yapmayın. Kontrol edildikten sonra yapılacaktır.**
+8. Bütün bu işlemleri, her kodlama öncesi tekrarla.
+
 ## Atölye Ders Videoları
 
-|||
-|:-:|:-:|
-| [![1. HAFTA](https://img.youtube.com/vi/aUqnZrpmPHU/0.jpg)](https://youtu.be/aUqnZrpmPHU) |[![2. HAFTA](https://img.youtube.com/vi/BX8_AuvE-fs/0.jpg)](https://youtu.be/BX8_AuvE-fs) |
-|1. HAFTA | 2. HAFTA |
-| [![3. HAFTA](https://img.youtube.com/vi/ZAChGQz3wfY/0.jpg)](https://youtu.be/ZAChGQz3wfY) |  |
+|||  
+|:-:|:-:|  
+| [![1. HAFTA](https://img.youtube.com/vi/aUqnZrpmPHU/0.jpg)](https://youtu.be/aUqnZrpmPHU) |[![2. HAFTA](https://img.youtube.com/vi/BX8_AuvE-fs/0.jpg)](https://youtu.be/BX8_AuvE-fs) |  
+|1. HAFTA | 2. HAFTA |  
+| [![3. HAFTA](https://img.youtube.com/vi/ZAChGQz3wfY/0.jpg)](https://youtu.be/ZAChGQz3wfY) |  |  
 |3. HAFTA |  |
+
