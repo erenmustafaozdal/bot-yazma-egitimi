@@ -26,7 +26,8 @@ Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz �
 ### Selenium Kurun
 Bilgisayarınızda komu istemini (CMD) açın ve aşağıdaki kod ile Selenium'u kurun.
 
-pip install U selenium  
+```pip install U selenium```
+
 Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz 👉 [https://youtu.be/aUqnZrpmPHU?t=2802](https://youtu.be/aUqnZrpmPHU?t=2802)
 
 ### PyCharm Kurun
