@@ -91,6 +91,8 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan (**main**) ayr�
 7. Gönderdiğin değişikliğin ana dala birleşmesi için çekme isteği oluştur. **`(pull request)`** **Çekme isteği gönderdikten sonra birleştirme işlemini `(merge)` siz yapmayın. Kontrol edildikten sonra yapılacaktır.**
 8. Bütün bu işlemleri, her kodlama öncesi tekrarla.
 
+Bu adımların nasıl atılacağını videonun ilgili bölümünü izleyerek görebilirsiniz 👉 [https://youtu.be/ZAChGQz3wfY?t=5618](https://youtu.be/ZAChGQz3wfY?t=5618)
+
 ## Atölye Ders Videoları
 
 |||  
