@@ -4,6 +4,9 @@
 # Her geliştiricinin ayarlarını barındıran dosyayı GitHub'a gönderme
 settings.py
 
+# Denemelerimi yaptığım dosyayı Github'a gönderme
+deneme.py
+
 # Python'ın oluşturduğu ön bellek dosyalarını GitHub'a gönderme
 __pycache__
 
