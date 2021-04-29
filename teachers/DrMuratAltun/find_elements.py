@@ -57,3 +57,4 @@ print(address.text)
 
 # tarayıcıyı kapat
 driver.close()
+#Murat Altun

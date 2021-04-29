@@ -41,3 +41,4 @@ time.sleep(2)
 
 # tarayıcıyı kapat
 driver.close()
+#Murat Altun
