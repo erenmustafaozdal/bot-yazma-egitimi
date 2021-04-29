@@ -5,9 +5,9 @@
 ## Web Otomasyon Nedir?
 
 
-> İnternet üzerindeki iş ve işlemlerin yazılım aracılığıyla otomatik
-> yapılmasıdır. Size izin verilen işlemleri daha hızlı, daha kolay ve
-> daha hatasız yapmanızı sağlar. **Web sitelerini "hack’lemek" *(kırmak)***
+> İnternet üzerindeki iş ve işlemlerin yazılım aracılığıyla otomatik  
+> yapılmasıdır. Size izin verilen işlemleri daha hızlı, daha kolay ve  
+> daha hatasız yapmanızı sağlar. **Web sitelerini "hack’lemek" *(kırmak)***  
 > **değildir.** Sistemin size izin vermediği işlemleri yapamazsınız.
 
 ## NASIL BAŞLANIR?
@@ -20,7 +20,7 @@
 ### Python Kurun
 [https://www.python.org/downloads](https://www.python.org/downloads) adresine giderek Python `3.x` *(3.4 ve üzeri bir sürüm olabilir.)* versiyonunu indirin ve kurun.
 >
-> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz
+> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz  
 > 👉 [https://youtu.be/aUqnZrpmPHU?t=2085](https://youtu.be/aUqnZrpmPHU?t=2085)
 
 
@@ -29,36 +29,36 @@ Bilgisayarınızda komut istemini *(CMD)* açın ve aşağıdaki kod ile Seleniu
 
 ```pip install U selenium```
 
-> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz
+> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz  
 > 👉 [https://youtu.be/aUqnZrpmPHU?t=2802](https://youtu.be/aUqnZrpmPHU?t=2802)
 
 ### PyCharm Kurun
 [https://www.jetbrains.com/pycharm/download](https://www.jetbrains.com/pycharm/download) adresinden PyCharm geliştirme ortamının ücretsiz versiyonunu indirip, kurun. Bu isteğe bağlı bir seçenektir. Başka geliştirme ortamı da *(IDE)* kullanabilirsiniz.
 
-> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz
+> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz  
 > 👉 [https://youtu.be/aUqnZrpmPHU?t=3203](https://youtu.be/aUqnZrpmPHU?t=3203)
 
 ### GitHub'a Başlangıç Yapın
 İlk başta eğer yoksa GitHub hesabınızı oluşturun.
 
-> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz
+> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz  
 > 👉 [https://youtu.be/aUqnZrpmPHU?t=3966](https://youtu.be/aUqnZrpmPHU?t=3966)
 
 Ardından [https://desktop.github.com](https://desktop.github.com) adresine giderek GitHub Desktop uygulamasını indirin ve kurun.
 
-> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz
+> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz  
 > 👉 [https://youtu.be/aUqnZrpmPHU?t=4387](https://youtu.be/aUqnZrpmPHU?t=4387)
 
 Bu yazıyı okuduğunuza göre **"Bot Yazma Eğitimi"** kod havuzumuza erişme davetini kabul etmiş oluyorsunuz.
 
 Şimdi bilgisayarınızda istediğiniz konuma projeyi klonlayın.
 
-> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz
+> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz  
 > 👉 [https://youtu.be/aUqnZrpmPHU?t=4642](https://youtu.be/aUqnZrpmPHU?t=4642)
 
 Artık klonladığınız projeyi geliştirme ortamınızda *(PyCharm veya başkası)* proje olarak tanımlayın.
 
-> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz
+> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz  
 > 👉 [https://youtu.be/aUqnZrpmPHU?t=4872](https://youtu.be/aUqnZrpmPHU?t=4872)
 
 #### Geliştirme Esnasında Kullanacağınız Tarayıcının Sürücüsünü İndirin
@@ -66,7 +66,7 @@ Chrome, Opera, Mozilla Firefox, Edge, Internet Explorer veya Safari... Seçimini
 
 [https://www.selenium.dev/downloads](https://www.selenium.dev/downloads) adresine giderek istediğiniz sürücüyü indirebilirsiniz.
 
-> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz
+> Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz  
 > 👉 [https://youtu.be/BX8_AuvE-fs?t=1010](https://youtu.be/BX8_AuvE-fs?t=1010)
 
 ## Bazı Gerekli Adresler
@@ -86,14 +86,14 @@ Her öğretmen için [teachers](https://github.com/erenmustafaozdal/bot-yazma-eg
 
 Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ayrı bir geliştirme dalı vardır. Bu dal ana dalın bir kopyasını barındırmaktadır.
 
-> **❗ NOT:** Kendi bilgisayarınıza özel bilgiler (tarayıcı sürücülerinin yolları ve ön bellek dosyaları gibi)  
-> ve kişisel bilgiler (tc, şifre gibi) `settings.py` dosyasında saklanması çok önemlidir.  
-> Ana proje klasörü dahil, her öğretmen klasöründe `settings.py` dosyaları  
+> **❗ NOT:** Kendi bilgisayarınıza özel bilgiler (tarayıcı sürücülerinin yolları ve ön bellek dosyaları gibi)    
+> ve kişisel bilgiler (tc, şifre gibi) `settings.py` dosyasında saklanması çok önemlidir.    
+> Ana proje klasörü dahil, her öğretmen klasöründe `settings.py` dosyaları    
 > `.gitignore` ile gizlenmiştir. Yani hiçbir bilgisayar ile eşitleme yapılmaz ve GitHub'a gönderilmez.
 
-> **❗❗❗ DİKKAT:** Her öğretmen kendi klasöründe ve kendi dalında geliştirme yapmalıdır.
-> Ana dal sadece eğitim veren Eren Mustafa Özdal tarafından kontrol edilecektir.
-> Diğer dallardan gelen çekme istekleri ***(pull request)*** kontrol edildikten sonra
+> **❗❗❗ DİKKAT:** Her öğretmen kendi klasöründe ve kendi dalında geliştirme yapmalıdır.  
+> Ana dal sadece eğitim veren Eren Mustafa Özdal tarafından kontrol edilecektir.  
+> Diğer dallardan gelen çekme istekleri ***(pull request)*** kontrol edildikten sonra  
 > değişiklikler ana dala ***(main)*** yansıtılacaktır.
 
 #### Geliştirme yaparken aşağıdaki adımları takip etmek çok önemlidir.
@@ -112,14 +112,16 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 ![GitHub Geliştirme İş Akışı](https://drive.google.com/uc?export=view&id=1ag6s2hycf-DAjHuc6jyZAPoXy3_SNcoB)
 
 
-> Bu adımların nasıl atılacağını videonun ilgili bölümünü izleyerek görebilirsiniz
+> Bu adımların nasıl atılacağını videonun ilgili bölümünü izleyerek görebilirsiniz  
 > 👉 [https://youtu.be/ZAChGQz3wfY?t=5618](https://youtu.be/ZAChGQz3wfY?t=5618)
 
 ## Atölye Ders Videoları
 
-|||    
-|:-:|:-:|    
-| [![1. HAFTA](https://img.youtube.com/vi/aUqnZrpmPHU/0.jpg)](https://youtu.be/aUqnZrpmPHU) |[![2. HAFTA](https://img.youtube.com/vi/BX8_AuvE-fs/0.jpg)](https://youtu.be/BX8_AuvE-fs) |    
-|1. HAFTA | 2. HAFTA |    
-| [![3. HAFTA](https://img.youtube.com/vi/ZAChGQz3wfY/0.jpg)](https://youtu.be/ZAChGQz3wfY) | BEKLENİYOR... 😊 |    
+|||      
+|:-:|:-:|      
+| [![1. HAFTA](https://img.youtube.com/vi/aUqnZrpmPHU/0.jpg)](https://youtu.be/aUqnZrpmPHU) |[![2. HAFTA](https://img.youtube.com/vi/BX8_AuvE-fs/0.jpg)](https://youtu.be/BX8_AuvE-fs) |      
+|1. HAFTA | 2. HAFTA |      
+| [![3. HAFTA](https://img.youtube.com/vi/ZAChGQz3wfY/0.jpg)](https://youtu.be/ZAChGQz3wfY) | [![4. HAFTA](https://img.youtube.com/vi/_KtvP_fBBH8/0.jpg)](https://youtu.be/_KtvP_fBBH8) |      
 |3. HAFTA | 4. HAFTA |
+| [![4. HAFTA EK VİDEO](https://lh3.googleusercontent.com/yubj7xG5UNBN29MJ1C2GGXMCOwm7r0UU50JNYxLnJMQD72iKTH5WmE-hgnq2YJbhgtiN5Q1mn80kp9tUC2zA=w640-h360-k-rw-pd)](https://drive.google.com/file/d/14IGINTzeLw3GClHOn9lSQQv5kYIz1Jw3/view) | BEKLENİYOR... 😊 |      
+|4. HAFTA EK VİDEO | 5. HAFTA |
