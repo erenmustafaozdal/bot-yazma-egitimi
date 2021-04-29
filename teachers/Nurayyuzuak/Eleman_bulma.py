@@ -31,20 +31,24 @@ driver.get("https://istanbulakademi.meb.gov.tr/akademiler.php?pID=615")
 #link.click()
 
 # kısmi bağlantı metni ile elemana ulaşma
-link = driver.find_element_by_partial_link_text("Hata")
-link.click()
+#link = driver.find_element_by_partial_link_text("Hata")
+#link.click()
 
 #etiket adı ile elemana ulaşma
-name = driver.find_element_by_tag_name("input")
-name.send_keys("Nuray Yüzüak")
+#name = driver.find_element_by_tag_name("input")
+#name.send_keys("Nuray Yüzüak")
 
 # css seçici ile elemana ulaşma
 # By.CSS_SELECTOR
-email = driver.find_element_by_css_selector("#sender_email")
-email.send_keys("nuray@gmail.com")
-time.sleep(2)
-email.clear()
-email.send_keys("nuray68@gmail.com")
+#email = driver.find_element_by_css_selector("#sender_email")
+#email.send_keys("nuray@gmail.com")
+#time.sleep(2)
+#email.clear()
+#email.send_keys("nuray68@gmail.com")
+
+# xpath seçici ile elemana ulaşma
+address = driver.find_element_by_xpath('//ul[@class="v-list"]/li[1]')
+print(address.text)
 
 time.sleep(4)
 driver.close()
