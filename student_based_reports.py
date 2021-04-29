@@ -55,3 +55,15 @@ while True:
     except:
         print("Çok bekledi. Sayfa yenileniyor...")
         driver.refresh()
+
+
+wait = WebDriverWait(driver, timeout=3, poll_frequency=1)
+# //div[@class='vc-lm-item-title '][normalize-space()='Raporlar']
+# time.sleep(30)
+wait.until(ec.element_to_be_clickable(
+    (By.XPATH, "//div[@class='vc-lm-item-title '][normalize-space()='Raporlar']"))
+).click()
+
+# tarayıcı kapat
+time.sleep(2)
+driver.close()
