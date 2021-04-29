@@ -30,5 +30,13 @@ driver.get("https://istanbulakademi.meb.gov.tr/akademiler.php?pID=615")
 #link=driver.find_element(By.LINK_TEXT,"Yorumlar")
 #link.click()
 
-time.sleep(3)
+# kısmi bağlantı metni ile elemana ulaşma
+link = driver.find_element_by_partial_link_text("Hata")
+link.click()
+
+#etiket adı ile elemana ulaşma
+#name = driver.find_element_by_tag_name("input")
+#name.send_keys("Nuray Yüzüak")
+
+time.sleep(4)
 driver.close()
