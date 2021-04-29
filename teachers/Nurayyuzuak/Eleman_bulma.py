@@ -5,19 +5,30 @@ from selenium.webdriver.common.by import By
 driver=webdriver.Chrome(settings.driver_path)
 driver.get("https://istanbulakademi.meb.gov.tr/")
 driver.maximize_window()
+
+# class name ile elemana ulaşma
 button=driver.find_element(By.CLASS_NAME, "btn-warning")
 button.click()
 #faaliyet=driver.find_elements_by_class_name("btn-info")
 #print(len(faaliyet))
 #faaliyet.click()
-#driver.get("https://istanbulakademi.meb.gov.tr/akademiler.php?pID=615")
+
+# id ile elemana ulaşma
+driver.get("https://istanbulakademi.meb.gov.tr/akademiler.php?pID=615")
 #form = driver.find_element_by_id("choice_form")
 #form= driver.find_element(By.ID,"choice_form")
 #print(form.text) formu yazdırma
 
+# name özniteliği ile elemana ulaşma
 #anahtar_kelimeler = driver.find_element_by_name("keywords")
-anahtar_kelimeler=driver.find_element(By.NAME, "author")
-print(anahtar_kelimeler.get_attribute("content"))
+#anahtar_kelimeler=driver.find_element(By.NAME, "author")
+#print(anahtar_kelimeler.get_attribute("content"))
 #get_attribute anahtar kelimenin özniteliği ile content e ulaş getir ve yazdır
-time.sleep(2)
+
+# bağlantı metni ile elemana ulaşma
+#link = driver.find_element_by_link_text("Yorumlar")
+#link=driver.find_element(By.LINK_TEXT,"Yorumlar")
+#link.click()
+
+time.sleep(3)
 driver.close()
