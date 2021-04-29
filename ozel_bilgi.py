@@ -1,0 +1,1 @@
+tc="özel bilgi"
