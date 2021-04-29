@@ -42,3 +42,16 @@ except:
     # tıklama sonrası sayfa 10 saniyede yüklenemedi ise
     print("Sayfa 10 saniyede yüklenemedi...")
     driver.refresh()
+
+
+
+# SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi (her sayfada karşılaşılabiliyor)
+# "EBA yükleniyor" gidene kadar sayfayı yenileme döngüsü
+while True:
+    eba_wait = WebDriverWait(driver, timeout=3, poll_frequency=1)
+    try:
+        eba_wait.until(ec.invisibility_of_element((By.ID, "generalPreloader")))
+        break # gizlendi ise döngüden çık
+    except:
+        print("Çok bekledi. Sayfa yenileniyor...")
+        driver.refresh()
