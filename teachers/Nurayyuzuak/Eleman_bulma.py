@@ -35,8 +35,16 @@ link = driver.find_element_by_partial_link_text("Hata")
 link.click()
 
 #etiket adı ile elemana ulaşma
-#name = driver.find_element_by_tag_name("input")
-#name.send_keys("Nuray Yüzüak")
+name = driver.find_element_by_tag_name("input")
+name.send_keys("Nuray Yüzüak")
+
+# css seçici ile elemana ulaşma
+# By.CSS_SELECTOR
+email = driver.find_element_by_css_selector("#sender_email")
+email.send_keys("nuray@gmail.com")
+time.sleep(2)
+email.clear()
+email.send_keys("nuray68@gmail.com")
 
 time.sleep(4)
 driver.close()
