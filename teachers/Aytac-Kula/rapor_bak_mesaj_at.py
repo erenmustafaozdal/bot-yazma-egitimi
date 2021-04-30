@@ -67,6 +67,4 @@ driver.find_element_by_css_selector("div[class='btn-group pull-right vc-position
 driver.find_element_by_xpath("//a[contains(text(),'SİL')]").click()
 time.sleep(5)
 
-
-
-#driver.close()
+driver.close()
