@@ -35,13 +35,11 @@ wait = WebDriverWait(driver, timeout=3, poll_frequency=1)
 wait.until(ec.element_to_be_clickable((By.XPATH, "//div[@class='vc-lm-item-title '][normalize-space()='Raporlar']"))).click()
 time.sleep(2)
 
+#çalışmaları kontrol
 driver.find_element_by_xpath("//body/div[@id='indexBaseContainer']/div[@class='vc-fullHeight ng-scope']/div[@class='ng-scope']/div[@id='componentMainView']/div[@class='vc-fullHeight vc-background']/div[@id='componentMainSubView']/div[@role='main']/div[@class='vc-router-content ng-scope']/div[@id='vcReportsController']/div[@class='vc-layout-view-content-padding-headerless']/div[@class='p-w-xs']/div[@class='display-flow-root-class row']/div[1]/div[1]/div[1]").click()
 time.sleep(5)
 driver.find_element_by_xpath("//div[@id='target1']//div[1]").click()
 time.sleep(5)
-#driver.find_element_by_xpath("//div[contains(@class,'vc-lm-item-title')][normalize-space()='Sayfam']").click()
-#time.sleep(5)
-#driver.find_element_by_css_selector("textarea[placeholder='Ne paylaşmak istersin?']").send_keys(settings.mesaj)
 
 driver.find_element_by_xpath("//div[contains(text(),'704')]").click()
 time.sleep(15)
@@ -51,5 +49,24 @@ driver.find_element_by_xpath("//div[contains(text(),'848')]").click()
 time.sleep(15)
 driver.find_element_by_xpath("//div[@class='hidden-xs vc-text-truncate vc-font-size-3x-large vc-color- ng-binding']").click()
 time.sleep(5)
+
+#mesaj gönderme
+driver.find_element_by_xpath("//div[contains(@class,'vc-lm-item-title')][normalize-space()='Sayfam']").click()
+time.sleep(5)
+driver.find_element_by_css_selector("textarea[placeholder='Ne paylaşmak istersin?']").send_keys(settings.mesaj)
+driver.find_element_by_xpath("//option[@label='Özel Eğitim A Şubesi']").click()
+time.sleep(5)
+driver.find_element_by_id("vc-PostButton").click()
+time.sleep(5)
+driver.find_element_by_xpath("//a[contains(text(),'PAYLAŞ')]").click()
+time.sleep(5)
+
+# mesajı silme
+driver.find_element_by_xpath("//div[@id='vc-feedListItemsContainer']//div[2]//button[1]//i[1]").click()
+driver.find_element_by_css_selector("div[class='btn-group pull-right vc-position-absolute pos-r-0 ng-scope dropdown open'] a[class='ng-binding']").click()
+driver.find_element_by_xpath("//a[contains(text(),'SİL')]").click()
+time.sleep(5)
+
+
 
 #driver.close()
