@@ -43,7 +43,7 @@ driver.find_element_by_xpath("//div[contains(@class,'vc-lm-item-title')][normali
 time.sleep(5)
 driver.find_element_by_css_selector("textarea[placeholder='Ne paylaşmak istersin?']").send_keys(settings.mesaj)
 time.sleep(1)
-driver.find_element_by_xpath("//option[contains(text(), '3. Sınıf')]").click()
+driver.find_element_by_xpath("//option[contains(text(), '"+ settings.grup +"')]").click()
 time.sleep(1)
 driver.find_element_by_id("vc-PostButton").click()
 time.sleep(1)
