@@ -8,6 +8,7 @@ firefox_path = ""
 # örnek: C:\\Development\\drivers\\IEDriverServer.exe
 ie_path = ""
 
+
 # 29 Nisan 2021 Eklemesi
 # ----------------------
 # E-devlet girişi için TC
