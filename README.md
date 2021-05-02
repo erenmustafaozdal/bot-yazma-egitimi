@@ -123,5 +123,5 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 |1. HAFTA | 2. HAFTA |      
 | [![3. HAFTA](https://img.youtube.com/vi/ZAChGQz3wfY/0.jpg)](https://youtu.be/ZAChGQz3wfY) | [![4. HAFTA](https://img.youtube.com/vi/_KtvP_fBBH8/0.jpg)](https://youtu.be/_KtvP_fBBH8) |      
 |3. HAFTA | 4. HAFTA |
-| [![4. HAFTA EK VİDEO](https://lh3.googleusercontent.com/yubj7xG5UNBN29MJ1C2GGXMCOwm7r0UU50JNYxLnJMQD72iKTH5WmE-hgnq2YJbhgtiN5Q1mn80kp9tUC2zA=w640-h360-k-rw-pd)](https://drive.google.com/file/d/14IGINTzeLw3GClHOn9lSQQv5kYIz1Jw3/view) | BEKLENİYOR... 😊 |      
+| [![4. HAFTA EK VİDEO](https://lh4.googleusercontent.com/bH-AePpIyZok-R3k4Rl-TsP27oUqFP-v9-VFs6tl0bGut8CzCalB3ME5kP_eCt2rFF4FXWC5tuc2PQ=w640-h360-k-rw-pd)](https://drive.google.com/file/d/14IGINTzeLw3GClHOn9lSQQv5kYIz1Jw3/view) | BEKLENİYOR... 😊 |      
 |4. HAFTA EK VİDEO | 5. HAFTA |
