@@ -67,11 +67,50 @@ wait = WebDriverWait(driver, timeout=3, poll_frequency=1)
 # //div[@class='vc-lm-item-title '][normalize-space()='Raporlar']
 # //div[@id='3e8510bd-2428-4fa8-12e1-42ea125d8ff2'] ID SÜREKLİ DEĞİŞTİĞİ İÇİN KULLANAMIYORUZ!! Önce bunu denemiştik.
 # time.sleep(30)
+
+# Raporlar Menüsüne Tıklama
 wait.until(ec.element_to_be_clickable(
         (By.XPATH, "//div[@class='vc-lm-item-title '][normalize-space()='Raporlar']"))
 ).click()
+time.sleep(2)
+
+# Çalışma Raporları Düğmesi
+driver.find_element_by_xpath("//div[@class='display-flow-root-class row']//div[1]//div[1]//div[1]//div[2]").click()
+time.sleep(5)
+
+# Öğrenci Bazlı Sekmesi
+driver.find_element_by_xpath("//div[@id='target1']//div[1]").click()
+time.sleep(3)
+
+# Benim uyarı verdiği için uyarı penceresindeki TAMAM düğmesine tıklama
+driver.find_element_by_xpath("//a[normalize-space()='TAMAM']").click()
+
+# Sayfam Menüsüne Tıklama
+driver.find_element_by_xpath("//div[contains(@class,'vc-lm-item-title')][normalize-space()='Sayfam']").click()
+time.sleep(5)
+
+# Mesaj bölümüne settings dosyasında bulunan mesaj değişkenindeki metni yazdırma
+driver.find_element_by_css_selector("textarea[placeholder='Ne paylaşmak istersin?']").send_keys(settings.mesaj)
+
+# Mesajı hangi grupta paylaşacağımızı seçiyoruz. (Dropdown listeden seçim)
+driver.find_element_by_xpath("//option[@label='Bilişim Zümresi']").click()
+time.sleep(5)
+
+# Paylaş Düğmesine Tıklama
+driver.find_element_by_id("vc-PostButton").click()
+time.sleep(5)
+
+# Açılan Pop-Up Üzerindeki Paylaş Düğmesine Tıklama
+driver.find_element_by_xpath("//a[contains(text(),'PAYLAŞ')]").click()
+time.sleep(5)
+
+# Paylaşılan Mesajı Silme
+driver.find_element_by_xpath("//i[@class='fa fa-bars fa-lg']").click()
+driver.find_element_by_xpath("//a[normalize-space()='Sil']").click()
+time.sleep(1)
+driver.find_element_by_xpath("//a[contains(text(),'SİL')]").click()
 
 
 # tarayıcı kapat
-time.sleep(2)
+time.sleep(10)
 driver.close()
