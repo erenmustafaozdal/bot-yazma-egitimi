@@ -40,6 +40,8 @@ driver.find_element_by_xpath("//body/div[@id='indexBaseContainer']/div[@class='v
 time.sleep(5)
 driver.find_element_by_xpath("//div[@id='target1']//div[1]").click()
 time.sleep(5)
+
+
 # 6. sınıflar
 driver.find_element_by_xpath("//div[contains(text(),'704')]").click()
 time.sleep(15)
