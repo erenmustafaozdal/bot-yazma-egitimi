@@ -3,7 +3,7 @@
 
 # Her geliştiricinin ayarlarını barındıran dosyayı GitHub'a gönderme
 settings.py
-
+mebbis.py
 # Python'ın oluşturduğu ön bellek dosyalarını GitHub'a gönderme
 __pycache__
 
