@@ -44,7 +44,8 @@ def mesajat():
     time.sleep(5)
     driver.find_element_by_xpath("//a[contains(text(),'PAYLAŞ')]").click()
     time.sleep(5)
-
+    driver.close()
+    
 while True:
         mesaj=input("Öğrencilere iletmek istediğiniz mesajınızı giriniz.")
         secim = int(input('''
