@@ -13,7 +13,7 @@ geckodriver.log
 # Sanal geliştirme ortamı (venv klasörü) oluşturulduysa GitHub'a gönderme
 venv
 
-eleman_bulma.py
+
 veri.txt
 eba_giris.py
 eleman_bulma.py
