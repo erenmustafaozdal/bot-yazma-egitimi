@@ -35,6 +35,40 @@ def left_menu_is_loaded():
         left_menu_is_loaded()
 
 
+# EBA'ya giriş yapma işlemini gerçekleştiren fonksiyon
+def login(tc, password):
+    # Öğretmen girişi sayfasına git
+    driver.get("https://giris.eba.gov.tr/EBA_GIRIS/teacher.jsp")
+
+    # Eğer daha önceden giriş yapıldı ise fonksiyondan çık
+    # 'VCollabPlayer' ifadesi EBA'ya giriş yaptıktan sonra
+    # her URL'de olan ortak bir değerdir.
+    # Geçerli URL içinde varlığı sorgulanarak,
+    # giriş yapılıp yapılmadığı tespit edilir
+    if 'VCollabPlayer' in driver.current_url:
+        return
+
+    # E-Devlet girişi tuşuna bas ve E-Devlet girişi sayfasına git
+    driver.find_element_by_xpath("//button[@title='edevlet girişi']").click()
+
+    # TC ve şifre yaz
+    driver.find_element_by_css_selector("#tridField").send_keys(settings.tc)
+    driver.find_element_by_id("egpField").send_keys(settings.password)
+
+    # E-Devlet giriş formunu gönder.
+    # Eğer sayfa yüklenemez veya başka bir hata alınırsa
+    # giriş işlemini tekrar et.
+    try:
+        driver.find_element_by_xpath("//input[@name='submitButton']").click()
+    except:
+        print("Sayfa 10 saniyede yüklenemedi. Sayfa yenileniyor...")
+        login(tc, password)
+    else:
+        # Eğer başarılı bir şekilde EBA'ya giriş
+        # yapıldı ise sol menünün yüklenmesini bekle
+        left_menu_is_loaded()
+
+
 # tarayıcı nesnesi oluştur
 driver = webdriver.Chrome(settings.driver_path)
 driver.maximize_window()
@@ -42,18 +76,9 @@ driver.maximize_window()
 # 10 saniye beklemesini, yoksa hata vermesini belirliyoruz
 driver.set_page_load_timeout(10)
 
-# EBA'ya giriş yap
-try:
-    driver.get("https://giris.eba.gov.tr/EBA_GIRIS/teacher.jsp")
-    driver.find_element_by_xpath("//button[@title='edevlet girişi']").click()
-    driver.find_element_by_css_selector("#tridField").send_keys(settings.tc)
-    driver.find_element_by_id("egpField").send_keys(settings.password)
-    driver.find_element_by_xpath("//input[@name='submitButton']").click()
-except:
-    # tıklama sonrası sayfa 10 saniyede yüklenemedi ise
-    print("Sayfa 10 saniyede yüklenemedi...")
-    driver.refresh()
 
+# EBA'ya giriş yapılır
+login(settings.tc, settings.password)
 
 
 
