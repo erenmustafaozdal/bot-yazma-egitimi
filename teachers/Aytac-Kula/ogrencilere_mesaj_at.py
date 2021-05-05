@@ -44,10 +44,9 @@ def mesajat():
     driver.close()
     
 while True:
-        mesaj=input("Öğrencilere iletmek istediğiniz mesajınızı giriniz.")
+        mesaj=input("Öğrencilere iletmek istediğiniz mesajınızı giriniz: ")
         secim = int(input('''
-       
-            Mesajı ne yapmak istersin ?
+           Mesajı ne yapmak istersiniz ?
        
         1 Gönder            0 Vazgeç       
         '''))
