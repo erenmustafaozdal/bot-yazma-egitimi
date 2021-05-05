@@ -77,18 +77,23 @@ driver.maximize_window()
 driver.set_page_load_timeout(10)
 
 
+# Çeşitli sayfa elemanlarını beklemek için
+# WebDriverWait bekleme nesnesi oluşturulur
+wait = WebDriverWait(driver, timeout=10, poll_frequency=1)
+
+
 # EBA'ya giriş yapılır
 login(settings.tc, settings.password)
 
 
+# Sol menüden 'Raporlar' menüsüne tıkla
+reports_menu = wait.until(ec.element_to_be_clickable(
+    (By.XPATH, "//div[@class='vc-lm-item-title '][normalize-space()='Raporlar']")
+))
+reports_menu.click()
 
 
-wait = WebDriverWait(driver, timeout=3, poll_frequency=1)
-# //div[@class='vc-lm-item-title '][normalize-space()='Raporlar']
-# time.sleep(30)
-wait.until(ec.element_to_be_clickable(
-    (By.XPATH, "//div[@class='vc-lm-item-title '][normalize-space()='Raporlar']"))
-).click()
+
 
 # tarayıcı kapat
 time.sleep(2)
