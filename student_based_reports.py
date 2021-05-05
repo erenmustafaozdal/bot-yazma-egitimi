@@ -24,6 +24,17 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 
 
+# SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi
+# ÇÖZÜM: Sol menü yüklenene kadar bekle
+def left_menu_is_loaded():
+    try:
+        wait.until(ec.visibility_of_element_located((By.ID, "vc-treeleftmenu")))
+    except:
+        print("Menünün yüklenmesi için çok bekledi. Sayfa yenileniyor...")
+        driver.refresh()
+        left_menu_is_loaded()
+
+
 # tarayıcı nesnesi oluştur
 driver = webdriver.Chrome(settings.driver_path)
 driver.maximize_window()
@@ -45,16 +56,6 @@ except:
 
 
 
-# SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi (her sayfada karşılaşılabiliyor)
-# "EBA yükleniyor" gidene kadar sayfayı yenileme döngüsü
-while True:
-    eba_wait = WebDriverWait(driver, timeout=3, poll_frequency=1)
-    try:
-        eba_wait.until(ec.invisibility_of_element((By.ID, "generalPreloader")))
-        break # gizlendi ise döngüden çık
-    except:
-        print("Çok bekledi. Sayfa yenileniyor...")
-        driver.refresh()
 
 
 wait = WebDriverWait(driver, timeout=3, poll_frequency=1)
