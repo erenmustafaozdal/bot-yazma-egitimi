@@ -32,11 +32,8 @@ def mesajat():
 
     wait = WebDriverWait(driver, timeout=3, poll_frequency=1)
     wait.until(ec.element_to_be_clickable(
-        (By.XPATH, "//div[@class='vc-lm-item-title '][normalize-space()='Raporlar']"))).click()
+        (By.XPATH, "//div[contains(@class,'vc-lm-item-title')][normalize-space()='Sayfam']"))).click()
     time.sleep(2)
-
-    driver.find_element_by_xpath("//div[contains(@class,'vc-lm-item-title')][normalize-space()='Sayfam']").click()
-    time.sleep(5)
     driver.find_element_by_css_selector("textarea[placeholder='Ne paylaşmak istersin?']").send_keys(mesaj)
     driver.find_element_by_xpath("//option[@label='Özel Eğitim A Şubesi']").click()
     time.sleep(5)
