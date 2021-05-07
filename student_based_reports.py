@@ -22,6 +22,7 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
+import os
 
 
 # SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi
@@ -80,6 +81,12 @@ def table_is_loaded():
         driver.refresh()
         return table_is_loaded()
 
+
+# Ekran görüntüleri için yoksa klasörü oluştur
+#  "./images/student-based-reports"
+img_dir = "./images/student-based-reports"
+if not os.path.exists(img_dir):
+    os.mkdir(img_dir)
 
 # tarayıcı nesnesi oluştur
 driver = webdriver.Chrome(settings.driver_path)
@@ -175,6 +182,10 @@ for student_i in range(student_count):
     performance_avg = "performans yok"  # varsayılan bir değer belirliyoruz.
     if len(performances) > 0:  # eğer performans değeri varsa ortlama hesap edilir
         performance_avg = sum(performances) / len(performances)
+
+    # ekran görüntüsü alalım
+    img_path = f"{img_dir}/{student_name}.png"
+    driver.find_element_by_xpath("//div[@class='vc-layout-view-content-padding']").screenshot(img_path)
 
     # ekrana yazdır
     print("*"*50)
