@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 
 
 
+
 def left_menu_is_loaded():
     try:
         wait.until(EC.visibility_of_all_elements_located((By.ID,"vc-treeleftmenu")))
