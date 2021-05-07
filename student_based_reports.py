@@ -128,6 +128,33 @@ student_based_link.click()
 students = table_is_loaded()
 
 
+# Öğrencilerin satırlarını döngüye al.
+# 1. Öğrencinin adını al.
+# 2. Son 10 çalışmanın tamamlanma yüzdelerini bir diziye aktar.
+# 3. Son 10 çalışmanın performanslarını bir diziye aktar.
+# 4. Ortamala tamamlamayı hesap et.
+# 5. Ortalama performansı hesap et.
+# 6. Ekran görüntüsünü kaydet.
+# 7. Verileri ekrana yazdır.
+# TODO: 8. Verileri Excel dosyasına yazdır.
+student_count = len(students)
+for student_i in range(student_count):
+    # Sayfa her yenilendiğinde elemanları baştan oluşturulur.
+    # Yukarıda "students" değişkenine satırlar aktarılsa bile;
+    # ilk öğrenci kontrol edilip, döngünün en altında
+    # önceki sayfaya geri döndüğünde; sonraki öğrencinin satırı
+    # yeniden oluşturulduğu için tıklama yapılamıyordu.
+    # Bu sebeple döngü her döndüğünde satırlar tekrar alınır ve sıradaki satır tıklanır.
+    students = table_is_loaded()
+    students[student_i].click()
+
+    # çalışma satırlarını al
+    works = table_is_loaded()
+
+    student_name = driver.find_element_by_xpath("//div[@class='vc-font-size-x-large m-l-sm ng-binding']").text
+    # sonraki satırdaki öğrenciye geçmek için
+    # bir önceki sayfadaki tabloya geri dönüyoruz
+    driver.back()
 
 
 # tarayıcı kapat
