@@ -73,8 +73,10 @@ def login(tc, password):
 driver = webdriver.Chrome(settings.driver_path)
 driver.maximize_window()
 # sayfanın yüklemesini çok beklememesi için
-# 10 saniye beklemesini, yoksa hata vermesini belirliyoruz
-driver.set_page_load_timeout(10)
+# 20 saniye beklemesini, yoksa hata vermesini belirliyoruz
+# hata verdiğinde bu hatayı yakalayıp (login fonksiyonunda)
+# sayfanın yenilenmesini veya giriş işlemini tekrar etmesini sağlayacağız
+driver.set_page_load_timeout(20)
 
 
 # Çeşitli sayfa elemanlarını beklemek için
