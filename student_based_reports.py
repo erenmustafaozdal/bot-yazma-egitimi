@@ -88,6 +88,9 @@ img_dir = "./images/student-based-reports"
 if not os.path.exists(img_dir):
     os.mkdir(img_dir)
 
+# TODO: Excel dosyası eğer yoksa oluştur
+
+
 # tarayıcı nesnesi oluştur
 driver = webdriver.Chrome(settings.driver_path)
 driver.maximize_window()
@@ -201,3 +204,5 @@ for student_i in range(student_count):
 # tarayıcı kapat
 time.sleep(2)
 driver.close()
+
+# TODO: Excel dosyasını kaydet ve kapat
