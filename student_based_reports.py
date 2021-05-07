@@ -61,7 +61,7 @@ def login(tc, password):
     try:
         driver.find_element_by_xpath("//input[@name='submitButton']").click()
     except:
-        print("Sayfa 10 saniyede yüklenemedi. Sayfa yenileniyor...")
+        print("Sayfa 20 saniyede yüklenemedi. Sayfa yenileniyor...")
         login(tc, password)
     else:
         # Eğer başarılı bir şekilde EBA'ya giriş
