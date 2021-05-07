@@ -152,6 +152,36 @@ for student_i in range(student_count):
     works = table_is_loaded()
 
     student_name = driver.find_element_by_xpath("//div[@class='vc-font-size-x-large m-l-sm ng-binding']").text
+
+    # çalışma satırlarını gez ve hesaplamalar yap
+    completes = []  # tamamlama yüzdeleri bu listeye atılarak hesaplanacak
+    performances = []  # performanslar bu listeye atılarak hesaplanacak
+
+    # eğer bütün çalışmalar gezilecekse "for work in works:" şeklinde
+    # döngü oluşturulabilir. Bu örnekte son 10 çalışma kontrol ediliyor.
+    for work_i in range(10):
+        # tamamlanma alınır
+        complete = works[work_i].find_element_by_xpath(".//div[@id='vcProgressBar']//span").text
+        completes.append(int(complete.replace("%", "")))
+
+        # performans alınır
+        performance = works[work_i].find_element_by_xpath(".//div[@id='multiColouredProgress']//span").text
+        if performance != '-':
+            performances.append(int(performance))
+
+    # tamamlama ortalamasını alalım
+    complete_avg = sum(completes) / len(completes)
+    # performans ortalamasını alalım
+    performance_avg = "performans yok"  # varsayılan bir değer belirliyoruz.
+    if len(performances) > 0:  # eğer performans değeri varsa ortlama hesap edilir
+        performance_avg = sum(performances) / len(performances)
+
+    # ekrana yazdır
+    print("*"*50)
+    print("Öğrenci: ", student_name)
+    print("--- Tamamlama:", complete_avg)
+    print("--- Performans:", performance_avg)
+
     # sonraki satırdaki öğrenciye geçmek için
     # bir önceki sayfadaki tabloya geri dönüyoruz
     driver.back()
