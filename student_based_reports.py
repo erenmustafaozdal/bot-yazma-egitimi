@@ -69,6 +69,18 @@ def login(tc, password):
         left_menu_is_loaded()
 
 
+# Tablo satırlarının görünmesini bekleyen fonksiyon
+def table_is_loaded():
+    try:
+        return wait.until(ec.visibility_of_all_elements_located(
+            (By.XPATH, "//div[@class='body-container']/div[@role='row']")
+        ))
+    except:
+        print("Tablo yüklenemedi. Sayfa yenileniyor...")
+        driver.refresh()
+        return table_is_loaded()
+
+
 # tarayıcı nesnesi oluştur
 driver = webdriver.Chrome(settings.driver_path)
 driver.maximize_window()
@@ -93,6 +105,27 @@ reports_menu = wait.until(ec.element_to_be_clickable(
     (By.XPATH, "//div[@class='vc-lm-item-title '][normalize-space()='Raporlar']")
 ))
 reports_menu.click()
+
+
+# 'Raporlar' sayfasında 'Çalışma Raporları' bağlantısına tıkla.
+work_reports = wait.until(ec.element_to_be_clickable(
+    (By.XPATH, "//div[text()='Çalışma Raporları']")
+))
+work_reports.click()
+
+# Bu sayfanın yüklendiğinden emin olmak için tablo satırları yüklenene kadar bekle
+table_is_loaded()
+
+
+# 'Çalışma Raporları' sayfasında 'ÖĞRENCİ BAZLI' bağlantısına tıkla.
+student_based_link = wait.until(ec.element_to_be_clickable(
+    (By.XPATH, "//div[text()='ÖĞRENCİ BAZLI']")
+))
+student_based_link.click()
+
+# Bu sayfanın yüklendiğinden emin olmak için tablo satırları yüklenene kadar bekle.
+# Öğrencilerin olduğu tablo satırlarını al
+students = table_is_loaded()
 
 
 
