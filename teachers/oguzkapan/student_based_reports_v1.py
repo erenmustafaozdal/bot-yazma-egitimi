@@ -4,6 +4,15 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import os
+
+
+#pip install xlsxwriter
+
+img_dir="./images/student-based-reports"
+if not os.path.exists(img_dir):
+    os.mkdir(img_dir)
+
 
 def left_menu_is_loaded():
     try:
@@ -101,11 +110,30 @@ for student_i in range(student_count):
 
     completes=[]
     performances=[]
-    for work_i in range(10):
+
+    for work_i in range(4):
        complete= works[work_i].find_element_by_xpath(".//div[@id='vcProgressBar']//span").text
        completes.append(int(complete.replace("%","")))
-    break
+    performance=works[work_i].find_element_by_xpath(".//div[@id='multiColouredProgress']//span").text
+    if performance!='-':
+        performances.append(int(performance))
+    complete_avg=sum(completes) / len(completes)
+    performance_avg="performans yok";
+    if len(performances)>0:
+        performance_avg=sum(performances)/len(performances)
+
+    img_path=f"{img_dir}/{student_name}.png"
+    driver.find_element_by_xpath("//div[@class='vc-layout-view-content-padding']").screenshot(img_path)
+
+
+
+    print("*"*50)
+    print("Öğrenci : " ,student_name)
+    print("--Tamamlama : ",complete_avg)
+    print("--Performans : ", performance_avg)
+
     driver.back()
+
 
 
 
