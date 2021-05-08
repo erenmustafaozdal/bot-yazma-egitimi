@@ -204,7 +204,8 @@ for student_i in range(student_count):
         performance_avg = sum(performances) / len(performances)
 
     # ekran görüntüsü alalım
-    img_path = f"{img_dir}/{student_name}.png"
+    # Ekran Görüntüsü Adı Formatı: 20210508-Öğrenci Adı.png
+    img_path = f"{img_dir}/{date.strftime('%Y%m%d')}-{student_name}.png"
     driver.find_element_by_xpath("//div[@class='vc-layout-view-content-padding']").screenshot(img_path)
 
     # ekrana yazdır
