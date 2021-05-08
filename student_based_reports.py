@@ -163,6 +163,8 @@ student_count = len(students)
 
 # Günün tarihini al
 date = datetime.today()
+# Excel'de yazılmış en son satırı al
+last_row = ws.max_row
 for student_i in range(student_count):
     # Sayfa her yenilendiğinde elemanları baştan oluşturulur.
     # Yukarıda "students" değişkenine satırlar aktarılsa bile;
@@ -211,6 +213,17 @@ for student_i in range(student_count):
     print("--- Tamamlama:", complete_avg)
     print("--- Performans:", performance_avg)
 
+    # Excel'e yazdır
+    # (last_row = 1) + (student_i = 0) + 1
+    row = last_row + student_i + 1
+    ws[f"A{row}"] = date
+    ws[f"A{row}"].number_format = "d mmmm yyyy, dddd"
+    ws[f"B{row}"] = student_name
+    ws[f"C{row}"] = complete_avg
+    ws[f"D{row}"] = performance_avg
+    # =KÖPRÜ("../images/student-based-reports/Ekran Görüntüsü.png";"Görüntü")
+    ws[f"E{row}"] = f'=HYPERLINK(".{img_path}", "Görüntü")'
+
     # sonraki satırdaki öğrenciye geçmek için
     # bir önceki sayfadaki tabloya geri dönüyoruz
     driver.back()
@@ -220,4 +233,6 @@ for student_i in range(student_count):
 time.sleep(2)
 driver.close()
 
-# TODO: Excel dosyasını kaydet ve kapat
+# Excel dosyasını kaydet ve kapat
+wb.save(xl_path)
+wb.close()
