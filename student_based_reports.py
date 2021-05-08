@@ -23,6 +23,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 import os
+# Öncelikle openpyxl paketi yüklenir: pip install openpyxl
+from openpyxl import Workbook, load_workbook
 
 
 # SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi
@@ -88,7 +90,16 @@ img_dir = "./images/student-based-reports"
 if not os.path.exists(img_dir):
     os.mkdir(img_dir)
 
-# TODO: Excel dosyası eğer yoksa oluştur
+# Excel dosyası eğer yoksa oluştur
+xl_path = "./excels/student-based_reports.xlsx"
+if not os.path.exists(xl_path):
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Öğrenci Bazlı Çalışma Raporları"
+    ws.append(["Tarih", "Öğrenci", "Tamamlama", "Performans", "Ekran Görüntüsü"])
+else:
+    wb = load_workbook(xl_path)
+    ws = wb["Öğrenci Bazlı Çalışma Raporları"]
 
 
 # tarayıcı nesnesi oluştur
