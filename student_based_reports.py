@@ -25,6 +25,7 @@ from selenium.webdriver.common.by import By
 import os
 # Öncelikle openpyxl paketi yüklenir: pip install openpyxl
 from openpyxl import Workbook, load_workbook
+from datetime import datetime
 
 
 # SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi
@@ -159,6 +160,9 @@ students = table_is_loaded()
 # 7. Verileri ekrana yazdır.
 # TODO: 8. Verileri Excel dosyasına yazdır.
 student_count = len(students)
+
+# Günün tarihini al
+date = datetime.today()
 for student_i in range(student_count):
     # Sayfa her yenilendiğinde elemanları baştan oluşturulur.
     # Yukarıda "students" değişkenine satırlar aktarılsa bile;
