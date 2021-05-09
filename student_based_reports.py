@@ -23,6 +23,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 import os
+# Öncelikle openpyxl paketi yüklenir: pip install openpyxl
+from openpyxl import Workbook, load_workbook
+from datetime import datetime
 
 
 # SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi
@@ -88,7 +91,16 @@ img_dir = "./images/student-based-reports"
 if not os.path.exists(img_dir):
     os.mkdir(img_dir)
 
-# TODO: Excel dosyası eğer yoksa oluştur
+# Excel dosyası eğer yoksa oluştur
+xl_path = "./excels/student-based_reports.xlsx"
+if not os.path.exists(xl_path):
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Öğrenci Bazlı Çalışma Raporları"
+    ws.append(["Tarih", "Öğrenci", "Tamamlama", "Performans", "Ekran Görüntüsü"])
+else:
+    wb = load_workbook(xl_path)
+    ws = wb["Öğrenci Bazlı Çalışma Raporları"]
 
 
 # tarayıcı nesnesi oluştur
@@ -148,6 +160,11 @@ students = table_is_loaded()
 # 7. Verileri ekrana yazdır.
 # TODO: 8. Verileri Excel dosyasına yazdır.
 student_count = len(students)
+
+# Günün tarihini al
+date = datetime.today()
+# Excel'de yazılmış en son satırı al
+last_row = ws.max_row
 for student_i in range(student_count):
     # Sayfa her yenilendiğinde elemanları baştan oluşturulur.
     # Yukarıda "students" değişkenine satırlar aktarılsa bile;
@@ -187,7 +204,8 @@ for student_i in range(student_count):
         performance_avg = sum(performances) / len(performances)
 
     # ekran görüntüsü alalım
-    img_path = f"{img_dir}/{student_name}.png"
+    # Ekran Görüntüsü Adı Formatı: 20210508-Öğrenci Adı.png
+    img_path = f"{img_dir}/{date.strftime('%Y%m%d')}-{student_name}.png"
     driver.find_element_by_xpath("//div[@class='vc-layout-view-content-padding']").screenshot(img_path)
 
     # ekrana yazdır
@@ -195,6 +213,17 @@ for student_i in range(student_count):
     print("Öğrenci: ", student_name)
     print("--- Tamamlama:", complete_avg)
     print("--- Performans:", performance_avg)
+
+    # Excel'e yazdır
+    # (last_row = 1) + (student_i = 0) + 1
+    row = last_row + student_i + 1
+    ws[f"A{row}"] = date
+    ws[f"A{row}"].number_format = "d mmmm yyyy, dddd"
+    ws[f"B{row}"] = student_name
+    ws[f"C{row}"] = complete_avg
+    ws[f"D{row}"] = performance_avg
+    # =KÖPRÜ("../images/student-based-reports/Ekran Görüntüsü.png";"Görüntü")
+    ws[f"E{row}"] = f'=HYPERLINK(".{img_path}", "Görüntü")'
 
     # sonraki satırdaki öğrenciye geçmek için
     # bir önceki sayfadaki tabloya geri dönüyoruz
@@ -205,4 +234,6 @@ for student_i in range(student_count):
 time.sleep(2)
 driver.close()
 
-# TODO: Excel dosyasını kaydet ve kapat
+# Excel dosyasını kaydet ve kapat
+wb.save(xl_path)
+wb.close()
