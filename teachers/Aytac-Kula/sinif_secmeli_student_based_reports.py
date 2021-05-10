@@ -332,6 +332,7 @@ while True:
     1 Altıncı Sınıf
     2 Yedinci Sınıf
     3 Sekizinci Sınıf 
+    4 Tüm Sınıflar
     0 ÇIKIŞ
     Sınıf Seçiniz:
 
@@ -344,4 +345,8 @@ while True:
     if secim == 2:
         yedincisinif()
     if secim == 3:
+        sekizincisinif()
+    if secim == 4:
+        altincisinif()
+        yedincisinif()
         sekizincisinif()
