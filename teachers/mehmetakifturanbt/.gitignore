@@ -15,3 +15,6 @@ venv
 
 #IMDB 250 text dosyasını Github'a gönderme
 imdb_top_250_mat.txt
+
+#linkedin contacts text dosyasını Github'a gönderme
+linkedin_contacts_mat.txt
