@@ -334,9 +334,8 @@ while True:
     3 Sekizinci Sınıf 
     4 Tüm Sınıflar
     0 ÇIKIŞ
-    Sınıf Seçiniz:
-
-    '''))
+    
+    Hangi Sınıfı Kontrol Etmek İstiyorsunuz:'''))
 
     if secim == 0:
         break
