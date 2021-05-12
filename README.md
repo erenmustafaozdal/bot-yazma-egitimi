@@ -2,6 +2,8 @@
 
 İstanbul Öğretmen Akademileri "Python ile Eğitim Ortamlarında Verimliliği Artırma / BOT Yazma Eğitimi - EBA Örnekleri" atölyesi kod örneklerinin bulunduğu depo
 
+---
+
 ## İÇİNDEKİLER
 
 - [Web Otomasyon Nedir?](#web-otomasyon-nedir)
@@ -10,13 +12,15 @@
     - [Selenium Kurun](#selenium-kurun)
     - [PyCharm Kurun](#pycharm-kurun)
     - [GitHub'a Başlangıç Yapın](#githuba-başlangıç-yapın)
-        - [Geliştirme Esnasında Kullanacağınız Tarayıcının Sürücüsünü İndirin](#geliştirme-esnasında-kullanacağınız-tarayıcının-sürücüsünü-i̇ndirin)
+        - [Geliştirme Esnasında Kullanacağınız Tarayıcının Sürücüsünü İndirin](#geliştirme-yaparken-aşağıdaki-adımları-takip-etmek-çok-önemlidir)
     - [Excel işlemleri için openpyxl paketini yükleyin](#excel-işlemleri-için-openpyxl-paketini-yükleyin)
 - [Bazı Gerekli Adresler](#bazı-gerekli-adresler)
 - [Proje İçinde Nasıl Geliştirme Yaparsınız](#proje-i̇çinde-nasıl-geliştirme-yaparsınız)
     - [Geliştirme yaparken aşağıdaki adımları takip etmek çok önemlidir.](#geliştirme-yaparken-aşağıdaki-adımları-takip-etmek-çok-önemlidir.)
 - [Atölye Ders Videoları](#atölye-ders-videoları)
 - [Örnek Çalışmalar](#örnek-çalışmalar)
+
+---
 
 
 ## Web Otomasyon Nedir?
@@ -28,6 +32,8 @@
 > **değildir.** Sistemin size izin vermediği işlemleri yapamazsınız.
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
 
 
 ## NASIL BAŞLANIR?
@@ -46,6 +52,8 @@
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
 
+---
+
 
 ### Selenium Kurun
 Bilgisayarınızda komut istemini *(CMD)* açın ve aşağıdaki kod ile Selenium'u kurun.
@@ -56,12 +64,16 @@ Bilgisayarınızda komut istemini *(CMD)* açın ve aşağıdaki kod ile Seleniu
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
 
+---
+
 ### PyCharm Kurun
 [https://www.jetbrains.com/pycharm/download](https://www.jetbrains.com/pycharm/download) adresinden PyCharm geliştirme ortamının ücretsiz versiyonunu indirip, kurun. Bu isteğe bağlı bir seçenektir. Başka geliştirme ortamı da *(IDE)* kullanabilirsiniz.
 
 > Nasıl yapılacağını videonun ilgili bölümünü izleyerek görebilirsiniz <br> 👉 [https://youtu.be/aUqnZrpmPHU?t=3203](https://youtu.be/aUqnZrpmPHU?t=3203)
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
 
 ### GitHub'a Başlangıç Yapın
 İlk başta eğer yoksa GitHub hesabınızı oluşturun.
@@ -84,6 +96,8 @@ Artık klonladığınız projeyi geliştirme ortamınızda *(PyCharm veya başka
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
 
+---
+
 #### Geliştirme Esnasında Kullanacağınız Tarayıcının Sürücüsünü İndirin
 Chrome, Opera, Mozilla Firefox, Edge, Internet Explorer veya Safari... Seçiminize göre kullanacağınız tarayıcı sürücüsünü *(driver)* indirin.
 
@@ -93,6 +107,8 @@ Chrome, Opera, Mozilla Firefox, Edge, Internet Explorer veya Safari... Seçimini
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
 
+---
+
 ### Excel işlemleri için openpyxl paketini yükleyin
 Bilgisayarınızda komut istemini *(CMD)* açın ve aşağıdaki kod ile **openpyxl** paketini yükleyin.
 
@@ -101,6 +117,8 @@ Bilgisayarınızda komut istemini *(CMD)* açın ve aşağıdaki kod ile **openp
 Bu paket ile Excel dosyasına yazma ve Excel dosyasından okuma işlemleri yapılabilmektedir. Detaylı bilgi için [Bazı Gerekli Adresler](#baz%C4%B1-gerekli-adresler) başlığı altında bulunan openpyxl dokümantasyonu adresini ziyaret edebilirsiniz.
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
 
 
 ## Bazı Gerekli Adresler
@@ -116,6 +134,8 @@ Web elemanlarını bulmak için özellikle CSS ve XPATH seçicilerini belirlemed
 - [SelectorsHub resmi web sitesi](https://selectorshub.com/)
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
 
 ## Proje İçinde Nasıl Geliştirme Yaparsınız
 
@@ -134,6 +154,8 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 > değişiklikler ana dala ***(main)*** yansıtılacaktır.
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
 
 #### Geliştirme yaparken aşağıdaki adımları takip etmek çok önemlidir.
 
@@ -155,6 +177,8 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
 
+---
+
 ## Atölye Ders Videoları
 
 | AÇIKLAMA | VİDEO BAĞLANTISI |
@@ -171,6 +195,8 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 | **6. HAFTA** | BEKLENİYOR... 😊|
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
 
 ## Örnek Çalışmalar
 
