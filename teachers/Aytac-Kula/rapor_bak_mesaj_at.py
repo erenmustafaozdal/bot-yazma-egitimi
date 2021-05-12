@@ -124,9 +124,9 @@ driver.find_element_by_xpath("//a[contains(text(),'PAYLAŞ')]").click()
 time.sleep(5)
 
 # mesajı silme
-driver.find_element_by_xpath("//div[@id='vc-feedListItemsContainer']//div[2]//button[1]//i[1]").click()
-driver.find_element_by_css_selector("div[class='btn-group pull-right vc-position-absolute pos-r-0 ng-scope dropdown open'] a[class='ng-binding']").click()
-driver.find_element_by_xpath("//a[contains(text(),'SİL')]").click()
-time.sleep(5)
+#driver.find_element_by_xpath("//div[@id='vc-feedListItemsContainer']//div[2]//button[1]//i[1]").click()
+#driver.find_element_by_css_selector("div[class='btn-group pull-right vc-position-absolute pos-r-0 ng-scope dropdown open'] a[class='ng-binding']").click()
+#driver.find_element_by_xpath("//a[contains(text(),'SİL')]").click()
+#time.sleep(5)
 
 driver.close()

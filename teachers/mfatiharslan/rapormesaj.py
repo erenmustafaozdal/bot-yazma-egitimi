@@ -67,6 +67,5 @@ driver.find_element_by_css_selector("div[class='btn-group pull-right vc-position
 driver.find_element_by_xpath("//a[contains(text(),'SİL')]").click()
 time.sleep(5)
 
-
-
-#driver.close()
+driver.close()
+//body/div[@id='indexBaseContainer']/div[@class='vc-fullHeight ng-scope']/div[@class='ng-scope']/div[@id='componentMainView']/div[@class='vc-fullHeight vc-background']/div[@id='componentMainSubView']/div[@role='main']/div[@class='vc-router-content ng-scope']/div[@id='vcReportsController']/div[@class='vc-layout-view-content-padding-headerless']/div[@class='p-w-xs']/div[@class='display-flow-root-class row']/div[1]/div[1]/div[1]
