@@ -36,7 +36,16 @@ wait.until(ec.element_to_be_clickable((By.XPATH, "//div[@class='vc-lm-item-title
 time.sleep(2)
 
 #çalışmaları kontrol
-driver.find_element_by_xpath("//body/div[@id='indexBaseContainer']/div[@class='vc-fullHeight ng-scope']/div[@class='ng-scope']/div[@id='componentMainView']/div[@class='vc-fullHeight vc-background']/div[@id='componentMainSubView']/div[@role='main']/div[@class='vc-router-content ng-scope']/div[@id='vcReportsController']/div[@class='vc-layout-view-content-padding-headerless']/div[@class='p-w-xs']/div[@class='display-flow-root-class row']/div[1]/div[1]/div[1]").click()
+driver.find_element_by_xpath("//body/div[@id='indexBaseContainer']"
+                             "/div[@class='vc-fullHeight ng-scope']"
+                             "/div[@class='ng-scope']/div[@id='componentMainView']"
+                             "/div[@class='vc-fullHeight vc-background']"
+                             "div[@id='componentMainSubView']/div[@role='main']"
+                             "/div[@class='vc-router-content ng-scope']"
+                             "/div[@id='vcReportsController']"
+                             "/div[@class='vc-layout-view-content-padding-headerless']"
+                             "/div[@class='p-w-xs']/div[@class='display-flow-root-class row']"
+                             "/div[1]/div[1]/div[1]").click()
 time.sleep(5)
 driver.find_element_by_xpath("//div[@id='target1']//div[1]").click()
 time.sleep(5)
