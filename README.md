@@ -12,7 +12,7 @@
     - [Selenium Kurun](#selenium-kurun)
     - [PyCharm Kurun](#pycharm-kurun)
     - [GitHub'a Başlangıç Yapın](#githuba-başlangıç-yapın)
-        - [Geliştirme Esnasında Kullanacağınız Tarayıcının Sürücüsünü İndirin](#geliştirme-yaparken-aşağıdaki-adımları-takip-etmek-çok-önemlidir)
+        - [Geliştirme Esnasında Kullanacağınız Tarayıcının Sürücüsünü İndirin](#geli%C5%9Ftirme-yaparken-a%C5%9Fa%C4%9F%C4%B1daki-ad%C4%B1mlar%C4%B1-takip-etmek-%C3%A7ok-%C3%B6nemlidir)
     - [Excel işlemleri için openpyxl paketini yükleyin](#excel-işlemleri-için-openpyxl-paketini-yükleyin)
 - [Bazı Gerekli Adresler](#bazı-gerekli-adresler)
 - [Proje İçinde Nasıl Geliştirme Yaparsınız](#proje-i̇çinde-nasıl-geliştirme-yaparsınız)
