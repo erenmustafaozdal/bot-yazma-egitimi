@@ -45,6 +45,8 @@
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
 
+---
+
 ### Python Kurun
 [https://www.python.org/downloads](https://www.python.org/downloads) adresine giderek Python `3.x` *(3.4 ve üzeri bir sürüm olabilir.)* versiyonunu indirin ve kurun.
 
