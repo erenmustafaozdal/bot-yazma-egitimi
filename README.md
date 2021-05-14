@@ -14,6 +14,11 @@
     - [GitHub'a Başlangıç Yapın](#githuba-başlangıç-yapın)
         - [Geliştirme Esnasında Kullanacağınız Tarayıcının Sürücüsünü İndirin](#geliştirme-esnasında-kullanacağınız-tarayıcının-sürücüsünü-i̇ndirin)
     - [Excel işlemleri için openpyxl paketini yükleyin](#excel-işlemleri-için-openpyxl-paketini-yükleyin)
+    - [Zoom API ile canlı dersleri oluşturma](#zoom-api-ile-canl%C4%B1-dersleri-olu%C5%9Fturma)
+        - [Zoom’da JWT uygulaması oluşturun](#zoomda-jwt-uygulamas%C4%B1-olu%C5%9Fturun)
+        - [Zoom Api uygulaması bilgileri](#zoom-api-uygulaması-bilgileri)
+        - [JWT Token üretmek için pyjwt paketinin yüklenmesi](#jwt-token-%C3%BCretmek-i%C3%A7in-pyjwt-paketinin-y%C3%BCklenmesi)
+        - [Canlı ders oluşturma](#canl%C4%B1-ders-olu%C5%9Fturma)
 - [Bazı Gerekli Adresler](#bazı-gerekli-adresler)
 - [Proje İçinde Nasıl Geliştirme Yaparsınız](#proje-i̇çinde-nasıl-geliştirme-yaparsınız)
     - [Geliştirme yaparken aşağıdaki adımları takip etmek çok önemlidir.](#geli%C5%9Ftirme-yaparken-a%C5%9Fa%C4%9F%C4%B1daki-ad%C4%B1mlar%C4%B1-takip-etmek-%C3%A7ok-%C3%B6nemlidir)
@@ -122,13 +127,78 @@ Bu paket ile Excel dosyasına yazma ve Excel dosyasından okuma işlemleri yapı
 
 ---
 
+### Zoom API ile canlı dersleri oluşturma
+[Zoom Api](https://marketplace.zoom.us/docs/api-reference/introduction) kullanılarak Zoom içinde canlı dersleri oluşturabiliriz. Ardından bu dersleri EBA'da tanımlayabiliriz.
+
+> Burada kullanılacak tüm adresler **[Bazı Gerekli Adresler](#baz%C4%B1-gerekli-adresler)** başlığı altında da listelenmiştir. Zoom API hakkında daha fazla bilgi almak için Zoom API dokümantasyonunu inceleyebilirsiniz.
+
+Zoom Api'sini kullanırken bazı kullanım limitleri vardır. Bu limitler hakkında bilgi almak için [Zoom Api rate limits](https://marketplace.zoom.us/docs/api-reference/rate-limits) sayfasını inceleyebilirsiniz.
+
+*[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
+
+#### Zoom'da JWT uygulaması oluşturun
+[Zoom uygulaması oluşturma sayfası](https://marketplace.zoom.us/develop/create?source=devdocs)na gidin. Burada **JWT** seçeneği altındaki `Create` tuşuna basın. Gelen ekranda **Basic Information** ve **Developer Contact Information** başlıkları altında bulunan aşağıdaki zorunlu alanları doldurun.
+
+- [x] **App Name:** Uygulamanıza istediğiniz bir isim verin.
+- [x] **Company Name:** Şirket adı belirleyin. ***EBA**, **MEB** veya istediğiniz başka bir isim verebilirsiniz.*
+- [x] **Name:** Geliştirici adı olarak kendi adınızı yazabilirsiniz.
+- [x] **Email Address:** Geliştirici e-posta adresi olarak yine kendi e-posta adresinizi yazabilirsiniz.
+
+*[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
+
+#### Zoom Api uygulaması bilgileri
+Zoom JWT uygulamanızın `API Key`, `API Secret` ve bu iki bilgiden oluşan `JWT TOKEN` bilgilerini almamız gerekiyor. Bunun için JWT uygulamanızın **App Credentials** menüsüne tıklayarak ilgili sayfaya gidin. Burada bulunan `API Key` ve `API Secret` bilgilerini bir yere not edin.
+
+> **❗ DİKKAT:** `API Key` ve `API Secret` bilgileri çok önemli bilgilerdir. **Uygulama güvenliği için bu bilgileri hiç kimse ile paylaşmayın.** Atölyemiz içinde yapacağımız çalışmalarda bu bilgileri `settings.py` dosyasında tutarak, GitHub ile eşitlenmesini engelleyeceğiz.
+
+Bu sayfada bulunan `JWT Token` bilgisini, Zoom Api dokümantasyonu içinde test amaçlı kullanacağız. **Uygulama güvenliği için bu JWT Token bilgisini geliştirdiğimiz kod içine almayacağız**. Kodlamamızda JWT Token'ı otomatik oluşturacağız.
+
+*[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
+
+#### JWT Token üretmek için pyjwt paketinin yüklenmesi
+Aşağıdaki kod ile [pyjwt](https://github.com/jpadilla/pyjwt) paketini yükleyin.
+
+```pip install PyJWT```
+
+Paketin GitHub sayfasındaki örneği ele alarak Zoom Api için aşağıdaki şekilde JWT Token oluşturacağız.
+
+```python
+import jwt
+
+jwt_token = jwt.encode({"iss": zoom_api_key, "exp": expire_time}, zoom_api_secret, algorithm="HS256")
+```
+
+Bu kodda bulunan `expire_time` değerini Python ile üreteceğiz.
+
+*[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
+
+#### Canlı ders oluşturma
+Canlı ders oluşturmak için Zoom Api dokümantasyonu içindeki [Meeting Create](https://marketplace.zoom.us/docs/api-reference/zoom-api/meetings/meetingcreate) bölümünü kullanacağız. İstek *(request)* parametresi olarak sadece `userId` verilecek. Kendi adımıza ders oluşturacağımız için bu değer `me` şeklinde olabilir. İsteğin gövdesinde *(request body)* ise ders hakkında ayar parametreleri gönderilecek.
+
+> Sayfanın en altında bulunan **Send a Test Request** bölümünde test edebilirsiniz.
+
+*[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
 
 ## Bazı Gerekli Adresler
 
 - [Selenium resmi web sitesi](https://www.selenium.dev)
 - [Selenium komutları ve diğer dokümantasyonlar](https://www.selenium.dev/documentation/en)
-- [Atölyemizin Google Drive Klasörü](https://drive.google.com/drive/folders/1P6b4wvA9Guqq7ODGiU7MHOsOSjc_oHne?usp=sharing)
+- [Atölyemizin Google Drive klasörü](https://drive.google.com/drive/folders/1P6b4wvA9Guqq7ODGiU7MHOsOSjc_oHne?usp=sharing)
 - [openpyxl - Python Excel kütüphanesi dokümantasyonu](https://openpyxl.readthedocs.io)
+- [Zoom Api dokümanı](https://marketplace.zoom.us/docs/api-reference/introduction)
+    - [Zoom Api uygulama oluşturma](https://marketplace.zoom.us/develop/create?source=devdocs)
+    - [Zoom Api kullanım sınırları (rate limits)](https://marketplace.zoom.us/docs/api-reference/rate-limits)
+    - [Zoom Api ile ders oluşturma dokümanı (meeting create)](https://marketplace.zoom.us/docs/api-reference/zoom-api/meetings/meetingcreate)
 
 Web elemanlarını bulmak için özellikle CSS ve XPATH seçicilerini belirlemede bize yardımcı olacak bazı eklentiler var. Bunlar için aşağıdaki adresleri ziyaret edebilirsiniz.
 - [ChroPath Chrome eklentisi](https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo)
