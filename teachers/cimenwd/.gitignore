@@ -12,10 +12,3 @@ geckodriver.log
 
 # Sanal geliştirme ortamı (venv klasörü) oluşturulduysa GitHub'a gönderme
 venv
-
-
-veri.txt
-eba_giris.py
-eleman_bulma.py
-ogrbelgesi.py
-ebaogrencisifreverme.py
