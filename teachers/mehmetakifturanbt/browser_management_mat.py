@@ -2,7 +2,7 @@
 browser_management: Tarayıcı yönetimi
 """
 from selenium import webdriver
-from teachers.mehmetakifturanbt import settings
+import settings
 import time
 
 # tarayıcı nesnesini oluşturalım

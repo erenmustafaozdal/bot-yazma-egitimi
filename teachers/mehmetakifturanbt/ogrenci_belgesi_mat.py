@@ -1,24 +1,28 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.common.by import By
 import settings
 import time
 
 # Yazdırma işlemi yapmak için "--kiosk-printing" ayarı
-chorme_ayarla = webdriver.ChromeOptions()
-chorme_ayarla.add_argument('--kiosk-printing')
+chrome_ayarla = webdriver.ChromeOptions()
+chrome_ayarla.add_argument('--kiosk-printing')
 
 # Öğrenci numarasını iste
 ogrNumarasi = input("Öğrenci Numarasını Giriniz: ")
 
 # Mebbise bağlan
-driver = webdriver.Chrome(options=chorme_ayarla, executable_path=settings.driver_path)
+driver = webdriver.Chrome(options=chrome_ayarla, executable_path=settings.driver_path)
 driver.maximize_window()
 driver.get("https://mebbis.meb.gov.tr/")
+wait = WebDriverWait(driver, timeout=10, poll_frequency=1)
 
 # Kullanıcı adı ve parola girişi
-kullaniciAdi = driver.find_element_by_id("txtKullaniciAd").send_keys(settings.kullaniciAdi)
-kullaniciSifre = driver.find_element_by_id("txtSifre").send_keys(settings.kullaniciSifre + Keys.ENTER)
+kullaniciAdi = driver.find_element_by_id("txtKullaniciAd").send_keys(settings.tc)
+kullaniciSifre = driver.find_element_by_id("txtSifre").send_keys(settings.password + Keys.ENTER)
 
 # E-okul bölümüne giriş
 # E-okul logosunun üzerine gelme
@@ -32,25 +36,32 @@ driver.close()
 # Açılan pencereye geçiş
 driver.switch_to.window(driver.window_handles[-1])
 
-# İlkokul-ortaokul öğrenci işlemleri
-ogrenciIslemleri = driver.find_element_by_xpath('//*[@id="mdlIOO"]').click()
+# Ortaoöğretim öğrenci işlemleri
+ogrenciIslemleri = driver.find_element_by_xpath('//*[@id="mdlOOO"]').click()
 
 # Öğrenci numarası girişi
-ogrNo = driver.find_element_by_id("OGRMenu1_txtTC").send_keys(ogrNumarasi)
+ogrNo = driver.find_element_by_xpath("//input[@id='txtOkulNo']").send_keys(ogrNumarasi)
 
 # Öğrenci ara
-ogrAra = driver.find_element_by_id("OGRMenu1_btnAra").click()
+ogrAra = driver.find_element_by_xpath("//button[normalize-space()='Ara']").click()
+time.sleep(1)
 
 # Öğrenciyi kontrol et
-# öğrenci bulunursa e-okulun ürettiği url https://e-okul.meb.gov.tr/IlkOgretim/OGR/IOG02001.aspx
-# öğrenci bulunumazsa e-okulun ürettiği url https://e-okul.meb.gov.tr/IlkOgretim/OGR/IOG01001.aspx
-
-url = "https://e-okul.meb.gov.tr/IlkOgretim/OGR/IOG01001.aspx"
-if url == driver.current_url:
+bilgi_mesaj = driver.find_element_by_xpath("//div[@id='tbPageDataTable_info']").get_attribute("innerHTML")
+print(bilgi_mesaj)
+if bilgi_mesaj == "Görüntülecek Kayıt Bulunamadı":
     print("Bu numarada öğrenci bulunamadı...")
+    time.sleep(2)
 else:
-    # rapo al
-    ogrRapor = driver.find_element_by_xpath('//*[@id="IOMToolbarActive1_print_b"]/img').click()
+    # rapor al
+    # Sayfayı kaydırmadan öğrenci ismine tıklanmıyor.
+    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+    ogrenci_sayfa = wait.until(ec.element_to_be_clickable(
+        (By.XPATH, "//i[@class='fas fa-folder']")
+    ))
+    ogrenci_sayfa.click()
+
+    ogrRapor = driver.find_element_by_xpath("//img[@alt='Yazdır']").click()
     driver.close()
 
     driver.switch_to.window(driver.window_handles[-1])
@@ -69,7 +80,7 @@ else:
 
     # öğrenci belgesini yazdır
     driver.execute_script('window.print();')
-    time.sleep(5)
+    time.sleep(30)
 
 # tarayıcıyı kapat
 driver.quit()

@@ -3,7 +3,7 @@ Linkedin sitesindeki bağlantıları kaydetmek
 """
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from teachers.mehmetakifturanbt import settings
+import settings
 import time
 
 def page_scroll(second):
@@ -66,7 +66,7 @@ for contact in contacts:
     contactList.append(contact.text)
     print(contact.text)
 print(len(contactList))
-with open("linkedin_contacts_mat.txt", "w", encoding="UTF-8") as file:
+with open("./txts/linkedin_contacts_mat.txt", "w", encoding="UTF-8") as file:
     for contact in contactList:
         file.write(contact + "\n")
 time.sleep(5)

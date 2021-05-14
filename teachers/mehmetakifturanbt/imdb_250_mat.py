@@ -37,7 +37,7 @@ while page_count<=250:
 
 
 page_count = 1
-with open("imdb_top_250_mat.txt", "w", encoding="UTF-8") as file:
+with open("./txts/imdb_top_250_mat.txt", "w", encoding="UTF-8") as file:
     for top_250_film_bilgi in tum_bilgiler:
         file.write(top_250_film_bilgi + "\n")
         bolum = top_250_film_bilgi.split("\n")

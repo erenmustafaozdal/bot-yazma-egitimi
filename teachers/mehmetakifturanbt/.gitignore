@@ -14,7 +14,7 @@ geckodriver.log
 venv
 
 #IMDB 250 text dosyasını Github'a gönderme
-imdb_top_250_mat.txt
+#imdb_top_250_mat.txt -- Klasöre taşındı
 
 #linkedin contacts text dosyasını Github'a gönderme
-linkedin_contacts_mat.txt
+#linkedin_contacts_mat.txt -- Klasöre taşındı
