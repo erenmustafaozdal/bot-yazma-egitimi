@@ -16,7 +16,6 @@ ALGORİTMA
     - Performans ortalamasını hesap et
     - Excel' kaydet
 """
-from selenium import webdriver
 import settings
 import time
 from selenium.webdriver.support.ui import WebDriverWait
@@ -27,6 +26,7 @@ import os
 from openpyxl import Workbook, load_workbook
 from datetime import datetime
 from classes.eba import EBA
+from classes.browser import Browser
 
 
 # Ekran görüntüleri için yoksa klasörü oluştur
@@ -48,18 +48,10 @@ else:
 
 
 # tarayıcı nesnesi oluştur
-driver = webdriver.Chrome(settings.driver_path)
-driver.maximize_window()
-# sayfanın yüklemesini çok beklememesi için
-# 20 saniye beklemesini, yoksa hata vermesini belirliyoruz
-# hata verdiğinde bu hatayı yakalayıp (login fonksiyonunda)
-# sayfanın yenilenmesini veya giriş işlemini tekrar etmesini sağlayacağız
-driver.set_page_load_timeout(20)
-
-
 # Çeşitli sayfa elemanlarını beklemek için
 # WebDriverWait bekleme nesnesi oluşturulur
 wait = WebDriverWait(driver, timeout=10, poll_frequency=1)
+driver = Browser(settings.driver_path).get()
 
 # EBA nesnesi oluşturulur
 eba = EBA(driver)
