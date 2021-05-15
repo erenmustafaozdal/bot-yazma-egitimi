@@ -12,3 +12,6 @@ geckodriver.log
 
 # Sanal geliştirme ortamı (venv klasörü) oluşturulduysa GitHub'a gönderme
 venv
+
+# Visual Studio tarafından eklenen dosyaları gönderme
+
