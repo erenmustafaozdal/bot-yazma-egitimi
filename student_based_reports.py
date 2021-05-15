@@ -163,10 +163,6 @@ for student_i in range(student_count):
     driver.back()
 
 
-# tarayıcı kapat
-time.sleep(2)
-driver.close()
-
 # Excel dosyasını kaydet ve kapat
 wb.save(xl_path)
 wb.close()
