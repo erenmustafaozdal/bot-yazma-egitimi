@@ -18,7 +18,6 @@ ALGORİTMA
 """
 import settings
 import time
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 import os
@@ -48,9 +47,6 @@ else:
 
 
 # tarayıcı nesnesi oluştur
-# Çeşitli sayfa elemanlarını beklemek için
-# WebDriverWait bekleme nesnesi oluşturulur
-wait = WebDriverWait(driver, timeout=10, poll_frequency=1)
 driver = Browser(settings.driver_path).get()
 
 # EBA nesnesi oluşturulur
@@ -60,14 +56,14 @@ eba.login(settings.tc, settings.password)
 
 
 # Sol menüden 'Raporlar' menüsüne tıkla
-reports_menu = wait.until(ec.element_to_be_clickable(
+reports_menu = eba.wait.until(ec.element_to_be_clickable(
     (By.XPATH, "//div[@class='vc-lm-item-title '][normalize-space()='Raporlar']")
 ))
 reports_menu.click()
 
 
 # 'Raporlar' sayfasında 'Çalışma Raporları' bağlantısına tıkla.
-work_reports = wait.until(ec.element_to_be_clickable(
+work_reports = eba.wait.until(ec.element_to_be_clickable(
     (By.XPATH, "//div[text()='Çalışma Raporları']")
 ))
 work_reports.click()
@@ -77,7 +73,7 @@ eba.table_is_loaded()
 
 
 # 'Çalışma Raporları' sayfasında 'ÖĞRENCİ BAZLI' bağlantısına tıkla.
-student_based_link = wait.until(ec.element_to_be_clickable(
+student_based_link = eba.wait.until(ec.element_to_be_clickable(
     (By.XPATH, "//div[text()='ÖĞRENCİ BAZLI']")
 ))
 student_based_link.click()
