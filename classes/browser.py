@@ -25,3 +25,6 @@ class Browser:
         :return: webdriver tarayıcı nesnesini geri döndürür
         """
         return self.driver
+
+    def __del__(self):
+        self.driver.quit()
