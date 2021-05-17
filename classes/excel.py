@@ -92,6 +92,40 @@ class Excel:
 
         return self.datas
 
-    def __del__(self):
+    def update_range(self, worksheet_range, data, skip_first=False):
+        """
+        Belirli bir sütundaki değerleri baştan sona üzerine yazarak günceller
+
+        :param worksheet_range: çalışma sayfası aralığı
+        :param data: çalışma sayfası aralığını güncelleyecek veriler
+        :param skip_first: ilk hücre atlansın mı? (sütun güncellenirken başlık geçilebilir)
+        """
+
+        data_count = len(data)
+        for index, cell in enumerate(self.ws[worksheet_range]):
+            # ilk hücreyse ve ilk hücre atlanacaksa; atla
+            if index == 0 and skip_first:
+                continue
+
+            # eğer ilk hücre atlanıldıysa; data index'te kayma olacaktır
+            # bunu aşmak için ilk hücre atlandıysa index'i 1 düşürüyoruz
+            data_index = index if not skip_first else index - 1
+
+            # eğer data bitti ise döngüden çık
+            if data_index == data_count:
+                break
+
+            cell.value = data[data_index]
+
+
+    def save(self):
+        """
+        Excel çalışma kitabını kaydeder
+        """
         self.wb.save(self.path)
+
+    def __del__(self):
+        """
+        Nesne silindiğinde Excel çalışma kitabını kapatır
+        """
         self.wb.close()
