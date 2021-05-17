@@ -1,4 +1,5 @@
 from openpyxl import load_workbook
+from openpyxl.utils import get_column_letter
 
 
 class Excel:
@@ -6,7 +7,7 @@ class Excel:
     Excel çalışma kitabındaki istenen bir çalışma sayfanın (sekmenin) içindeki verileri başlık (headers) ve veriler (datas) şekline getirir. Bu verileri dictionary yapısıyla anahtar (key), değer (value) şeklinde erişilmesini sağlar.
     """
 
-    def __init__(self, path, worksheet=None, data_only=True):
+    def __init__(self, path, worksheet=None, data_only=False):
         """
         Yapılandırıcı metot
 
@@ -28,7 +29,6 @@ class Excel:
         else:
             self.ws = self.wb[worksheet]
 
-
         self.headers = {}  # çalışma sayfası başlıkları
         self.datas = [] # çalışma sayfası verileri
 
@@ -48,7 +48,8 @@ class Excel:
         for header in header_row:
             self.headers[header.value] = {
                 'row': header.row,
-                'column': header.column
+                'column': get_column_letter(header.column),
+                'column_num': header.column
             }
 
     def get_datas(self):
@@ -84,7 +85,7 @@ class Excel:
 
             row_data = {'row' : row_number}
             for header in self.headers:
-                column = self.headers[header]['column']
+                column = self.headers[header]['column_num']
                 row_data[header] = row[column-1].value
 
             self.datas.append(row_data)

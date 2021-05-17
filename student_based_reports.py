@@ -47,7 +47,8 @@ else:
 
 
 # tarayıcı nesnesi oluştur
-driver = Browser(settings.driver_path).get()
+browser = Browser(settings.driver_path)
+driver = browser.get()
 
 # EBA nesnesi oluşturulur
 eba = EBA(driver)

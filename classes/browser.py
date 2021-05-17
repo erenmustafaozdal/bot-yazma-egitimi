@@ -12,6 +12,7 @@ class Browser:
 
         :param driver_path: çalıştırılabilir tarayıcı yolu
         """
+
         self.driver = webdriver.Chrome(driver_path)
         self.driver.maximize_window()
         # sayfanın yüklemesini çok beklememesi için
@@ -24,6 +25,7 @@ class Browser:
         """
         :return: webdriver tarayıcı nesnesini geri döndürür
         """
+
         return self.driver
 
     def __del__(self):
