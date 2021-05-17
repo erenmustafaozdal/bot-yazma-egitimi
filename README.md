@@ -19,6 +19,8 @@
         - [Zoom Api uygulaması bilgileri](#zoom-api-uygulaması-bilgileri)
         - [JWT Token üretmek için pyjwt paketinin yüklenmesi](#jwt-token-%C3%BCretmek-i%C3%A7in-pyjwt-paketinin-y%C3%BCklenmesi)
         - [Canlı ders oluşturma](#canl%C4%B1-ders-olu%C5%9Fturma)
+    - [Telethon kütüphanesiyle Telegram BOT Api kullanılarak mesaj gönderme](#telethon-kütüphanesiyle-telegram-bot-api-kullanılarak-mesaj-gönderme)
+        - [Telegram BOT Api uygulaması oluşturma](#telegram-bot-api-uygulaması-oluşturma)
 - [Bazı Gerekli Adresler](#bazı-gerekli-adresler)
 - [Proje İçinde Nasıl Geliştirme Yaparsınız](#proje-i̇çinde-nasıl-geliştirme-yaparsınız)
     - [Geliştirme yaparken aşağıdaki adımları takip etmek çok önemlidir.](#geli%C5%9Ftirme-yaparken-a%C5%9Fa%C4%9F%C4%B1daki-ad%C4%B1mlar%C4%B1-takip-etmek-%C3%A7ok-%C3%B6nemlidir)
@@ -164,7 +166,9 @@ Bu sayfada bulunan `JWT Token` bilgisini, Zoom Api dokümantasyonu içinde test 
 #### JWT Token üretmek için pyjwt paketinin yüklenmesi
 Aşağıdaki kod ile [pyjwt](https://github.com/jpadilla/pyjwt) paketini yükleyin.
 
-```pip install PyJWT```
+```
+pip install PyJWT
+```
 
 Paketin GitHub sayfasındaki örneği ele alarak Zoom Api için aşağıdaki şekilde JWT Token oluşturacağız.
 
@@ -189,6 +193,39 @@ Canlı ders oluşturmak için Zoom Api dokümantasyonu içindeki [Meeting Create
 
 ---
 
+### Telethon kütüphanesiyle Telegram BOT Api kullanılarak mesaj gönderme
+
+Aşağıdaki kod ile [Telethon](https://github.com/LonamiWebs/Telethon) kütüphanesini yükleyin.
+
+```
+pip install telethon
+```
+
+Doğru yüklendiğini kontrol etmek için aşağıdaki kodu çalıştırabilirsiniz.
+
+``` shell
+python -c "import telethon; print(telethon.__version__)"
+```
+
+Eğer kütüphanenin doğru versiyon numarası göründüyse her şey yolundadır.
+
+*[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
+
+#### Telegram BOT Api uygulaması oluşturma
+
+Telegram'ın BOT Api'siyle çalışmadan önce, kendi Api `id` ve `hash` bilgilerinizi almanız gerekir:
+
+1. Kullanacağınız geliştirici hesabının telefon numarasıyla [Telegram hesabınıza giriş yapın](https://my.telegram.org/).
+2. **"API development tools"** bağlantısına tıklayın.
+3. Bir yeni uygulama oluştur penceresi görünecektir. Başvuru bilgilerinizi doldurun. Herhangi bir _URL_ girmeye gerek yoktur ve yalnızca iki alan **(App title ve Short name)** daha sonra değiştirilebilir.
+4. Sonunda _Create application_'a tıklayın. Api `id` ve `hash` bilgileriniz çok gizlidir. Telegram bu bilgileri değiştirmenize veya iptal etmenize izin vermez. Bu bilgileri kimse ile paylaşmayın!
+
+*[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
+
+---
+
 ## Bazı Gerekli Adresler
 
 - [Selenium resmi web sitesi](https://www.selenium.dev)
@@ -199,6 +236,8 @@ Canlı ders oluşturmak için Zoom Api dokümantasyonu içindeki [Meeting Create
     - [Zoom Api uygulama oluşturma](https://marketplace.zoom.us/develop/create?source=devdocs)
     - [Zoom Api kullanım sınırları (rate limits)](https://marketplace.zoom.us/docs/api-reference/rate-limits)
     - [Zoom Api ile ders oluşturma dokümanı (meeting create)](https://marketplace.zoom.us/docs/api-reference/zoom-api/meetings/meetingcreate)
+- [Telethon Telegram kütüphanesi](https://docs.telethon.dev/en/latest/)
+    - [Telegram Api uygulaması oluşturmak için hesabınız](https://my.telegram.org/)
 
 Web elemanlarını bulmak için özellikle CSS ve XPATH seçicilerini belirlemede bize yardımcı olacak bazı eklentiler var. Bunlar için aşağıdaki adresleri ziyaret edebilirsiniz.
 - [ChroPath Chrome eklentisi](https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo)
