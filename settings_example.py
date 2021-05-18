@@ -33,6 +33,12 @@ users = [
         # Zoom işlemleri için api secret
         "zoom_api_secret":"",
         # canlı derslerin olduğu excel dosyası yolu
-        "live_lessons_xl":""
+        "live_lessons_xl":"",
+        # Telegram işlemleri için App api_id
+        "telegram_api_id":"",
+        # Telegram işlemleri için App api_has
+        "telegram_api_hash":"",
+        # Telegram'da mesaj gönderilecek kişi veya grup (chat) id'si (int)
+        "telegram_chat_id":1
     }
 ]
