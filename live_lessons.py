@@ -22,6 +22,7 @@ ALGORİTMA
 
 - Herhangi bir ders kaydı sırasında bir hata olursa durumunu kontrol et ve aşağıdaki işlemlerden birini yap.
     - "Durum = zoom" ise; Zoom'daki dersi sil
-    - "Durum = eba" ise; Zoom'daki ve EBA'daki dersi sil
+    - "Durum = eba" ise; Zoom'daki ve EBA'daki dersi ve Telegram mesajını sil
     - Hata sonrası Excel dosyasına bitenleri yaz
+- Herhangi bir hata olmadı ve ders kayıtları bittiyse tüm derslerin durumunu temizle
 """
