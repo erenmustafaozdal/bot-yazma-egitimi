@@ -42,6 +42,11 @@ class Telegram:
                 self.__async_send_message(chat_id, message, date, link_preview)
             )
 
+        if date is not None:
+            print(f"Telegram mesajı {date.strftime('%d.%m.%Y %H:%M')} tarihi için zamanladı.")
+        else:
+            print("Telegram mesajı gönderildi")
+
 
     async def __async_send_message(self, chat_id, message, date=None, link_preview=False):
         """
@@ -101,6 +106,11 @@ class Telegram:
             for message in cli.iter_messages(entity=chat_id, search=keywords):
                 message.delete()
 
+        if keywords:
+            print(f"'{keywords}' ifadesi geçen mesajlar silindi")
+        else:
+            print("Tüm mesajlar silindi")
+
     def delete_scheduled_messages(self, chat_id, keywords=""):
         """
         Belirli bir sohbetteki aranan ifade ile eşleşen zamanlanmış mesajları siler.
@@ -121,3 +131,8 @@ class Telegram:
 
             # mesajlar silinir
             cli(func.messages.DeleteScheduledMessagesRequest(peer=chat_id, id=deletes))
+
+        if keywords:
+            print(f"'{keywords}' ifadesi geçen zamanlanmış mesajlar silindi")
+        else:
+            print("Tüm zamanlanmış mesajlar silindi")
