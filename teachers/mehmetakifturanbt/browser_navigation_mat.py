@@ -2,7 +2,7 @@
 browser_navigation: Tarayıcıda gezinme işlemleri
 """
 from selenium import webdriver
-from teachers.mehmetakifturanbt import settings
+import settings
 import time
 
 # tarayıcı nesnesi oluşturalım
