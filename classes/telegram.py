@@ -20,8 +20,19 @@ class Telegram:
         """
 
         # işlemleri yapacağımız nesne oluşturulur
-        self.__client = TelegramClient('telegram',api_id, api_hash)
+        if api_id and api_hash:
+            self.__client = TelegramClient('telegram',api_id, api_hash)
+        else:
+            self.__client = None
 
+    def ready(self):
+        """
+        Telegram bağlantısının hazır olup olmadığını döndürür. Telegram kullanıcı bilgisi eksik olanlar için False döndürür
+
+        :return: boolean
+        """
+
+        return self.__client is not None
 
     def send_message(self, chat_id, message, date=None, link_preview=False, file=None):
         """
