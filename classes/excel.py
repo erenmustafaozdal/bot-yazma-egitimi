@@ -90,6 +90,8 @@ class Excel:
 
             self.datas.append(row_data)
 
+        print(f"'{self.ws.title}' içindeki veriler alındı.")
+
         return self.datas
 
     def update_range(self, worksheet_range, data, skip_first=False):
@@ -117,6 +119,8 @@ class Excel:
 
             cell.value = data[data_index]
 
+        print(f"'{self.ws.title}' içinde '{worksheet_range}' aralığı güncellendi.")
+
 
     def save(self):
         """
@@ -124,8 +128,12 @@ class Excel:
         """
         self.wb.save(self.path)
 
+        print(f"'{self.ws.title}' çalışma sayfasına sahip Excel dosyası kaydedildi.")
+
     def __del__(self):
         """
         Nesne silindiğinde Excel çalışma kitabını kapatır
         """
         self.wb.close()
+
+        print(f"'{self.ws.title}' çalışma sayfasına sahip Excel dosyası kapatıldı.")
