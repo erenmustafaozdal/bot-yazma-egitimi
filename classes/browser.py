@@ -44,4 +44,4 @@ class Browser:
         return self.driver
 
     def __del__(self):
-        self.driver.quit()
+        self.driver.close()
