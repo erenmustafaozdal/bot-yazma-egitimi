@@ -94,7 +94,7 @@ class Telegram:
                 })
         return chats
 
-    def delete_searched_messages(self, chat_id, keywords=""):
+    def delete_messages(self, chat_id, keywords=""):
         """
         Belirli bir sohbetteki aranan ifade ile eşleşen mesajları siler.
 
