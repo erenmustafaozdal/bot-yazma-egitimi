@@ -127,6 +127,8 @@ class Zoom:
         response = self.__send_request("POST", "/v2/users/me/meetings", body)
         data = json.loads(response.read().decode("utf-8"))
 
+        print("Zoom toplantısı oluşturuldu.")
+
         # toplantı id, şifre ve katılım adresleri geri döndürülür
         return {
             "id" : data["id"],
@@ -141,6 +143,8 @@ class Zoom:
         :param meeting_id: toplantı id'si
         """
         self.__send_request("DELETE", f"/v2/meetings/{meeting_id}")
+
+        print(f"'{meeting_id}' ID'li Zoom toplantısı silindi.")
 
     def update_settings(self, settings):
         """
@@ -165,6 +169,8 @@ class Zoom:
         # güncellenen ayarlar ile nesne içindeki kullanıcı ayarlarını güncelle
         self.__user_settings = body
 
+        print("Zoom ayarları güncellendi.")
+
     def get_settings(self):
         """
         Zoom'dan gelen kullanıcı ayarları ile nesnedeki kullanıcı ayarlarını günceller ve döndürür
@@ -174,6 +180,8 @@ class Zoom:
 
         response = self.__send_request("GET", "/v2/users/me/settings?custom_query_fields=auto_recording,local_recording,request_permission_to_unmute_participants")
         self.__user_settings = json.loads(response.read().decode("utf-8"))
+
+        print("Zoom kullanıcı ayarları getirildi.")
 
         return self.__user_settings
 
