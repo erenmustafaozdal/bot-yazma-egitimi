@@ -16,73 +16,16 @@ ALGORİTMA
     - Performans ortalamasını hesap et
     - Excel' kaydet
 """
-from selenium import webdriver
 import settings
 import time
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 import os
 # Öncelikle openpyxl paketi yüklenir: pip install openpyxl
 from openpyxl import Workbook, load_workbook
 from datetime import datetime
-
-
-# SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi
-# ÇÖZÜM: Sol menü yüklenene kadar bekle
-def left_menu_is_loaded():
-    try:
-        wait.until(ec.visibility_of_element_located((By.ID, "vc-treeleftmenu")))
-    except:
-        print("Menünün yüklenmesi için çok bekledi. Sayfa yenileniyor...")
-        driver.refresh()
-        left_menu_is_loaded()
-
-
-# EBA'ya giriş yapma işlemini gerçekleştiren fonksiyon
-def login(tc, password):
-    # Öğretmen girişi sayfasına git
-    driver.get("https://giris.eba.gov.tr/EBA_GIRIS/teacher.jsp")
-
-    # Eğer daha önceden giriş yapıldı ise fonksiyondan çık
-    # 'VCollabPlayer' ifadesi EBA'ya giriş yaptıktan sonra
-    # her URL'de olan ortak bir değerdir.
-    # Geçerli URL içinde varlığı sorgulanarak,
-    # giriş yapılıp yapılmadığı tespit edilir
-    if 'VCollabPlayer' in driver.current_url:
-        return
-
-    # E-Devlet girişi tuşuna bas ve E-Devlet girişi sayfasına git
-    driver.find_element_by_xpath("//button[@title='edevlet girişi']").click()
-
-    # TC ve şifre yaz
-    driver.find_element_by_css_selector("#tridField").send_keys(settings.tc)
-    driver.find_element_by_id("egpField").send_keys(settings.password)
-
-    # E-Devlet giriş formunu gönder.
-    # Eğer sayfa yüklenemez veya başka bir hata alınırsa
-    # giriş işlemini tekrar et.
-    try:
-        driver.find_element_by_xpath("//input[@name='submitButton']").click()
-    except:
-        print("Sayfa 20 saniyede yüklenemedi. Sayfa yenileniyor...")
-        login(tc, password)
-    else:
-        # Eğer başarılı bir şekilde EBA'ya giriş
-        # yapıldı ise sol menünün yüklenmesini bekle
-        left_menu_is_loaded()
-
-
-# Tablo satırlarının görünmesini bekleyen fonksiyon
-def table_is_loaded():
-    try:
-        return wait.until(ec.visibility_of_all_elements_located(
-            (By.XPATH, "//div[@class='body-container']/div[@role='row']")
-        ))
-    except:
-        print("Tablo yüklenemedi. Sayfa yenileniyor...")
-        driver.refresh()
-        return table_is_loaded()
+from classes.eba import EBA
+from classes.browser import Browser
 
 
 # Ekran görüntüleri için yoksa klasörü oluştur
@@ -104,50 +47,41 @@ else:
 
 
 # tarayıcı nesnesi oluştur
-driver = webdriver.Chrome(settings.driver_path)
-driver.maximize_window()
-# sayfanın yüklemesini çok beklememesi için
-# 20 saniye beklemesini, yoksa hata vermesini belirliyoruz
-# hata verdiğinde bu hatayı yakalayıp (login fonksiyonunda)
-# sayfanın yenilenmesini veya giriş işlemini tekrar etmesini sağlayacağız
-driver.set_page_load_timeout(20)
+browser = Browser(settings.driver_path)
+driver = browser.get()
 
-
-# Çeşitli sayfa elemanlarını beklemek için
-# WebDriverWait bekleme nesnesi oluşturulur
-wait = WebDriverWait(driver, timeout=10, poll_frequency=1)
-
-
+# EBA nesnesi oluşturulur
+eba = EBA(driver)
 # EBA'ya giriş yapılır
-login(settings.tc, settings.password)
+eba.login(settings.tc, settings.password)
 
 
 # Sol menüden 'Raporlar' menüsüne tıkla
-reports_menu = wait.until(ec.element_to_be_clickable(
+reports_menu = eba.wait.until(ec.element_to_be_clickable(
     (By.XPATH, "//div[@class='vc-lm-item-title '][normalize-space()='Raporlar']")
 ))
 reports_menu.click()
 
 
 # 'Raporlar' sayfasında 'Çalışma Raporları' bağlantısına tıkla.
-work_reports = wait.until(ec.element_to_be_clickable(
+work_reports = eba.wait.until(ec.element_to_be_clickable(
     (By.XPATH, "//div[text()='Çalışma Raporları']")
 ))
 work_reports.click()
 
 # Bu sayfanın yüklendiğinden emin olmak için tablo satırları yüklenene kadar bekle
-table_is_loaded()
+eba.table_is_loaded()
 
 
 # 'Çalışma Raporları' sayfasında 'ÖĞRENCİ BAZLI' bağlantısına tıkla.
-student_based_link = wait.until(ec.element_to_be_clickable(
+student_based_link = eba.wait.until(ec.element_to_be_clickable(
     (By.XPATH, "//div[text()='ÖĞRENCİ BAZLI']")
 ))
 student_based_link.click()
 
 # Bu sayfanın yüklendiğinden emin olmak için tablo satırları yüklenene kadar bekle.
 # Öğrencilerin olduğu tablo satırlarını al
-students = table_is_loaded()
+students = eba.table_is_loaded()
 
 
 # Öğrencilerin satırlarını döngüye al.
@@ -172,11 +106,11 @@ for student_i in range(student_count):
     # önceki sayfaya geri döndüğünde; sonraki öğrencinin satırı
     # yeniden oluşturulduğu için tıklama yapılamıyordu.
     # Bu sebeple döngü her döndüğünde satırlar tekrar alınır ve sıradaki satır tıklanır.
-    students = table_is_loaded()
+    students = eba.table_is_loaded()
     students[student_i].click()
 
     # çalışma satırlarını al
-    works = table_is_loaded()
+    works = eba.table_is_loaded()
 
     student_name = driver.find_element_by_xpath("//div[@class='vc-font-size-x-large m-l-sm ng-binding']").text
 
@@ -229,10 +163,6 @@ for student_i in range(student_count):
     # bir önceki sayfadaki tabloya geri dönüyoruz
     driver.back()
 
-
-# tarayıcı kapat
-time.sleep(2)
-driver.close()
 
 # Excel dosyasını kaydet ve kapat
 wb.save(xl_path)
