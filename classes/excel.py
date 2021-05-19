@@ -1,5 +1,6 @@
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
+import win32com.client as win32
 
 
 class Excel:
@@ -14,6 +15,13 @@ class Excel:
         :param path: excel dosyasının göreceli veya tam yolu
         :param worksheet: çalışma sayfasının adı veya indis (index) numarası. Eğer ayarlanmazsa atif olan çalışma sayfası seçilir
         """
+
+        # data_only modda formüllerin değerledirilmemesi sorununu çözmek için
+        # recalculation_formula metodu ile yeniden formül hesaplama işlemi
+        # yapılıp yapılmadığını tutar. Eğer yeniden hesaplama yapıldıysa
+        # tekrar yapılmasını engeller
+        self.is_recalculate = False
+        self.data_only = data_only
 
         # Excel dosyası yolu
         self.path = path
@@ -121,6 +129,25 @@ class Excel:
 
         print(f"'{self.ws.title}' içinde '{worksheet_range}' aralığı güncellendi.")
 
+    def recalculation_formula(self):
+        """
+        Formüllerin yeniden hesaplanıp Excel ön belleğine alınmasını sağlar.
+        Bir Excel dosyası 'data_only' modunda açıldığında; eğer Excel ön belleği yoksa,
+        formülleri None olarak döndürüyor. Bunun önüne geçmek için dosyayı
+        Excel uygulaması ile açıp, kaydedip kapatıyoruz.
+        """
+
+        # eğer yeniden formül hesaplama daha önceden yapıldıysa çık
+        if self.is_recalculate or not self.data_only:
+            return
+
+        excel = win32.gencache.EnsureDispatch('Excel.Application')
+        workbook = excel.Workbooks.Open(self.path)
+        workbook.Save()
+        workbook.Close()
+        excel.Quit()
+
+        self.is_recalculate = True
 
     def save(self):
         """
