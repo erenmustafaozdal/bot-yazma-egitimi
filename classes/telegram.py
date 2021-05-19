@@ -23,7 +23,7 @@ class Telegram:
         self.__client = TelegramClient('telegram',api_id, api_hash)
 
 
-    def send_message(self, chat_id, message, date=None, link_preview=False):
+    def send_message(self, chat_id, message, date=None, link_preview=False, file=None):
         """
         __async_send_message metodunun işlemi tamamlanana kadar döngüde kalan metot
 
@@ -39,7 +39,7 @@ class Telegram:
 
         with self.__client as cli:
             cli.loop.run_until_complete(
-                self.__async_send_message(chat_id, message, date, link_preview)
+                self.__async_send_message(chat_id, message, date, link_preview, file)
             )
 
         if date is not None:
@@ -48,7 +48,7 @@ class Telegram:
             print("Telegram mesajı gönderildi")
 
 
-    async def __async_send_message(self, chat_id, message, date=None, link_preview=False):
+    async def __async_send_message(self, chat_id, message, date=None, link_preview=False, file=None):
         """
         Sohbet mesajı gönderme veya zamanlama işlemi yapar
 
@@ -62,6 +62,7 @@ class Telegram:
             chat_id,
             message,
             link_preview=link_preview,
+            file=file,
             schedule=date
         )
 
