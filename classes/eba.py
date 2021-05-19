@@ -8,6 +8,9 @@ class EBA:
     Her projede çalışan temel EBA işlemlerini yürütecek olan nesne
     """
 
+    # EBA girişi hata sayfası
+    LOGIN_ERROR_URL = 'https://giris.eba.gov.tr/EBA_GIRIS/hata.jsp'
+
     def __init__(self, driver):
         """
         __init__ ile nesne oluşturulduğunda ilk tanımlama ve ayarlamalar yapılır
@@ -63,6 +66,19 @@ class EBA:
         # giriş işlemini tekrar et.
         try:
             self.driver.find_element_by_xpath("//input[@name='submitButton']").click()
+            current_url = self.driver.current_url
+
+            self.wait.until(ec.url_changes(current_url))
+
+            # hata sayfası ise tekrar giriş yap
+            if current_url == self.LOGIN_ERROR_URL:
+                print('Hata sayfasına gitti. Tekrar giriş yapılacak.')
+                self.login(tc, password)
+
+            # canlı ders sayfası ise EBA'ya devam et
+            elif 'liveMiddleware' in current_url:
+                print("Canlı ders var. EBA'ya devam ediliyor.")
+                self.wait.until(ec.element_to_be_clickable((By.ID, "active-brand-button"))).click()
         except:
             print("Sayfa 20 saniyede yüklenemedi. Sayfa yenileniyor...")
             self.login(tc, password)
