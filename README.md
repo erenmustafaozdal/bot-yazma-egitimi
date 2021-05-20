@@ -294,7 +294,7 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 
 | AÇIKLAMA | VİDEO BAĞLANTISI |
 |:-|:-:|
-| **1. HAFTA**<br> <ul><li>Web otomasyon nedir?</li><li>Geliştirme ortamının hazırlanması</li></ul> |  [![1. HAFTA](https://img.youtube.com/vi/aUqnZrpmPHU/0.jpg)](https://youtu.be/aUqnZrpmPHU) |
+| **1. HAFTA**<br> <ul><li>Web otomasyon nedir?</li><li>Geliştirme ortamının hazırlanması</li></ul> |  [![Web Otomasyon Nedir? - Python ile Bot Yazma Eğitimi Hafta #1](https://img.youtube.com/vi/aUqnZrpmPHU/maxresdefault.jpg)](https://youtu.be/aUqnZrpmPHU) |
 | **2. HAFTA**<br><ul><li>Git teknolojisinin önemi ve kullanımı *(senaryo üzerinden)*</li><li>Farklı tarayıcı sürücülerinin indirilmesi ve kullanımı</li><li>Basit Selenium komutları</li></ul> | [![2. HAFTA](https://img.youtube.com/vi/BX8_AuvE-fs/0.jpg)](https://youtu.be/BX8_AuvE-fs) |
 | **3. HAFTA**<br> <ul><li>HMTL elemanları nedir?</li><li>HTML elemanları Selenium ile nasıl seçilir ve kullanılır?</li><li>HTML elemanlarını daha kolay seçmek için tarayıcı eklentileri</li><li>BOT yazma atölyesinde GitHub projemizde geliştirme iş akışımız *(çalışma düzenimiz)*</li></ul> | [![3. HAFTA](https://img.youtube.com/vi/ZAChGQz3wfY/0.jpg)](https://youtu.be/ZAChGQz3wfY) |
 | **4. HAFTA**<br> <ul><li>Git iş akışımız üzerine sohbet</li><li>EBA öğrenci bazlı çalışma raporlarını kontrol etme projemizin ilk adımı <ol><li>EBA'ya giriş</li><li>"Raporlar" menüsüne tıklama</li></ol></li></ul> | [![4. HAFTA](https://img.youtube.com/vi/_KtvP_fBBH8/0.jpg)](https://youtu.be/_KtvP_fBBH8) |
