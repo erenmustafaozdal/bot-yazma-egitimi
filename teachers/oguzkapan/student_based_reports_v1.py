@@ -20,7 +20,9 @@ excel_dir="./excels/student-based-reports"
 if not os.path.exists(excel_dir):
     os.mkdir(excel_dir)
 
-dersler=["Web Tasarım ve Programlama","Grafik ve Animasyon","Açık Kaynak İşletim Sistemi"]
+dersler=["Web Tasarım ve Programlama"]
+
+## dersler=["Web Tasarım ve Programlama","Grafik ve Animasyon","Açık Kaynak İşletim Sistemi"]
 
 excel_path=f"{excel_dir}/student-based-reports.xlsx"
 planWorkBook = xlsxwriter.Workbook(excel_path)

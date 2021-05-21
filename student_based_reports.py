@@ -47,13 +47,13 @@ else:
 
 
 # tarayıcı nesnesi oluştur
-<<<<<<< Updated upstream
+#<<<<<<< Updated upstream
 browser = Browser(settings.driver_path)
 driver = browser.get()
 
 # EBA nesnesi oluşturulur
 eba = EBA(driver)
-=======
+#=======
 driver = webdriver.Chrome(settings.driver_path)
 driver.maximize_window()
 # sayfanın yüklemesini çok beklememesi için
