@@ -1,4 +1,6 @@
 """
+5. gün sonu
+
 Bu aşamada yaptığınız adımlar:
 
 # 1. Öğrencinin adını al.
