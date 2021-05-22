@@ -292,6 +292,8 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 
 ## Atölye Ders Videoları
 
+> Bot yazma eğitimi atölyemizde gerçekleştirdiğimiz haftalık canlı yayın videolarını, bu canlı yayınları tamamlayan ek videoları ve öğretmenlerimiz tarafından geliştirilen uygulama videolarını [**"Python ile Bot Yazma"**](https://www.youtube.com/playlist?list=PLSX2DwJyCrMXjc4D7vu_UEhPF7ySfYlP7) YouTube oynatma listesinde bulabilirsiniz.
+
 | AÇIKLAMA | VİDEO BAĞLANTISI |
 |:-|:-:|
 | **1. HAFTA**<br> <ul><li>Web otomasyon nedir?</li><li>Geliştirme ortamının hazırlanması</li></ul> |  [![Web Otomasyon Nedir? - Python ile Bot Yazma Eğitimi Hafta #1](https://img.youtube.com/vi/aUqnZrpmPHU/maxresdefault.jpg)](https://youtu.be/aUqnZrpmPHU) |
@@ -316,8 +318,11 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 |:-|:-:|
 | **Eleman Seçme Dersinin Etkileşimli Tekrarı** <br> 3. haftada öğrendiğimiz eleman seçme konusunun [@mehmetakifturanbt](https://github.com/mehmetakifturanbt) tarafından geliştirilen etkileşimli tekrarı  | [![Eleman Seçme Dersinin Etkileşimli Tekrarı - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/6M25RwGawe0/maxresdefault.jpg)](https://youtu.be/6M25RwGawe0) |
 | **Öğrenci Belgesi Yazdırma** <br> [@fgunes7](https://github.com/fgunes7) tarafından geliştirilen projede öğrenci numarası verilen öğrencinin belgesi otomatik yazdırılıyor | [![Öğrenci Belgesi Yazdırma - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/Ye8lJq9hTdE/maxresdefault.jpg)](https://youtu.be/Ye8lJq9hTdE) |
+| **2. ve 3. Hafta Ders Çalışmaları Ayrı Dosyalarda** <br> [@kbala42](https://github.com/kbala42) tarafından 2. ve 3. hafta çalışmalarımız ayrı dosyalarda anlamlı parçalara ayrılmış | [![2. ve 3. Hafta Ders Çalışmaları Ayrı Dosyalarda - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/vtBRXQOoEy0/maxresdefault.jpg)](https://youtu.be/vtBRXQOoEy0) |
 | **4. Hafta Çalışması Örneği ve Paylaşım Yapma&Silme** <br> [@Aytac-Kula](https://github.com/Aytac-Kula) tarafından geliştirilen projede 4. haftada yapılan işlemler yapılmış ve gitmek istenen sayfaya gidilmesi işlemi tamamlanmıştır. Ek olarak paylaşım yapma ve silme örnekleri gösterilmiştir. | [![4. Hafta Çalışması Örneği ve Paylaşım Yapma&Silme - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/PSco4Fz0wnw/maxresdefault.jpg)](https://youtu.be/PSco4Fz0wnw) |
 | **IMDB Top 250** <br> [@oguzkapan](https://github.com/oguzkapan) tarafından geliştirilen projede IMDB'de en iyi 250 film bilgileri TXT dosyasına kaydediliyor. | [![IMDB Top 250 Film Bilgilerini Alma - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/RasKfYTMW1Y/maxresdefault.jpg)](https://youtu.be/RasKfYTMW1Y) |
 | **EBA Tek Kullanımlık Şifre Alma** <br> [@mfatiharslan](https://github.com/mfatiharslan) tarafından geliştirilen öğrenci numarası verildikten sonra, otomatik TC bilgisini alıp, EBA tek kullanımlık şifre oluşturup TXT dosyasına yazan çalışma  | [![EBA Tek Kullanımlık Şifre Alma - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/VCfyaVp5jjc/maxresdefault.jpg)](https://youtu.be/VCfyaVp5jjc) |
+| **Linkedin Bağlantı Bilgilerini Toplama** <br> [@mehmetakifturanbt](https://github.com/mehmetakifturanbt) tarafından geliştirilen projede kullanıcının Linkedin bağlantı bilgileri Excel dosyasına, metin (txt) dosyasına yazdırılmış ve ekran görüntüleri kaydedilmiştir  | [![Linkedin Bağlantı Bilgilerini Toplama - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/_EgF7AqLx8Q/maxresdefault.jpg)](https://youtu.be/_EgF7AqLx8Q) |
+| **Öğrenci Bazlı Çalışmaları Kontrol Etme** <br> [@Aytac-Kula](https://github.com/Aytac-Kula) tarafından geliştirilen projede öğrenci bazlı çalışmalar otomatik olarak kontrol edilmiştir. Ayrıca kontrol edilen öğrenci bilgileri Excel dosyasına yazdırılmış ve ekran görüntüleri kaydedilmiştir  | [![Öğrenci Bazlı Çalışmaları Kontrol Etme - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/u94AujH41bY/maxresdefault.jpg)](https://youtu.be/u94AujH41bY) |
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
