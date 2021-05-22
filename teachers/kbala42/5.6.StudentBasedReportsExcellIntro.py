@@ -1,16 +1,13 @@
 """
-5. gün sonu
+Performans Ortalaması Hesap Hatası Çözümü
+openpyxl ve datetime Modüllerini Tanıtma
+Excel dosyasını oluşturma veya varolan dosyayı yükleme
+Öğrenci çalışma bilgilerini Excel'e yazma
+Excel'e kayıt sonrası çalışmanın incelenmesi
+Çalışma sonrası Excel dosyasını inceleme - Excel'de neler yapılabilir
 
-Bu aşamada yaptığınız adımlar:
-
-# 1. Öğrencinin adını al.
-# 2. Son 10 çalışmanın tamamlanma yüzdelerini bir diziye aktar.
-# 3. Son 10 çalışmanın performanslarını bir diziye aktar.
-# 4. örtlimalfli tamamlamayı hesap et.
-# 5. Ortalama performansı hesap et.
-# 6. Ekran görüntüsünü kaydet.
-# 7. Verileri ekrana yazdır.
-
+1. kitaplığa excell için eklemeler yapıldı
+2. Excell dosyası yoksa oluşturuldu
 """
 
 from selenium import webdriver
@@ -20,6 +17,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 import os # işletim sistemi çin modülü import ediyoruz
+# Öncelikle openpyxl paketi yüklenir: pip install openpyxl
+# Excell nesnesi için metot ekliyoruz
+from openpyxl import Workbook
+# Excell nesnemiz olduktan sonra bunu ekleyecek modülü ekliyoruz
+from  openpyxl import load_workbook
+# Günün tarihini eklemek için modül ekliyoruz
+from datetime import  datetime
 
 # SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi (her sayfada karşılaşılabiliyor)
 # ÇÖZÜM: Sol menü yüklenene kadar bekle
@@ -93,7 +97,29 @@ if not os.path.exists(imgDir):
     os.mkdir(imgDir)
 
 
-# TODO: Excel dosyası eğer yoksa oluştur
+# Excel dosyası eğer yoksa oluştur
+# Dosya yolu için değişken
+xlPath = "./excels/student-based_reports.xlsx"
+
+# Eğer dosya yoksa
+if not os.path.exists(xlPath):
+    wb = Workbook() #Çalışma kitabı oluştur
+    ws = wb.active #Açık olan çalışma kitabında ki çalışma sayfasının adını sakla
+    ws.title="Öğrenci bazlı çalışma raporu"#Çalışma sayfasının adını değiştir
+    #1. satırın başlıklarını değiştiriyoruz
+    ws .append(["Tarih", "Öğrenci", "Tamamlama", "Performans", "Ekran Görüntüsü"])
+else: # değilse
+    # aktif olan workbook'u alıyoruz
+    wb = load_workbook(xlPath)
+    # "Öğrenci Bazlı Çalışma Raporları" isimli çalışma safasını alıyoruz
+    ws = wb["Öğrenci Bazlı Çalışma Raporları"]
+
+# denemek için kaydediyoruz
+wb.save(xlPath)
+# kapatıyoruz
+wb.close()
+# çıkıyoruz
+exit( )
 
 # tarayıcı nesnesini oluşturuyoruz ve değişkene atıyoruz
 driver = webdriver.Chrome(settings.driver_path)
@@ -189,8 +215,7 @@ for studentI in  range(studentCount):
     for workI in range(10):
         # O an ki çalışmanın tamamlama yüzdesini complete değişkeninde saklıyoruz
         complete = works[workI].find_element_by_xpath(".//div[a)id= ’ vcProgressBar ']//span").text
-        # O an ki taradığımız performans notunu performance değişkeninde saklayoruz
-        # Ek çalışmada div@multiColouredPrcgress span alt satırları okumak için değiştirildi
+        # O an ki taradığımız notunu performance değişkeninde saklayoruz
         performance = works[workI].find_element_by_css_selector(".//div@multiColouredPrcgress span").text
 
         # completes dizisine atarken complete değişkeninde okuduğumuz % kaldırıp integer'a çeviriyoruz
@@ -219,7 +244,9 @@ for studentI in  range(studentCount):
     print("--- Tamamlama:", completeAvg)
     print("— Performans:", performanceAvg)
 
-    break
+    # break kaldırıldı
+    # sonraki satırdaki öğrenslye geçmek için
+    # bir önceki sayfadaki tabloya geri dönüyoruz
     driver.back()
 
 # 2 saniye bekletiyoruz

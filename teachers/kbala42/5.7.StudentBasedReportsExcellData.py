@@ -1,16 +1,12 @@
 """
-5. gün sonu
+Performans Ortalaması Hesap Hatası Çözümü
+openpyxl ve datetime Modüllerini Tanıtma
+Excel dosyasını oluşturma veya varolan dosyayı yükleme
+Öğrenci çalışma bilgilerini Excel'e yazma
+Excel'e kayıt sonrası çalışmanın incelenmesi
+Çalışma sonrası Excel dosyasını inceleme - Excel'de neler yapılabilir
 
-Bu aşamada yaptığınız adımlar:
-
-# 1. Öğrencinin adını al.
-# 2. Son 10 çalışmanın tamamlanma yüzdelerini bir diziye aktar.
-# 3. Son 10 çalışmanın performanslarını bir diziye aktar.
-# 4. örtlimalfli tamamlamayı hesap et.
-# 5. Ortalama performansı hesap et.
-# 6. Ekran görüntüsünü kaydet.
-# 7. Verileri ekrana yazdır.
-
+3. Excell'e verileri yazdırma
 """
 
 from selenium import webdriver
@@ -20,6 +16,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 import os # işletim sistemi çin modülü import ediyoruz
+# Öncelikle openpyxl paketi yüklenir: pip install openpyxl
+# Excell nesnesi için metot ekliyoruz
+from openpyxl import Workbook
+# Excell nesnemiz olduktan sonra bunu ekleyecek modülü ekliyoruz
+from  openpyxl import load_workbook
+# Günün tarihini eklemek için modül ekliyoruz
+from datetime import  datetime
 
 # SORUN ÇÖZÜMÜ: "EBA yükleniyor" mesajının gitmemesi (her sayfada karşılaşılabiliyor)
 # ÇÖZÜM: Sol menü yüklenene kadar bekle
@@ -93,7 +96,22 @@ if not os.path.exists(imgDir):
     os.mkdir(imgDir)
 
 
-# TODO: Excel dosyası eğer yoksa oluştur
+# Excel dosyası eğer yoksa oluştur
+# Dosya yolu için değişken
+xlPath = "./excels/student-based_reports.xlsx"
+
+# Eğer dosya yoksa
+if not os.path.exists(xlPath):
+    wb = Workbook() #Çalışma kitabı oluştur
+    ws = wb.active #Açık olan çalışma kitabında ki çalışma sayfasının adını sakla
+    ws.title="Öğrenci bazlı çalışma raporu"#Çalışma sayfasının adını değiştir
+    #1. satırın başlıklarını değiştiriyoruz
+    ws .append(["Tarih", "Öğrenci", "Tamamlama", "Performans", "Ekran Görüntüsü"])
+else: # değilse
+    # aktif olan workbook'u alıyoruz
+    wb = load_workbook(xlPath)
+    # "Öğrenci Bazlı Çalışma Raporları" isimli çalışma safasını alıyoruz
+    ws = wb["Öğrenci Bazlı Çalışma Raporları"]
 
 # tarayıcı nesnesini oluşturuyoruz ve değişkene atıyoruz
 driver = webdriver.Chrome(settings.driver_path)
@@ -128,8 +146,9 @@ workReports.click()
 
 # Bu sayfanın yüklendiğinden emin olmak için tablo satırları yüklenene kadar bekle
 # TableIsLoaded() sayfası kişisel sayfamızda Çalışma Tabloları olmadığı için pasif duruma getiriyorum.:) KB
-TableIsLoaded() # foksiyonu çağırıyoruz
-
+#
+#TableIsLoaded() # foksiyonu çağırıyoruz
+#
 # 'Çalışma Raporları' sayfasında 'ÖĞRENCİ BAZLI' bağlantısına tıkla.
 
 studentBasedLink = wait.until(ec.element_to_be_clickable(
@@ -141,8 +160,6 @@ studentBasedLink.click()
 # Öğrencilerin olduğu tablo satırlarını al
 students= TableIsLoaded() # gelen tablo bilgilerini students değişkeninde saklıyoruz
 
-
-
 # TODO: Öğrencilerin satırlarını döngüye al.
 # 1. Öğrencinin adını al.
 # 2. Son 10 çalışmanın tamamlanma yüzdelerini bir diziye aktar.
@@ -153,22 +170,13 @@ students= TableIsLoaded() # gelen tablo bilgilerini students değişkeninde sakl
 # 7. Verileri ekrana yazdır.
 # 8. Verileri Excel dosyasına yazdır.
 
-"""
-Öğrenci bazlı tek tek tarama işlemi
-
-    Uygulamaya aşağıdaki çözümde ki şekilde yapamıyoruz. Sebebi
-    Selenium ve chrome gibi tarayıcılar her eleman için benzersiz id kullanıyor. 
-    Tazeleme yapılan her sayfada her eleman yeni bir id alır
-
-for student in students:
-    student.click()
-    driver.click()
-    
-"""
-# Öğrenci bazlı tek tek tarama işlemi çözümü
-
 # Öğrenci sayısını bulup bunu studentCount adında ki değişkende saklıyoruz
 studentCount=len(students)
+
+# Günün talihini al
+date = datetime.today()
+#	yazılmış, en son satırı al
+lastRow=ws.max_row
 
 # Öğrencileri, öğrenci sayısı tek tek gezip tablonun yüklenmesini bekliyoruz
 for studentI in  range(studentCount):
@@ -189,8 +197,7 @@ for studentI in  range(studentCount):
     for workI in range(10):
         # O an ki çalışmanın tamamlama yüzdesini complete değişkeninde saklıyoruz
         complete = works[workI].find_element_by_xpath(".//div[a)id= ’ vcProgressBar ']//span").text
-        # O an ki taradığımız performans notunu performance değişkeninde saklayoruz
-        # Ek çalışmada div@multiColouredPrcgress span alt satırları okumak için değiştirildi
+        # O an ki taradığımız notunu performance değişkeninde saklayoruz
         performance = works[workI].find_element_by_css_selector(".//div@multiColouredPrcgress span").text
 
         # completes dizisine atarken complete değişkeninde okuduğumuz % kaldırıp integer'a çeviriyoruz
@@ -208,18 +215,30 @@ for studentI in  range(studentCount):
     if len(performances) > 0:
         performance_avg = sum(performances) / len(performances)
 
-    # ekran görüntüsü alalım
-    #Ekran görüntüsü için değişken adı belirliyoruz
-    imgPath = f"{imgDir}/ {student_name}.png"
+    # ekran görüntüsü alalım - Yeniden düzenlendi
+    # Ekran Görüntüsü Adı Formatı: 20210508 - Öğrenci Adı.png
+    imgPath = f"{imgDir}/{date.strftime('%Y%m%d')}-{studentName}.png"
     # Ekran görüntüsünü alıyoruz
     driver.find_element_by_xpath("//div[@class='vc-layout-view-content-padding']").screenshot(imgPath)
 
     print("*" * 50)
-    print("Öğrenci: ", student_name)
+    print("Öğrenci: ", studentName)
     print("--- Tamamlama:", completeAvg)
     print("— Performans:", performanceAvg)
 
-    break
+    # ExçeVe yazdır
+    #(last_row=1) + (student_i = 0) + 1
+    row = lastRow + studentI + 1
+    ws[f"A{row}"] = date
+    ws[f"A{row}"].number.format = "d mmmm yyyy, dddd"
+    ws[f"B{row}"] = studentName
+    ws[f"C{row}"] = completeAvg
+    ws[f"D{row}"] = performanceAvg
+    # =KÖPRÜ(".. /images/student-based-reports/Ekran Görüntüsü-Png”> "Görüntü")
+    ws[f"E{row}"] = f'=HYPERLINK(".{imgPath}", "Görüntü")'
+
+    # sonraki satırdaki öğrenslye geçmek için
+    # bir önceki sayfadaki tabloya geri dönüyoruz
     driver.back()
 
 # 2 saniye bekletiyoruz
@@ -227,3 +246,7 @@ time.sleep(2)
 
 # Sayfayı kapatıyoruz
 driver.close()
+
+# Excel dosyasını kaydet ve kapat
+wb.save(xlPath)
+wb.close()
