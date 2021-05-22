@@ -152,7 +152,7 @@ workReports.click()
 # 'Çalışma Raporları' sayfasında 'ÖĞRENCİ BAZLI' bağlantısına tıkla.
 
 studentBasedLink = wait.until(ec.element_to_be_clickable(
-    (By.XPATH,"//div[text()='ÖĞRENCİ BAZLI")
+    (By.XPATH,"//div[text()='ÖĞRENCİ BAZLI']")
 ))
 studentBasedLink.click()
 
@@ -196,9 +196,9 @@ for studentI in  range(studentCount):
     # Öğrencinin ilk 10 çalışmasını tarıyoruz
     for workI in range(10):
         # O an ki çalışmanın tamamlama yüzdesini complete değişkeninde saklıyoruz
-        complete = works[workI].find_element_by_xpath(".//div[a)id= ’ vcProgressBar ']//span").text
+        complete = works[workI].find_element_by_xpath(".//div[@id='vcProgressBar']//span").text
         # O an ki taradığımız notunu performance değişkeninde saklayoruz
-        performance = works[workI].find_element_by_css_selector(".//div@multiColouredPrcgress span").text
+        performance = works[workI].find_element_by_css_selector("div#multiColouredProgress span").text
 
         # completes dizisine atarken complete değişkeninde okuduğumuz % kaldırıp integer'a çeviriyoruz
         completes.append(int(complete.replace("%","")))
@@ -230,7 +230,7 @@ for studentI in  range(studentCount):
     #(last_row=1) + (student_i = 0) + 1
     row = lastRow + studentI + 1
     ws[f"A{row}"] = date
-    ws[f"A{row}"].number.format = "d mmmm yyyy, dddd"
+    ws[f"A{row}"].number_format = "d mmmm yyyy, dddd"
     ws[f"B{row}"] = studentName
     ws[f"C{row}"] = completeAvg
     ws[f"D{row}"] = performanceAvg
