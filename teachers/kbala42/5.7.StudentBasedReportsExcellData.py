@@ -5,9 +5,9 @@ Excel dosyasını oluşturma veya varolan dosyayı yükleme
 Öğrenci çalışma bilgilerini Excel'e yazma
 Excel'e kayıt sonrası çalışmanın incelenmesi
 Çalışma sonrası Excel dosyasını inceleme - Excel'de neler yapılabilir
-
 3. Excell'e verileri yazdırma
 """
+
 
 from selenium import webdriver
 import settings
