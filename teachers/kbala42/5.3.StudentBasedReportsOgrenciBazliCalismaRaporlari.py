@@ -36,7 +36,7 @@ def LeftMenuIsLoaded():
     except: # 10 saniye bekledikten sonra bir hata alırsa
         print("Menünün yüklenmesi için çok bekledi. Sayfa yenileniyor...")# yazısını yazacak
         driver.refresh() # sayfayı yeniden yükleyecek
-        LeftMenuIsLoaded() #yenilenebilir bir fonksiyon olarak kendini tekrar çağıracak
+        LeftMenuIsLoaded() #özyenilenebilir bir fonksiyon olarak kendini tekrar çağıracak
     # EBA yükleninceye kadar sonsuz döngüye sokuyoruz
 
 # EBA'ya giriş işlemini gerçekleştiren fonksiyonu yazıyoruz
@@ -124,7 +124,7 @@ workReports = wait.until(ec.element_to_be_clickable(
 workReports.click()
 
 # Bu sayfanın yüklendiğinden emin olmak için tablo satırları yüklenene kadar bekle
-TableIsLoaded() # foksiyonu çağırıyoruz
+# TableIsLoaded() # foksiyonu çağırıyoruz
 
 # 'Çalışma Raporları' sayfasında 'ÖĞRENCİ BAZLI' bağlantısına tıkla.
 

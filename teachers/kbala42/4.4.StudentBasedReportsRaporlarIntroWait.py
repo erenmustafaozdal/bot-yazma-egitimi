@@ -70,7 +70,7 @@ wait.until(
     # ec nesnesi tıklanabilir oluncaya kadar
     ec.element_to_be_clickable(
         (By.XPATH, "//div[@class='vc-lm-item-title][normalize-space()='Raporlar']"))
-).click() # Bu satırda hata verdi. Diğer kısımlar normal. 5. güne bırakıldı
+    ).click()
 
 # 2 saniye bekletiyoruz
 time.sleep(2)

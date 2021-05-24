@@ -31,7 +31,7 @@ def LeftMenuIsLoaded():
     except: # 10 saniye bekledikten sonra bir hata alırsa
         print("Menünün yüklenmesi için çok bekledi. Sayfa yenileniyor...")# yazısını yazacak
         driver.refresh() # sayfayı yeniden yükleyecek
-        LeftMenuIsLoaded() #yenilenebilir bir fonksiyon olarak kendini tekrar çağıracak
+        LeftMenuIsLoaded() #özyenilenebilir bir fonksiyon olarak kendini tekrar çağıracak
     # EBA yükleninceye kadar sonsuz döngüye sokuyoruz
 
 # EBA'ya giriş işlemini gerçekleştiren fonksiyonu yazıyoruz
@@ -191,7 +191,7 @@ for studentI in  range(studentCount):
         complete = works[workI].find_element_by_xpath(".//div[a)id= ’ vcProgressBar ']//span").text
         # O an ki taradığımız performans notunu performance değişkeninde saklayoruz
         # Ek çalışmada div@multiColouredPrcgress span alt satırları okumak için değiştirildi
-        performance = works[workI].find_element_by_css_selector("//div@multiColouredPrcgress span").text
+        performance = works[workI].find_element_by_css_selector(".//div@multiColouredPrcgress span").text
 
         # completes dizisine atarken complete değişkeninde okuduğumuz % kaldırıp integer'a çeviriyoruz
         completes.append(int(complete.replace("%","")))

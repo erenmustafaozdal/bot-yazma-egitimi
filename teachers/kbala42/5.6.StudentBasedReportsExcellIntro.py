@@ -35,7 +35,7 @@ def LeftMenuIsLoaded():
     except: # 10 saniye bekledikten sonra bir hata alırsa
         print("Menünün yüklenmesi için çok bekledi. Sayfa yenileniyor...")# yazısını yazacak
         driver.refresh() # sayfayı yeniden yükleyecek
-        LeftMenuIsLoaded() #yenilenebilir bir fonksiyon olarak kendini tekrar çağıracak
+        LeftMenuIsLoaded() #özyenilenebilir bir fonksiyon olarak kendini tekrar çağıracak
     # EBA yükleninceye kadar sonsuz döngüye sokuyoruz
 
 # EBA'ya giriş işlemini gerçekleştiren fonksiyonu yazıyoruz
@@ -216,7 +216,7 @@ for studentI in  range(studentCount):
         # O an ki çalışmanın tamamlama yüzdesini complete değişkeninde saklıyoruz
         complete = works[workI].find_element_by_xpath(".//div[a)id= ’ vcProgressBar ']//span").text
         # O an ki taradığımız notunu performance değişkeninde saklayoruz
-        performance = works[workI].find_element_by_css_selector("//div@multiColouredPrcgress span").text
+        performance = works[workI].find_element_by_css_selector(".//div@multiColouredPrcgress span").text
 
         # completes dizisine atarken complete değişkeninde okuduğumuz % kaldırıp integer'a çeviriyoruz
         completes.append(int(complete.replace("%","")))
@@ -235,12 +235,12 @@ for studentI in  range(studentCount):
 
     # ekran görüntüsü alalım
     #Ekran görüntüsü için değişken adı belirliyoruz
-    imgPath = f"{imgDir}/ {studentName}.png"
+    imgPath = f"{imgDir}/ {student_name}.png"
     # Ekran görüntüsünü alıyoruz
     driver.find_element_by_xpath("//div[@class='vc-layout-view-content-padding']").screenshot(imgPath)
 
     print("*" * 50)
-    print("Öğrenci: ", studentName)
+    print("Öğrenci: ", student_name)
     print("--- Tamamlama:", completeAvg)
     print("— Performans:", performanceAvg)
 
