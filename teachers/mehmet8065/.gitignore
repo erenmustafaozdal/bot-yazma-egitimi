@@ -12,9 +12,3 @@ geckodriver.log
 
 # Sanal geliştirme ortamı (venv klasörü) oluşturulduysa GitHub'a gönderme
 venv
-
-#IMDB 250 text dosyasını Github'a gönderme
-#imdb_top_250_mat.txt -- Klasöre taşındı
-
-#linkedin contacts text dosyasını Github'a gönderme
-#linkedin_contacts_mat.txt -- Klasöre taşındı
