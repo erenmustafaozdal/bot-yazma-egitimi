@@ -37,7 +37,7 @@ def LeftMenuIsLoaded():
     except: # 10 saniye bekledikten sonra bir hata alırsa
         print("Menünün yüklenmesi için çok bekledi. Sayfa yenileniyor...")# yazısını yazacak
         driver.refresh() # sayfayı yeniden yükleyecek
-        LeftMenuIsLoaded() #özyenilenebilir bir fonksiyon olarak kendini tekrar çağıracak
+        LeftMenuIsLoaded() #yenilenebilir bir fonksiyon olarak kendini tekrar çağıracak
     # EBA yükleninceye kadar sonsuz döngüye sokuyoruz
 
 # EBA'ya giriş işlemini gerçekleştiren fonksiyonu yazıyoruz
