@@ -8,9 +8,10 @@ class EBA:
     Her projede çalışan temel EBA işlemlerini yürütecek olan nesne
     """
 
-    # EBA girişi hata sayfası
+    # EBA girişi hata sayfasını LOGIN_ERROR_URL değişkende saklıyoruz
     LOGIN_ERROR_URL = 'https://giris.eba.gov.tr/EBA_GIRIS/hata.jsp'
 
+    # Gönderdiğimiz driver nesnesi parametre olarak geliyor
     def __init__(self, driver):
         """
         __init__ ile nesne oluşturulduğunda ilk tanımlama ve ayarlamalar yapılır
@@ -18,9 +19,10 @@ class EBA:
         :param driver: selenium webdriver tarayıcı nesnesi
         """
 
-        # tarayıcı nesnesi
+        # Gelen parametreden tarayıcı nesnesini oluşturuyoruz
         self.driver = driver
-        # bekleme nesnesi
+
+        # bekleme nesnesini tarayıcı nesnesinden 10s olarak 1 sn sıklıkla oluşturuyoruz
         self.wait = WebDriverWait(driver, timeout=10, poll_frequency=1)
 
     def left_menu_is_loaded(self):
@@ -68,16 +70,19 @@ class EBA:
             self.driver.find_element_by_xpath("//input[@name='submitButton']").click()
             current_url = self.driver.current_url
 
+            #mevcut url sayfasında değişiklik oluncaya kadar ebliyor
             self.wait.until(ec.url_changes(current_url))
 
-            # hata sayfası ise tekrar giriş yap
+            # Eğer karşımıza "LOGIN_ERROR_URL" hata sayfası açılıyorsa tekrar giriş yapıyoruz
             if current_url == self.LOGIN_ERROR_URL:
                 print('Hata sayfasına gitti. Tekrar giriş yapılacak.')
-                self.login(tc, password)
+                self.login(tc, password) # Tekrar giriş yapıyoruz
 
-            # canlı ders sayfası ise EBA'ya devam et
+            # Eğer canlı ders sayfası açılmışsa EBA'ya devam ediyoruz
+            # Bunuda mevcut sayfada liveMiddleware yazısını kontrol ederek yapıyoruz
             elif 'liveMiddleware' in current_url:
                 print("Canlı ders var. EBA'ya devam ediliyor.")
+                #buton aktif oluncaya kadar bekliyor, ardından butonu tıklatıyoruz
                 self.wait.until(ec.element_to_be_clickable((By.ID, "active-brand-button"))).click()
         except:
             print("Sayfa 20 saniyede yüklenemedi. Sayfa yenileniyor...")

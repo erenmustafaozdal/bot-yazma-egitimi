@@ -24,7 +24,7 @@ class Browser:
         # Selenium api şu adresten incelenebilir: https://selenium-python.readthedocs.io/api.html
         options = webdriver.ChromeOptions()
 
-        # loglama iptal et
+        # loglamayı iptal et özelliğini options nesnesine ekliyoruz
         # https://joshuatz.com/posts/2020/selenium-webdriver-disabling-chrome-logging-messages/
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
@@ -37,10 +37,13 @@ class Browser:
         # Chrome varsayılan (Default) profilinizi "chrome://version" adresine giderek görebilirsiniz. Chrome adres satırına yazıldığında görülebilir
         # "Profil Yolu" başlığı karşısındaki değer varsayılan profildir. Son klasör adı yerine yeni profil klasör adı yazılır
         options.add_argument(f"user-data-dir={os.getenv('USERPROFILE')}\\AppData\\Local\\Google\\Chrome\\User Data\\Bot Workshop")
-        # Taracnın maksimum boyutta çalışmasını istiyoroz
+        # Taracnın gizli çalışması durumunda minimumda, yani Mobil görünümde çalışıyor.
+        # Böyle bir durumda tıklatma hataları ortaya çıkmaktadır
+        # Böyle bir durumdam kaçınmak için varsayım bir değerle açıyoruz
         options.add_argument("--window-size=1920,1080")
-
+        # driver nesnesine options'tan gelen parametrelerle driver_path yolunu parametre olarak atıyoruz
         self.driver = webdriver.Chrome(driver_path, options=options)
+        # Taracnın maksimum boyutta çalışmasını istiyoroz
         self.driver.maximize_window()
 
         # sayfanın yüklemesini çok beklememesi için
@@ -56,5 +59,6 @@ class Browser:
 
         return self.driver
 
+    # self driver silindiğinde tarayıcıda otomatik olarak silinir
     def __del__(self):
         self.driver.close()

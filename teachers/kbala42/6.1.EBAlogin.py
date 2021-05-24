@@ -15,9 +15,11 @@ browser = Browser(settings.driver_path)
 # get metodu ile webdriver nesnesi oluşturuyoruz
 driver = browser.get()
 
-# eba nesnesini EBA sınıfından oluşturuyoruz
+# eba nesnesini EBA sınıfından oluşturuyoruz. eba nesnesini oluştururken driver nesnesini yerleştiriyoruz.
+# Böylece bazı işlemleri otomatikman yapmış olacak
 eba = EBA(driver)
 
+# Tarayıcı nesnesi oluştuktan sonra parametreleri gönderiyoruz
 # "EBA" sınıfında ki yazılan login metodu ile EBA'ya giriş apıyoruz
 eba.login(settings.tc, settings.password)
 
