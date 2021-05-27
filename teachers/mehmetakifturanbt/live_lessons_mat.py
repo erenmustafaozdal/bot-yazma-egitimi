@@ -28,7 +28,7 @@ ALGORİTMA
 """
 # Todo: Modül ve sınıfları içeri aktar
 from classes.zoom_mat import Zoom
-#from classes.telegram import Telegram
+from classes.telegram_mat import Telegram
 import settings
 
 import pprint
@@ -55,7 +55,11 @@ zoom = Zoom(user['zoom_api_key'], user['zoom_api_secret'])
 # })
 # pp.pprint(result)
 
-zoom.delete_meeting("75822733963")
+#zoom.delete_meeting("75822733963")
+
+telegram = Telegram(user['telegram_api_id'], user['telegram_api_hash'])
+chat = telegram.get_chat_ids('çevrim içi')
+pp.pprint(chat)
 
 # telegram = Telegram(user['telegram_api_id'], user['telegram_api_hash'])
 # chat = telegram.get_chat_ids('Arama Metni')
