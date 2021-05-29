@@ -23,10 +23,13 @@ eba.login(settings.tc, settings.password)
 
 def profil_sayfasina_gec():
     # Profil menüsünü aç
-    driver.find_element_by_xpath("//div[@id='vcProfileWidget']//div[@class='vc-profile-widget-caret vc-position-relative']").click()
-    time.sleep(5)
+    eba.wait.until(ec.element_to_be_clickable(
+        (By.XPATH, "//div[@id='vcProfileWidget']//div[@class='vc-profile-widget-caret vc-position-relative']")
+    )).click()
     # Şifre Bölümüne Giriş - Öğretmen
-    driver.find_element_by_xpath("//*[@id='eba-menu-panel']/div/div[3]/a/div").click()
+    eba.wait.until(ec.element_to_be_clickable(
+        (By.XPATH, "//*[@id='eba-menu-panel']//div[contains(text(), 'Öğrenci Şifre')]")
+    )).click()
     time.sleep(3)
 
 profil_sayfasina_gec()
