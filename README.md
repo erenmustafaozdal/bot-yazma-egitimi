@@ -238,6 +238,9 @@ Telegram'ın BOT Api'siyle çalışmadan önce, kendi Api `id` ve `hash` bilgile
     - [Zoom Api ile ders oluşturma dokümanı (meeting create)](https://marketplace.zoom.us/docs/api-reference/zoom-api/meetings/meetingcreate)
 - [Telethon Telegram kütüphanesi](https://docs.telethon.dev/en/latest/)
     - [Telegram Api uygulaması oluşturmak için hesabınız](https://my.telegram.org/)
+- [Xpath Kopya Kağıdı (Cheat Sheet)](https://devhints.io/xpath)
+- [Eksiksiz XPath ve CSS Seçici Listesi](https://www.automatetheplanet.com/selenium-webdriver-locators-cheat-sheet/#tab-con-3)
+- [Xpath Eğitimi](https://www.w3schools.com/xml/xpath_intro.asp)
 
 Web elemanlarını bulmak için özellikle CSS ve XPATH seçicilerini belirlemede bize yardımcı olacak bazı eklentiler var. Bunlar için aşağıdaki adresleri ziyaret edebilirsiniz.
 - [ChroPath Chrome eklentisi](https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo)
@@ -306,7 +309,9 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 | **5. HAFTA EK - 2** <br> <ul><li>**Projelerimizi Çalıştırmak İçin Kısayol Oluşturma** *(Her proje için kullanılabilir)*</li></ul> | [![Projelerimizi Çalıştırmak İçin Kısayol Oluşturma - Python ile Bot Yazma Eğitimi Hafta #5 - Ek 2](https://img.youtube.com/vi/Wfc65XFRqJM/maxresdefault.jpg)](https://youtu.be/Wfc65XFRqJM) |
 | **5. HAFTA EK - 3** <br> <ul><li>**Projelerimizi Otomatik Çalıştırmak İçin Zamanlama** *(Her proje için kullanılabilir)*</li></ul> | [![Projelerimizi Otomatik Çalıştırmak İçin Zamanlama - Python ile Bot Yazma Eğitimi Hafta #5 - Ek 3](https://img.youtube.com/vi/txkqv5D_LHQ/maxresdefault.jpg)](https://youtu.be/txkqv5D_LHQ) |
 | **6. HAFTA** <br> <ul><li>Canlı dersleri otomatik tanımlama projesi başlangıcı<ol><li>Zoom Api tanıtımı</li><li>Telegram Api tanıtımı</li><li>EBA, Tarayıcı, Excel dosyası, Zoom Api ve Telegram Api işlemlerini yönetecek sınıfların tanıtımı </li></ol></li></ul> | [![Zoom Api ve Telegram Api Tanıtımı - Python ile Bot Yazma Eğitimi Hafta #6](https://img.youtube.com/vi/E0MprCpuXUc/maxresdefault.jpg)](https://youtu.be/E0MprCpuXUc) |
-| **7. HAFTA** | BEKLENİYOR... 😊|
+| **7. HAFTA** <br> <ul><li>Canlı Dersleri Kaydetme ve Mesajlarını Zamanlama</li></ul> | [![Canlı Dersleri Kaydetme ve Mesajlarını Zamanlama - Python ile Bot Yazma Eğitimi Hafta #7](https://img.youtube.com/vi/_3DMAN6vPuQ/maxresdefault.jpg)](https://youtu.be/_3DMAN6vPuQ) |
+| **7. HAFTA EK - 1** <br> <ul><li>Canlı Dersleri Kaydetme ve Mesajlarını Zamanlama Devamı</li></ul> | [![Projelerimizi Otomatik Çalıştırmak İçin Zamanlama - Python ile Bot Yazma Eğitimi Hafta #5 - Ek 3](https://img.youtube.com/vi/LuS_a2MvYqA/maxresdefault.jpg)](https://youtu.be/LuS_a2MvYqA) |
+| **8. HAFTA** | BEKLENİYOR... 😊|
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
 
@@ -324,5 +329,7 @@ Ayrıca her öğretmenin GitHub kullanıcı adı ile ana dal'dan ***(main)*** ay
 | **EBA Tek Kullanımlık Şifre Alma** <br> [@mfatiharslan](https://github.com/mfatiharslan) tarafından geliştirilen öğrenci numarası verildikten sonra, otomatik TC bilgisini alıp, EBA tek kullanımlık şifre oluşturup TXT dosyasına yazan çalışma  | [![EBA Tek Kullanımlık Şifre Alma - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/VCfyaVp5jjc/maxresdefault.jpg)](https://youtu.be/VCfyaVp5jjc) |
 | **Linkedin Bağlantı Bilgilerini Toplama** <br> [@mehmetakifturanbt](https://github.com/mehmetakifturanbt) tarafından geliştirilen projede kullanıcının Linkedin bağlantı bilgileri Excel dosyasına, metin (txt) dosyasına yazdırılmış ve ekran görüntüleri kaydedilmiştir  | [![Linkedin Bağlantı Bilgilerini Toplama - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/_EgF7AqLx8Q/maxresdefault.jpg)](https://youtu.be/_EgF7AqLx8Q) |
 | **Öğrenci Bazlı Çalışmaları Kontrol Etme** <br> [@Aytac-Kula](https://github.com/Aytac-Kula) tarafından geliştirilen projede öğrenci bazlı çalışmalar otomatik olarak kontrol edilmiştir. Ayrıca kontrol edilen öğrenci bilgileri Excel dosyasına yazdırılmış ve ekran görüntüleri kaydedilmiştir  | [![Öğrenci Bazlı Çalışmaları Kontrol Etme - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/u94AujH41bY/maxresdefault.jpg)](https://youtu.be/u94AujH41bY) |
+| **Excel Dosyasındaki Öğrencilerin Şifrelerini Oluşturma** <br> [@oguzkapan](https://github.com/oguzkapan) tarafından geliştirilen projede Excel dosyasındaki öğrenci bilgileri ile EBA'da her öğrenci için tek kullanımlık şifre oluşturulup Excel dosyasına kaydediliyor. | [![Excel Dosyasındaki Öğrencilerin Şifrelerini Oluşturma - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/L-RE1dXOj0o/maxresdefault.jpg)](https://youtu.be/L-RE1dXOj0o) |
+| **Not Listesi Alma** <br> [@ecevahir](https://github.com/ecevahir) tarafından geliştirilen projede E-okul'daki öğrenci not bilgileri alınıp Excel dosyasına kaydediliyor. | [![Not Listesi Alma - Python ile Bot Yazma Eğitimi Uygulaması](https://img.youtube.com/vi/OhxbOrsDHe0/maxresdefault.jpg)](https://youtu.be/OhxbOrsDHe0) |
 
 *[İçindekiler bölümüne dön!](#i%CC%87%C3%A7i%CC%87ndeki%CC%87ler)*
