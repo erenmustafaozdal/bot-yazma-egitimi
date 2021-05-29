@@ -34,6 +34,7 @@ from classes.browser import Browser
 from classes.eba import EBA
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 import settings
 import time
 from datetime import datetime
@@ -65,9 +66,12 @@ group_name = ".//span[contains(text(),'{}')]"
 list_students = "//div[contains(text(), 'ÖĞRENCİLERİ LİSTELE')]"
 send_live_lesson = "//div[contains(text(), 'CANLI DERSİ GÖNDER')]"
 ok_btn = "//a[normalize-space()='TAMAM']"
+lesson_delete_btn = "//div[@class='body-container']/div[@role='row']//div[contains(normalize-space(), '{}') and contains(normalize-space(), '{}')]//i[@class='vt-icon-delete']"
+delete_yes_btn = "//a[normalize-space()='EVET']"
+next_button = "//a[text()='Sonraki']"
 
 
-##### EXCEL'den dosyasından aldığımız dictionary türünde bir ders örneği
+##### EXCEL dosyasından aldığımız dictionary türünde bir ders örneği
 # {   'Auto Recording': 'on',
 #     'Açıklama': '31 Mayıs 2021 Pazartesi günü 09:10 - 09:40 saat aralığında '
 #                 'yapılacak Fen Bilimleri dersi.',
@@ -125,7 +129,7 @@ for user in settings.users:
     zoom = Zoom(user['zoom_api_key'], user['zoom_api_secret'])
 
     # Tarayıcı nesnesi oluştur
-    browser = Browser(settings.driver_path)
+    browser = Browser(settings.driver_path, profile=user['tc'])
     driver = browser.get()
 
     # EBA nesnesi oluştur
@@ -145,11 +149,13 @@ for user in settings.users:
         if lesson['Durum'] == 'hazır':
             continue
 
-
         # Dersin başlama tarihini düzelt
         start_hour = datetime.strptime(lesson['Ders Saat Aralığı'].split(" - ")[0], "%H:%M")
         #  Zoom ve Telegram'da kullanmak için dersin tarihini ve saat aralığını birleştir
         lesson["start_time"] = lesson['Canlı Ders Tarihi'].replace(hour=start_hour.hour, minute=start_hour.minute)
+
+        print("-"*50)
+        print(f"Ders: {lesson['Canlı Ders Başlığı']} ({lesson['start_time'].strftime('%d.%m.%Y %H:%M')})")
 
         try:
             pass
@@ -237,30 +243,87 @@ for user in settings.users:
             # Tamam tıkla
             eba.wait.until(ec.element_to_be_clickable((By.XPATH, ok_btn))).click()
 
-            # Todo: Ders EBA'da kaydedildi ise durumuna "eba" yaz
+            # Ders EBA'da kaydedildi ise durumuna "eba" yaz
+            lessons[index]['Durum'] = 'eba'
 
-            # Todo: Ders için Telegram'da mesaj planla
+            print("Canlı ders EBA'da tanımlandı.")
 
-            # Todo: Ders için mesaj planlandı ise durumuna "hazır" yaz
+            # Ders için Telegram'da mesaj planla
+            if telegram.ready():
+                telegram.send_message(
+                    user['telegram_chat_id'],
+                    get_lesson_message(lessons[index]),
+                    lesson["start_time"]
+                )
 
-        # Todo: Herhangi bir ders kaydı sırasında hata olursa durumunu kontrol et ve aşağıdaki işlemlerden birini yap.
+            # Ders için mesaj planlandı ise durumuna "hazır" yaz
+            lessons[index]['Durum'] = 'hazır'
 
+        # Herhangi bir ders kaydı sırasında hata olursa durumunu kontrol et ve aşağıdaki işlemlerden birini yap.
         except Exception as error:
             logger.exception(error)
 
-            # Todo: "Durum = zoom" ise; Zoom'daki dersi sil
+            # "Durum = zoom" ise; Zoom'daki dersi sil
             if lessons[index]['Durum'] == 'zoom':
                 # zoom dersi silinir
                 zoom.delete_meeting(lessons[index]['id'])
 
-            # Todo: "Durum = eba" ise; Zoom'daki ve EBA'daki dersi ve Telegram mesajını sil
+            # "Durum = eba" ise; Zoom'daki ve EBA'daki dersi ve Telegram mesajını sil
+            elif lessons[index]['Durum'] == 'eba':
+                # zoom dersi silinir
+                zoom.delete_meeting(lessons[index]['id'])
 
-            # Todo: Hata sonrası Excel dosyasın bitenleri yaz
-            #  "Durum" sutünuna her ders için durumu yaz
+                # EBA'daki ders silinir
+                while True:
+                    # canlı dersler tablosunun yüklenmesi beklenir
+                    eba.table_is_loaded()
+                    try:
+                        # silme tuşunu seç ve dersi sil
+                        element = driver.find_element_by_xpath(
+                            lesson_delete_btn.format(
+                                lesson['start_time'].strftime('%d.%m.%Y'),
+                                lesson['Ders Saat Aralığı']
+                            )
+                        )
+                        ActionChains(driver).click(element).perform()
+                        time.sleep(1)
+                        eba.wait.until(ec.element_to_be_clickable(
+                            (By.XPATH, delete_yes_btn)
+                        )).click()
+                        # silmek için EVET'e bastıktan sonra işlemin tamamlanması için ne olur ne olmaz bir miktar bekleme yapalım
+                        time.sleep(2)
+                        print(f"{lesson['start_time'].strftime('%d.%m.%Y')} {lesson['Ders Saat Aralığı']} tarihli canlı ders EBA'da silindi")
+                        break
+                    # eğer bu sayfada yoksa sonraki sayfaya geçilir
+                    except:
+                        driver.find_element_by_xpath(next_button).click()
+
+                # Telegram'da zamanlanmış mesajı sil
+                if telegram.ready():
+                    telegram.delete_scheduled_messages(user['telegram_chat_id'], lessons[index]['join_url'])
+                    print(f"{lesson['start_time'].strftime('%d.%m.%Y')} {lesson['Ders Saat Aralığı']} tarihli canlı dersin mesajı Telegram'da silindi")
+
+            # Sonraki çalışmada Durumu düzelt
+            lessons[index]['Durum'] = None
+
+            # Hata sonrası Excel dosyasına bitenleri yaz
+            #  "Durum" sütununa her ders için durumu yaz
             #  Bir sonraki çalıştırmada durumu "hazır" olanlar dışındaki dersler oluşturulacak
+            excel = Excel(user['live_lessons_xl'])
+            data = [ders['Durum'] for ders in lessons]
+            excel.update_range(excel.headers['Durum']['column'], data, True)
+            excel.save()
+            del excel
 
             raise
 
-        break
+    # alt bilgilerden ayırmak için boşluk yazdır
+    print("-"*50)
+    print("")
 
-    # Todo: Herhangi bir hata olmadı ve ders kayıtları bittiyse tüm derslerin durumunu temizle
+    # Herhangi bir hata olmadı ve ders kayıtları bittiyse tüm derslerin durumunu temizle
+    excel = Excel(user['live_lessons_xl'])
+    data = [None for lesson in lessons]
+    excel.update_range(excel.headers['Durum']['column'], data, True)
+    excel.save()
+    del excel
