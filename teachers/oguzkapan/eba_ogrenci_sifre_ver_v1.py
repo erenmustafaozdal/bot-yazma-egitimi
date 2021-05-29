@@ -76,7 +76,6 @@ while i<ws.max_row+1:
     i+=1
 
 wb.save(xl_path)
-driver.close()
 
 
 """
@@ -112,4 +111,4 @@ def table_is_loaded():
     tabloda öğrenci adları sütunu : //body[1]/form[2]/table[1]/tbody[1]/tr[3]/td[2]/table[1]/tbody[1]/tr[3]/td[1]/table[1]/tbody[1]/tr[9]/td[2]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[2]/td[1]/table[1]/tbody[1]/tr[2]/td[1]/table[1]/tbody[1]/tr[2]/td[2]
     
 
-"""
+""""""
