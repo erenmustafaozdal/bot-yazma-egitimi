@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from openpyxl import Workbook, load_workbook
 from teachers.oguzkapan.classes.browser import Browser
+from teachers.oguzkapan.classes.eba import EBA
 import os
 
 ## Amaç : Tc kimlik numaraları bir excel dosyasında kayıtlı olan öğrencilere tek kullanımlık şifre verme.
@@ -13,26 +14,12 @@ import os
 ## Okul No / Ad Soyad / Tc Kimlik No / Şifre
 
 ## Eba'ya giriş yap
-try:
-    driver.get("https://giris.eba.gov.tr/EBA_GIRIS/teacher.jsp")
-    driver.find_element_by_xpath("//button[@title='edevlet girişi']").click()
-    driver.find_element_by_css_selector("#tridField").send_keys(settings.tc)
-    driver.find_element_by_id("egpField").send_keys(settings.password)
-    driver.find_element_by_xpath("//input[@name='submitButton']").click()
-except:
-    # Yüklenmediyse 10 saniye bekle
-    print("Sayfa 10 saniyede yüklenemedi...")
-    driver.refresh()
+browser = Browser(settings.driver_path)
+driver = browser.get()
 
-while True:
-    eba_wait = WebDriverWait(driver, timeout=3, poll_frequency=1)
-    try:
-        eba_wait.until(ec.invisibility_of_element((By.ID, "generalPreloader")))
-        break # gizlendi ise döngüden çık
-    except:
-        print("Çok bekledi. Sayfa yenileniyor...")
-        driver.refresh()
-time.sleep(5)
+eba = EBA(driver)
+eba.login(settings.tc, settings.password)
+
 
 def profil_sayfasina_gec():
     # Profil menüsünü aç
