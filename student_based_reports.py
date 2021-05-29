@@ -47,25 +47,11 @@ else:
 
 
 # tarayıcı nesnesi oluştur
-#<<<<<<< Updated upstream
 browser = Browser(settings.driver_path)
 driver = browser.get()
 
 # EBA nesnesi oluşturulur
 eba = EBA(driver)
-#=======
-driver = webdriver.Chrome(settings.driver_path)
-driver.maximize_window()
-# sayfanın yüklemesini çok beklememesi için
-# 20 saniye beklemesini, yoksa hata vermesini belirliyoruz
-# hata verdiğinde bu hatayı yakalayıp (login fonksiyonunda)
-# sayfanın yenilenmesini veya giriş işlemini tekrar etmesini sağlayacağız
-driver.set_page_load_timeout(20)
-
-# Çeşitli sayfa elemanlarını beklemek için
-# WebDriverWait bekleme nesnesi oluşturulur
-wait = WebDriverWait(driver, timeout=10, poll_frequency=1)
->>>>>>> Stashed changes
 # EBA'ya giriş yapılır
 eba.login(settings.tc, settings.password)
 
