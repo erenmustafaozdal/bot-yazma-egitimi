@@ -3,6 +3,7 @@
 from telethon.sync import TelegramClient
 from telethon import functions as func
 # telegram mesajını zamanlarken kendi zaman dilimimize göre ayarlama yapmak için kullanılan modül
+# modül kurulu değilse pip install python-dateutil omutu ile kurunuz
 from dateutil import tz
 
 
