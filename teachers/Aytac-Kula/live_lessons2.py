@@ -69,7 +69,8 @@ ok_btn = "//a[normalize-space()='TAMAM']"
 lesson_delete_btn = "//div[@class='body-container']/div[@role='row']//div[contains(normalize-space(), '{}') and contains(normalize-space(), '{}')]//i[@class='vt-icon-delete']"
 delete_yes_btn = "//a[normalize-space()='EVET']"
 next_button = "//a[text()='Sonraki']"
-
+katilimci_select= "//button[contains(text(),'Ek Katılımcı Öğretmen Seçiniz')]"
+katilimci_name ="//div[@class='vc-resp-all-margin p-xs ng-scope']//div[@class='checkBoxContainer']//.//span[contains(text(),'{}')]"
 
 ##### EXCEL dosyasından aldığımız dictionary türünde bir ders örneği
 # {   'Auto Recording': 'on',
@@ -236,6 +237,17 @@ for user in settings.users:
 
             # Öğrenci listele tıklanır
             driver.find_element_by_xpath(list_students).click()
+
+            #Katılımcı Öğretmen seç
+            element = eba.wait.until(ec.element_to_be_clickable(
+                (By.XPATH, katilimci_select)
+            ))
+            element.click()
+            time.sleep(1)
+            for group in lesson['Katılımcı'].split(','):
+                element.find_element_by_xpath(
+                    katilimci_name.format(group.strip())
+                ).click()
 
             # Canlı dersi gönder tıkla
             eba.wait.until(ec.element_to_be_clickable((By.XPATH, send_live_lesson))).click()
