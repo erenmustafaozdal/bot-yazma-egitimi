@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from openpyxl import Workbook, load_workbook
+from teachers.oguzkapan.classes.browser import Browser
 import os
 
 ## Amaç : Tc kimlik numaraları bir excel dosyasında kayıtlı olan öğrencilere tek kullanımlık şifre verme.
@@ -12,10 +13,6 @@ import os
 ## Okul No / Ad Soyad / Tc Kimlik No / Şifre
 
 ## Eba'ya giriş yap
-driver = webdriver.Chrome(settings.driver_path)
-driver.get("https://eba.gov.tr/")
-driver.maximize_window()
-
 try:
     driver.get("https://giris.eba.gov.tr/EBA_GIRIS/teacher.jsp")
     driver.find_element_by_xpath("//button[@title='edevlet girişi']").click()
