@@ -1,8 +1,16 @@
+"""
+
+Excel nesnesini oluşturan ve ilk ayarlarını yapan tarayıcı (browser) sınıfı
+
+Geriye uyumluluk İçin yedek sınıf
+
+"""
+
+
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
-import win32com.client as win32
+import win32com.client as win32 # Eğer win32com hata alıyorsanız "pip install pywin32" komutuyla yükleyiniz
 import os
-
 
 class Excel:
     """
@@ -12,6 +20,7 @@ class Excel:
     def __init__(self, path, worksheet=None, data_only=False):
         """
         Yapılandırıcı metot
+
         :param path: excel dosyasının göreceli veya tam yolu
         :param worksheet: çalışma sayfasının adı veya indis (index) numarası. Eğer ayarlanmazsa atif olan çalışma sayfası seçilir
         """
@@ -25,9 +34,6 @@ class Excel:
 
         # Excel dosyası yolu
         self.path = path
-
-        # gerekiyorsa formülleri yeniden hesapla
-        self.recalculation_formula()
 
         # çalışma kitabı
         self.wb = load_workbook(path, data_only=data_only)
@@ -49,6 +55,7 @@ class Excel:
     def set_headers(self):
         """
         Çalışma sayfasının başlıklarını aşağıdaki yapıya benzer şekilde belirler
+
         {
             "1. Sütun Başlığı" : {"row":1, "column":1},
             "2. Sütun Başlığı" : {"row":1, "column":2},
@@ -65,6 +72,7 @@ class Excel:
     def get_datas(self):
         """
         Çalışma sayfası içindeki verileri aşağıdaki yapıdı düzenler ve geri döndürür.
+
         [
             {
                 "1. Sütun Başlığı" : "1. satır 1. sütun verisi",
@@ -77,6 +85,7 @@ class Excel:
                 "row" : 2"
             }
         ]
+
         :return: çalışma sayfasındaki başlık hariç satırlar
         """
 
@@ -105,6 +114,7 @@ class Excel:
     def update_range(self, worksheet_range, data, skip_first=False):
         """
         Belirli bir sütundaki değerleri baştan sona üzerine yazarak günceller
+
         :param worksheet_range: çalışma sayfası aralığı
         :param data: çalışma sayfası aralığını güncelleyecek veriler
         :param skip_first: ilk hücre atlansın mı? (sütun güncellenirken başlık geçilebilir)
@@ -140,11 +150,13 @@ class Excel:
         if self.is_recalculate or not self.data_only:
             return
 
-        excel = win32.gencache.EnsureDispatch('Excel.Application')
-        workbook = excel.Workbooks.Open(os.path.abspath(self.path))
+
+        # excel = win32.gencache.EnsureDispatch('Excel.Application')
+        workbook = excel.Workbooks.Open(self.path)
         workbook.Save()
         workbook.Close()
         excel.Quit()
+
 
         self.is_recalculate = True
 
