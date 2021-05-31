@@ -1,7 +1,6 @@
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 import win32com.client as win32
-import os
 
 
 class Excel:
@@ -26,9 +25,6 @@ class Excel:
 
         # Excel dosyası yolu
         self.path = path
-
-        # gerekiyorsa formülleri yeniden hesapla
-        self.recalculation_formula()
 
         # çalışma kitabı
         self.wb = load_workbook(path, data_only=data_only)
@@ -146,7 +142,7 @@ class Excel:
             return
 
         excel = win32.gencache.EnsureDispatch('Excel.Application')
-        workbook = excel.Workbooks.Open(os.path.abspath(self.path))
+        workbook = excel.Workbooks.Open(self.path)
         workbook.Save()
         workbook.Close()
         excel.Quit()
