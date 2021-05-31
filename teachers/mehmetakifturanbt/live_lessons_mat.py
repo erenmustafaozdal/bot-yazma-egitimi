@@ -58,8 +58,9 @@ zoom = Zoom(user['zoom_api_key'], user['zoom_api_secret'])
 #zoom.delete_meeting("75822733963")
 
 telegram = Telegram(user['telegram_api_id'], user['telegram_api_hash'])
-chat = telegram.get_chat_ids('çevrim içi')
-pp.pprint(chat)
+#chat = telegram.get_chat_ids('Deneme')
+telegram.send_message(user['telegram_chat_id'],"Her şey yolunda merkez")
+#pp.pprint(chat)
 
 # telegram = Telegram(user['telegram_api_id'], user['telegram_api_hash'])
 # chat = telegram.get_chat_ids('Arama Metni')
