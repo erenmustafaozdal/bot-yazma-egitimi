@@ -109,14 +109,15 @@ class EBA:
         # MEBBİS ile giriş tuşuna bas ve Mebbis girişi sayfasına git
         self.driver.find_element_by_xpath("//button[@title='MEBBİS ile giriş']").click()
         # TC ve şifre yaz
-        self.driver.find_element_by_css_selector("#txtKullaniciAd").send_keys(settings.tc)
-        self.driver.find_element_by_xpath("//input[@id='txtSifre']").send_keys(settings.password)
+        self.driver.find_element_by_css_selector("#txtKullaniciAd").send_keys(tc)
+        self.driver.find_element_by_xpath("//input[@id='txtSifre']").send_keys(password)
+        guvenlik_kodu = input("Güvenlik Kodunu Giriniz: ")
+        self.driver.find_element_by_xpath("//input[@id='txtGuvenlikKod']").send_keys(guvenlik_kodu)
 
         # Eğer sayfa yüklenemez veya başka bir hata alınırsa
         # giriş işlemini tekrar et.
         try:
-            guvenlik_kodu = input("Güvenlik Kodunu Giriniz: ")
-            self.driver.find_element_by_xpath("//input[@id='txtGuvenlikKod']").send_keys(guvenlik_kodu)
+
             self.driver.find_element_by_css_selector("#btnGiris").click()
             self.driver.find_element_by_xpath("//input[@name='submitButton']").click()
             current_url = self.driver.current_url
