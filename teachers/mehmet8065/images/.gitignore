@@ -1,2 +1,7 @@
+
+# Öncelikle gizleyeceğin klasörde ters tıkla New-File- .gitignore dosyası oluştur
+#  * işareti klasörü tamamne görünmez yapar githubda
+# !   işareti sadece demek
+# !.gitignore  ise sadece bunu *  işleminin dışında bırak.(Yani bu görünebilir.)
 *
 !.gitignore

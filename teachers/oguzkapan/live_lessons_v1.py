@@ -27,8 +27,9 @@ ALGORİTMA
 - Herhangi bir hata olmadı ve ders kayıtları bittiyse tüm derslerin durumunu temizle
 """
 # Todo: Modül ve sınıfları içeri aktar
-from classes.zoom import Zoom
 from classes.telegram import Telegram
+from classes.zoom import Zoom
+#from classes.telegram import Telegram
 import settings
 
 import pprint
@@ -38,25 +39,27 @@ pp = pprint.PrettyPrinter(indent=4)
 
 users = settings.users
 user = users[0]
-
+"""
 zoom = Zoom(user['zoom_api_key'], user['zoom_api_secret'])
 result = zoom.create_meeting({
-    "topic": "Deneme Dersi",
-    "start_time": "2021-05-24T09:10:00",
-    "password": "123456",
-    "agenda": "Deneme bilgi dersinin açıklaması",
-    "settings": {
-        "host_video": True,
-        "participant_video": True,
-        "auto_recording": "local",
-        "request_permission_to_unmute_participants": True
-    }
+     "topic": "Deneme Dersi",
+     "start_time": "2021-05-24T09:10:00",
+     "password": "123456",
+     "agenda": "Deneme dersinin açıklaması",
+     "settings": {
+         "host_video": True,
+         "participant_video": True,
+         "auto_recording": "local",
+         "request_permission_to_unmute_participants": True
+     }
 })
-
 # zoom.delete_meeting("72767793179")
+"""
+
 
 telegram = Telegram(user['telegram_api_id'], user['telegram_api_hash'])
-chat = telegram.get_chat_ids('Arama Metni')
+##chat = telegram.get_chat_ids('python-bot')
+chat = telegram.send_message(user['telegram_chat_id'],"Merhaba")
 pp.pprint(chat)
 # telegram.send_message(user['telegram_chat_id'], "Deneme", file='./images/student-based-reports/20210508-53 NİSANUR DAYLAN.png')
 
