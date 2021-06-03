@@ -26,7 +26,7 @@ ALGORİTMA
     - Hata sonrası Excel dosyasına bitenleri yaz
 - Herhangi bir hata olmadı ve ders kayıtları bittiyse tüm derslerin durumunu temizle
 """
-# Todo: Modül ve sınıfları içeri aktar
+# Modül ve sınıfları içeri aktar
 from classes.zoom import Zoom
 from classes.telegram import Telegram
 from classes.excel import Excel
@@ -158,7 +158,6 @@ for user in settings.users:
         print(f"Ders: {lesson['Canlı Ders Başlığı']} ({lesson['start_time'].strftime('%d.%m.%Y %H:%M')})")
 
         try:
-            pass
             # Dersi Zoom'da kaydet (try başlangıcı)
             response_data = zoom.create_meeting({
                 "topic": lesson['Canlı Ders Başlığı'],
