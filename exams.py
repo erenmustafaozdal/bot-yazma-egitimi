@@ -116,43 +116,68 @@ while i < exam_count:
     exam = exams[i]
 
     try:
-        # todo: Sınav oluştur penceresini aç
+        # Sınav oluştur penceresini aç
+        eba.wait.until(ec.element_to_be_clickable(
+            (By.XPATH, add_exam_btn)
+        )).click()
 
+        # açılan pencerenin iframe'ini seç
+        # driver.switch_to.frame(iframe_id)
+        eba.wait.until(ec.frame_to_be_available_and_switch_to_it(
+            (By.ID, iframe_id)
+        ))
 
-        # todo: açılan pencerenin iframe'ini seç
+        # SORU EKLE tuşuna bas
+        wait = WebDriverWait(driver, 30)
+        wait.until(ec.element_to_be_clickable(
+            (By.XPATH, add_question_btn)
+        )).click()
 
+        # EBA SORULARI sekmesine tıkla
+        eba.wait.until(ec.element_to_be_clickable(
+            (By.XPATH, eba_questions)
+        )).click()
 
-        # todo: SORU EKLE tuşuna bas
+        # "Okul Türü"nü seç (Ör: İlkokul)
+        eba.wait.until(ec.presence_of_element_located(
+            (By.XPATH, school.format(exam['Okul Türü']))
+        )).click()
 
+        # "Sınıf"ı seç
+        eba.wait.until(ec.presence_of_element_located(
+            (By.XPATH, classroom.format(exam['Sınıf']))
+        )).click()
 
-        # todo: EBA SORULARI sekmesine tıkla
+        # "Ders"i seç
+        eba.wait.until(ec.presence_of_element_located(
+            (By.XPATH, lesson.format(exam['Ders']))
+        )).click()
 
-
-        # todo: "Okul Türü"nü seç (Ör: İlkokul)
-
-
-        # todo: "Sınıf"ı seç
-
-
-        # todo: "Ders"i seç
-
-
-        # todo: Eğer varsa "Ünite"yi seç
-
+        # Eğer varsa "Ünite"yi seç
+        if exam['Ünite']:
+            eba.wait.until(ec.presence_of_element_located(
+                (By.XPATH, unit.format(exam['Ünite']))
+            )).click()
 
         # todo: Eğer varsa "Konu"yu seç
+        if exam['Konu']:
+            eba.wait.until(ec.presence_of_element_located(
+                (By.XPATH, subject.format(exam['Konu']))
+            )).click()
 
 
-        # todo: İstenen "Soru Sayısı" kadar soru seçmek için döngüye gir
+        # İstenen "Soru Sayısı" kadar soru seçmek için döngüye gir
         selected = 0
         while True:
 
             try:
-                # todo: İstenen "Zorluk Derecesi"ne göre sorular seç
+                # İstenen "Zorluk Derecesi"ne göre sorular seç
                 wait = WebDriverWait(driver, 5)
-                add_icons = []
+                add_icons = wait.until(ec.visibility_of_all_elements_located(
+                    (By.XPATH, questions.format(exam['Zorluk Derecesi']))
+                ))
 
-                # todo: kalan soru adedince ikon üzerinde işlem yap
+                # kalan soru adedince ikon üzerinde işlem yap
                 #  ÖR: add_icons[:(5-2)]
                 #      -> 2 adet daha önce seçilmiş
                 #      -> kalan 3 seçim için listenin başındaki ilk 3 elemanı döndür
@@ -164,48 +189,72 @@ while i < exam_count:
             except:
                 pass
             finally:
-                # todo: İstenen sayıya ulaşmadıysa ve eğer varsa sonraki sayfaya geç
+                # İstenen sayıya ulaşmadıysa ve eğer varsa sonraki sayfaya geç
                 #  İstenen sayıya ulaştıysa döngüden çık
                 try:
                     if selected == exam['Soru Sayısı']:
                         break
 
                     print(f"Soru sayısı ({exam['Soru Sayısı']}) tamamlanmadı. Sonraki sayfaya geçiliyor.")
-                    # todo: sonraki sayfaya geç
+                    # sonraki sayfaya geç
+                    driver.find_element_by_xpath(next_questions_btn).click()
 
+                    eba.wait.until(ec.visibility_of_element_located((By.CLASS_NAME, "mainpreloader")))
+                    eba.wait.until(ec.invisibility_of_element((By.CLASS_NAME, "mainpreloader")))
 
                 except:
                     print('Başka sayfa kalmadı.')
                     break
 
-        # todo: Sınav bilgileri bölümüne geç
+        # Sınav bilgileri bölümüne geç
+        driver.find_element_by_xpath(ok_btn).click()
+
+        eba.wait.until(ec.visibility_of_element_located((By.CLASS_NAME, "mainpreloader")))
+        eba.wait.until(ec.invisibility_of_element((By.CLASS_NAME, "mainpreloader")))
+
+        eba.wait.until(ec.element_to_be_clickable(
+            (By.XPATH, next_btn)
+        )).click()
+
+        # "Sınav Başlığı"nı yaz
+        eba.wait.until(ec.visibility_of_element_located(
+            (By.XPATH, exam_name)
+        )).send_keys(exam['Sınav Başlığı'])
+
+        # "Zorluk Derecesi"ni seç
+        eba.wait.until(ec.presence_of_element_located(
+            (By.XPATH, exam_difficulty.format(exam['Zorluk Derecesi']))
+        )).click()
+
+        # "Sınıf"ı seç
+        eba.wait.until(ec.presence_of_element_located(
+            (By.XPATH, exam_classroom.format(exam['Sınıf']))
+        )).click()
 
 
-        # todo: "Sınav Başlığı"nı yaz
-
-
-        # todo: "Zorluk Derecesi"ni seç
-
-
-        # todo: "Sınıf"ı seç
-
-
-        # todo: Eğer "Sınav Tipi" seçim kutusu varsa
+        # Eğer "Sınav Tipi" seçim kutusu varsa
         #   İstenen tip varsa onu seç
         #   Yoksa rastgele tip seçimi yap
         try:
-            pass
+            wait = WebDriverWait(driver, 1)
+            type = exam['Sınav Tipi'] if exam['Sınav Tipi'] != None else ""
+            options = wait.until(ec.presence_of_all_elements_located(
+                (By.XPATH, exam_type.format(type))
+            ))
+            option = random.choice(options)
+            option.click()
         except:
             pass
 
-        # todo: sınavı kaydet
+        # sınavı kaydet
+        driver.find_element_by_id(save_btn_id).click()
 
+        # tekrar ana çerçeveyi seç
+        driver.switch_to.default_content()
 
-        # todo: tekrar ana çerçeveyi seç
-
-
-        # todo: "işleminiz başarı ile gerçekleştirildi." bilgisi gidene kadar bekle
-
+        # "işleminiz başarı ile gerçekleştirildi." bilgisi gidene kadar bekle
+        eba.wait.until(ec.visibility_of_element_located((By.ID, toast_id)))
+        eba.wait.until(ec.invisibility_of_element((By.ID, toast_id)))
 
         i += 1
         print(f"'{exam['Sınıf']} {exam['Ders']}' için sınav oluşturuldu.")

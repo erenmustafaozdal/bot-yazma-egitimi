@@ -15,6 +15,8 @@ ALGORİTMA
     - Cevap anahtarını kaydet
     - Yaprak testi kaydet
 """
+import time
+
 import settings
 from classes.browser import Browser
 from classes.eba import EBA
@@ -89,11 +91,15 @@ driver = browser.get()
 eba = EBA(driver)
 eba.login(settings.tc, settings.password)
 
-# todo: sol menüden Sınavlar'a tıkla
+# sol menüden Sınavlar'a tıkla
+eba.wait.until(ec.element_to_be_clickable(
+    (By.XPATH, exams_menu)
+)).click()
 
-
-# todo: Yaprak Testlerim'e tıkla
-
+# Yaprak Testlerim'e tıkla
+eba.wait.until(ec.element_to_be_clickable(
+    (By.XPATH, sheet_test)
+)).click()
 
 # Yaprak testler için döngüye gir. Her yaprak test için aşağıdaki işlemleri yap.
 test_count = len(sheet_tests)
@@ -102,48 +108,73 @@ while i < test_count:
     test = sheet_tests[i]
 
     try:
-        # todo: Yaprak test ekleme sayfasına git
+        # Yaprak test ekleme sayfasına git
+        eba.wait.until(ec.element_to_be_clickable(
+            (By.XPATH, add_sheet_test_btn)
+        )).click()
 
+        # "Test Adı"nı yaz
+        eba.wait.until(ec.visibility_of_element_located(
+            (By.XPATH, test_name)
+        )).send_keys(test['Test Adı'])
 
-        # todo: "Test Adı"nı yaz
+        # "Sınıf"ı seç
+        eba.wait.until(ec.presence_of_element_located(
+            (By.XPATH, test_grade.format(test['Sınıf']))
+        )).click()
 
+        # "Ders"i seç
+        eba.wait.until(ec.presence_of_element_located(
+            (By.XPATH, test_course.format(test['Ders']))
+        )).click()
 
-        # todo: "Sınıf"ı seç
+        # "Dosya"yı yükle
+        driver.find_element_by_id(add_file_id).send_keys(test['Dosya'])
 
+        # "Soru Sayısı"nı yaz
+        eba.wait.until(ec.visibility_of_element_located(
+            (By.XPATH, question_count)
+        )).send_keys(test['Soru Sayısı'])
 
-        # todo: "Ders"i seç
+        # "Seçenek Sayısı"nı seç
+        driver.find_element_by_xpath(
+            option_count.format(test['Seçenek Sayısı'])
+        ).click()
 
+        # "Cevap Anahtarı"nı aç
+        driver.find_element_by_xpath(answer_sheet).click()
 
-        # todo: "Dosya"yı yükle
+        # açılan pencerenin iframe'ini seç
+        # driver.switch_to.frame(iframe_id)
+        eba.wait.until(ec.frame_to_be_available_and_switch_to_it(
+            (By.ID, iframe_id)
+        ))
 
+        # Her soru için döngüye gir ve doğru şıkları işaretle (Burada bekleme uzun olmalı)
+        wait = WebDriverWait(driver, 30)
+        question_elements = wait.until(ec.visibility_of_all_elements_located(
+            (By.XPATH, questions)
+        ))
+        answers = test['Cevap Anahtarı'].split(',')
+        for index, question in enumerate(question_elements):
+            if index != 0:
+                question.click()
 
-        # todo: "Soru Sayısı"nı yaz
+            question.find_element_by_xpath(choice.format(answers[index])).click()
 
+        # Cevap anahtarını kaydet
+        driver.find_element_by_id(ok_btn_id).click()
 
-        # todo: "Seçenek Sayısı"nı seç
+        # tekrar ana çerçeveyi seç
+        driver.switch_to.default_content()
 
+        # Yaprak testi kaydet
+        driver.find_element_by_xpath(save_btn).click()
 
-        # todo: "Cevap Anahtarı"nı aç
-
-
-        # todo: açılan pencerenin iframe'ini seç
-
-
-        # todo: Her soru için döngüye gir ve doğru şıkları işaretle (Burada bekleme uzun olmalı)
-
-
-        # todo: Cevap anahtarını kaydet
-
-
-        # todo: tekrar ana çerçeveyi seç
-
-
-        # todo: Yaprak testi kaydet
-
-
-        # todo: son test tam kaydedilmesi için
         #  "yaprak testiniz başarıyla eklendi" bilgisi gidene kadar bekle
-
+        # if i == test_count - 1:  # son test tam kaydedilmesi için
+        eba.wait.until(ec.visibility_of_element_located((By.ID, toast_id)))
+        eba.wait.until(ec.invisibility_of_element((By.ID, toast_id)))
 
         i += 1
         print(f"'{test['Test Adı']}' yaprak testi kaydedildi.")
