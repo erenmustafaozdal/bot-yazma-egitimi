@@ -36,7 +36,7 @@ import random
 import logging
 logger = logging.getLogger()
 
-##### Sınavları oluştururken kullanacağımız seçiciler (XPATH vb.)
+# Sınavları oluştururken kullanacağımız seçiciler (XPATH vb.)
 # sınavlar sayfası adresi
 URL = "https://ders.eba.gov.tr/ders/proxy/VCollabPlayer_v0.0.817/index.html#/main/iysExams?scope=mine&pageNumber=1&pageSize=24&sortField=createdate&sortDirection=desc"
 # sınav oluşturma tuşu
@@ -83,7 +83,7 @@ excel = Excel("./excels/exams.xlsx")
 exams = excel.get_datas()
 del excel
 
-##### EXCEL dosyasından aldığımız dictionary türünde bir sınav örneği
+# EXCEL dosyasından aldığımız dictionary türünde bir sınav örneği
 # {
 #     'Ders': 'Matematik',
 #     'Konu': 'Doğal Sayılarla Toplama İşlemi – 2',
@@ -164,7 +164,6 @@ while i < exam_count:
             eba.wait.until(ec.presence_of_element_located(
                 (By.XPATH, subject.format(exam['Konu']))
             )).click()
-
 
         # İstenen "Soru Sayısı" kadar soru seçmek için döngüye gir
         selected = 0
