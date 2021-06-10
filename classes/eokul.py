@@ -13,7 +13,7 @@ class EOKUL:
     # Mebbis profil bilgisi DIV
     MEBBIS_PROFILE_ID = "ProfileInfoDiv"
     # Mebbis E-okul card
-    EOKUL_CARD = "//img[contains(@src,'okul')]"
+    EOKUL_CARD = "//img[contains(@src,'e-okul')]"
     # Mebbis E-okul link
     EOKUL_LINK_ID = "rptProjeler_ctl01_rptKullanicilar_ctl00_LinkButton1"
     # E-okul sol menü

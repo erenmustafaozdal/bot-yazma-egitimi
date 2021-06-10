@@ -15,6 +15,7 @@ from classes.eokul import EOKUL
 from classes.excel import Excel
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
+import time
 
 # hata yakaladıktan sonra yine de hata hakkında bize mesaj döndürmesi için bu modülü kullanıyoruz
 import logging
@@ -71,35 +72,83 @@ driver = browser.get()
 eokul = EOKUL(driver)
 eokul.login(settings.tc, settings.password)
 
-# todo: Öğrenci İşlemleri sayfasına git
-
+# Öğrenci İşlemleri sayfasına git
+eokul.wait.until(ec.element_to_be_clickable(
+    (By.ID, students_menu_id)
+)).click()
 
 print()
 print("-"*50)
 for student in students:
 
     try:
-        # todo: Arama alanı görünene kadar bekle
+        # Arama alanı görünene kadar bekle
+        search_element = eokul.wait.until(ec.visibility_of_element_located(
+            (By.ID, student_search_id)
+        ))
 
-        # todo: Öğrenci numarası ile arama yap
+        # Öğrenci numarası ile arama yap
+        no = student['Lütfen öğrenci numarasını yazınız']
+        search_element.send_keys(no)
+        driver.find_element_by_id(student_search_btn_id).click()
+        print(f'"{no}" numaralı öğrenci seçildi.')
 
-        # todo: Öğrenci genel bilgilerini güncelle
+        # Öğrenci genel bilgilerini güncelle
+        eokul.wait.until(ec.element_to_be_clickable(
+            (By.XPATH, general_info)
+        )).click()
 
-        # todo: Kiminle oturuyor?
+        # Kiminle oturuyor?
+        last = eokul.wait.until(ec.presence_of_element_located(
+            (By.XPATH, live_with.format('') + '[@selected]')
+        )).text
+        new = student['Kiminle oturuyor?']
+        driver.find_element_by_xpath(live_with.format(new)).click()
+        print(f'--- "Kiminle oturuyor?" alanı güncellendi: {last} -> {new}')
 
-        # todo: Oturduğu ev kira mı?
+        # Oturduğu ev kira mı?
+        last = driver.find_element_by_xpath(house_rented.format('') + '[@selected]').text
+        new = student['Oturduğu ev kira mı?']
+        driver.find_element_by_xpath(house_rented.format(new)).click()
+        print(f'--- "Oturduğu ev kira mı?" alanı güncellendi: {last} -> {new}')
 
-        # todo: Kendi odası var mı?
+        # Kendi odası var mı?
+        last = driver.find_element_by_xpath(own_room.format('') + '[@selected]').text
+        new = student['Kendi odası var mı?']
+        driver.find_element_by_xpath(own_room.format(new)).click()
+        print(f'--- "Kendi odası var mı?" alanı güncellendi: {last} -> {new}')
 
-        # todo: Boy
+        # Boy
+        length_element = driver.find_element_by_id(student_length_id)
+        last = length_element.get_attribute('value')
+        new = student['Boy']
+        length_element.clear()
+        if new:
+            length_element.send_keys(new)
+            print(f'--- "Boy" alanı güncellendi: {last} -> {new}')
 
-        # todo: Kilo
+        # Kilo
+        weight_element = driver.find_element_by_id(student_weight_id)
+        last = weight_element.get_attribute('value')
+        new = student['Kilo']
+        weight_element.clear()
+        if new:
+            weight_element.send_keys(new)
+            print(f'--- "Kilo" alanı güncellendi: {last} -> {new}')
 
-        # todo: Kardeş sayısı
+        # Kardeş sayısı
+        sibling_element = driver.find_element_by_id(siblings_number_id)
+        last = sibling_element.get_attribute('value')
+        new = student['Kardeş sayısı']
+        sibling_element.clear()
+        if new:
+            sibling_element.send_keys(new)
+            print(f'--- "Kardeş sayısı" alanı güncellendi: {last} -> {new}')
 
-        # todo: Kaydet
+        # Kaydet
+        driver.find_element_by_xpath(save_btn).click()
+        print(f'"{no}" numaralı öğrenci bilgileri kaydedildi.')
 
         print("-"*50)
     except Exception as error:
         logger.exception(error)
-
