@@ -13,6 +13,8 @@ geckodriver.log
 # Sanal geliştirme ortamı (venv klasörü) oluşturulduysa GitHub'a gönderme
 venv
 
+# Telegram oturum bilgisi dosyası oluşturulduysa GitHub'a gönderme
+*.session
 
 
 
