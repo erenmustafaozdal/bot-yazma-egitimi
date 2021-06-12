@@ -92,7 +92,7 @@ students = eba.table_is_loaded()
 # 5. Ortalama performansı hesap et.
 # 6. Ekran görüntüsünü kaydet.
 # 7. Verileri ekrana yazdır.
-# TODO: 8. Verileri Excel dosyasına yazdır.
+# 8. Verileri Excel dosyasına yazdır.
 student_count = len(students)
 
 # Günün tarihini al
