@@ -4,8 +4,6 @@
 # Her geliştiricinin ayarlarını barındıran dosyayı GitHub'a gönderme
 settings.py
 mebbis_giris.py
-eba_ogrenci_sifre_ver.py
-
 # Python'ın oluşturduğu ön bellek dosyalarını GitHub'a gönderme
 __pycache__
 
@@ -14,5 +12,3 @@ geckodriver.log
 
 # Sanal geliştirme ortamı (venv klasörü) oluşturulduysa GitHub'a gönderme
 venv
-
-telegram.session

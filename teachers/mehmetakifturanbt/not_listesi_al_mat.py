@@ -73,6 +73,7 @@ options.headless = True
 options.add_argument(f"user-data-dir={os.getenv('USERPROFILE')}\\AppData\\Local\\Google\\Chrome\\User Data\\Default")
 options.add_argument("--window-size=1920,1080")
 driver = webdriver.Chrome(settings.driver_path,options=options)
+#driver = webdriver.Chrome(settings.driver_path)
 driver.maximize_window()
 # sayfanın yüklemesini çok beklememesi için
 # 15 saniye beklemesini, yoksa hata vermesini belirliyoruz

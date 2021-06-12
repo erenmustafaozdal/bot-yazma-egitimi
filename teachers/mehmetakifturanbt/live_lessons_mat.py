@@ -27,17 +27,17 @@ ALGORİTMA
 - Herhangi bir hata olmadı ve ders kayıtları bittiyse tüm derslerin durumunu temizle
 """
 # Todo: Modül ve sınıfları içeri aktar
-from classes.zoom import Zoom
-from classes.telegram import Telegram
-from classes.excel import Excel
-from classes.browser import Browser
-from classes.eba import EBA
+from classes.zoom_mat import Zoom
+from classes.telegram_mat import Telegram
+from classes.excel_mat import Excel
+from classes.browser_mat import Browser
+from classes.eba_mat import EBA
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 import settings
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # hata yakaladıktan sonra yine de hata hakkında bize mesaj döndürmesi için bu modülü kullanıyoruz
 import logging
@@ -69,8 +69,7 @@ ok_btn = "//a[normalize-space()='TAMAM']"
 lesson_delete_btn = "//div[@class='body-container']/div[@role='row']//div[contains(normalize-space(), '{}') and contains(normalize-space(), '{}')]//i[@class='vt-icon-delete']"
 delete_yes_btn = "//a[normalize-space()='EVET']"
 next_button = "//a[text()='Sonraki']"
-katilimci_select= "//button[contains(text(),'Ek Katılımcı Öğretmen Seçiniz')]"
-katilimci_name ="//div[@class='vc-resp-all-margin p-xs ng-scope']//div[@class='checkBoxContainer']//.//span[contains(text(),'{}')]"
+
 
 ##### EXCEL dosyasından aldığımız dictionary türünde bir ders örneği
 # {   'Auto Recording': 'on',
@@ -94,6 +93,35 @@ katilimci_name ="//div[@class='vc-resp-all-margin p-xs ng-scope']//div[@class='c
 #     'row': 2,
 #     'Şube/Grup': '3. Sınıf / A Şubesi'}
 
+# users = settings.users
+# user = users[1]
+#
+# zoom = Zoom(user['zoom_api_key'], user['zoom_api_secret'])
+#print(help(zoom))
+# result = zoom.create_meeting({
+#     "topic": "Deneme Dersi",
+#     "start_time": "2021-05-24T09:10:00",
+#     "password": "123456",
+#     "agenda": "Deneme dersinin açıklaması",
+#     "settings": {
+#         "host_video": True,
+#         "participant_video": True,
+#         "auto_recording": "local",
+#         "request_permission_to_unmute_participants": True
+#     }
+# })
+# pp.pprint(result)
+
+#zoom.delete_meeting("75822733963")
+
+#pp.pprint(chat)
+
+# telegram = Telegram(user['telegram_api_id'], user['telegram_api_hash'])
+# chat = telegram.get_chat_ids('Arama Metni')
+# pp.pprint(chat)
+# telegram.send_message(user['telegram_chat_id'], "Deneme", file='./images/student-based-reports/20210508-53 NİSANUR DAYLAN.png')
+
+
 def get_lesson_message(lesson:'dict'):
     """
     Velilere gönderilecek ders giriş bilgileri mesajı şablonunun bulunduğu,
@@ -110,6 +138,22 @@ def get_lesson_message(lesson:'dict'):
 ➖➖➖➖➖\n
 [{lesson['join_url']}]({lesson['join_url']})"""
 
+# telegram = Telegram(user['telegram_api_id'], user['telegram_api_hash'])
+# date = datetime(2021, 6, 2, 1, 24)
+#chat = telegram.get_chat_ids('Deneme')
+#telegram.send_message(user['telegram_chat_id'],"Her şey yolunda merkez")
+# for i in range(5):
+#     index = i + 1
+#     message = get_lesson_message({
+#         'Canlı Ders Başlığı' : f'{index}. ders başlığı',
+#         'id' : index,
+#         'join_url' : 'https.google.com',
+#         'password' : 'şifre'
+#     })
+#     message_date = date + timedelta(minutes=i)
+#     telegram.send_message("905445930563", message, date = message_date)
+
+# telegram.delete_messages('me','google')
 
 # Kullanıcıları al. Her kullanıcı için aşağıdaki işlemleri yap. (Kullanıcılar döngüsü)
 for user in settings.users:
@@ -130,14 +174,14 @@ for user in settings.users:
     zoom = Zoom(user['zoom_api_key'], user['zoom_api_secret'])
 
     # Tarayıcı nesnesi oluştur
-    browser = Browser(settings.driver_path, profile=user['tc'])
+    browser = Browser(settings.driver_path)
     driver = browser.get()
 
     # EBA nesnesi oluştur
     eba = EBA(driver)
 
     # EBA'ya giriş yap
-    eba.login(user['tc'], user['password'])
+    eba.login_mebbis(user['tc'], user['password'])
 
     # Canlı dersler sayfasına git
     eba.wait.until(ec.element_to_be_clickable(
@@ -177,7 +221,8 @@ for user in settings.users:
                     "request_permission_to_unmute_participants": True if lesson["Request Permission to Unmute Participants"] == "on" else False
                 }
             })
-            #  Zoom'dan gelen id, password ve join_url bilgilerini lessons içindeki ders bilgisine ekle
+            # Zoom'dan gelen id, password ve join_url bilgilerini lessons içindeki ders bilgisine ekle
+            #pp.pprint(response_data)
             lessons[index] = {**lesson, **response_data}
 
             # Ders Zoom'da kaydedildi ise durumuna "zoom" yaz
@@ -223,8 +268,8 @@ for user in settings.users:
             )).click()
 
             # Canlı dersin yapılacağı şube ve grupları seç
-            #  Birden fazla seçim yapılabilir
-            #  Excel çalışma kitabında virgül (,) ile ayrılarak eklenebilir
+            # Birden fazla seçim yapılabilir
+            # Excel çalışma kitabında virgül (,) ile ayrılarak eklenebilir
             element = eba.wait.until(ec.element_to_be_clickable(
                 (By.XPATH, group_select)
             ))
@@ -237,17 +282,6 @@ for user in settings.users:
 
             # Öğrenci listele tıklanır
             driver.find_element_by_xpath(list_students).click()
-
-            #Katılımcı Öğretmen seç
-            element = eba.wait.until(ec.element_to_be_clickable(
-                (By.XPATH, katilimci_select)
-            ))
-            element.click()
-            time.sleep(1)
-            for group in lesson['Katılımcı'].split(','):
-                element.find_element_by_xpath(
-                    katilimci_name.format(group.strip())
-                ).click()
 
             # Canlı dersi gönder tıkla
             eba.wait.until(ec.element_to_be_clickable((By.XPATH, send_live_lesson))).click()
@@ -270,6 +304,7 @@ for user in settings.users:
 
             # Ders için mesaj planlandı ise durumuna "hazır" yaz
             lessons[index]['Durum'] = 'hazır'
+
 
         # Herhangi bir ders kaydı sırasında hata olursa durumunu kontrol et ve aşağıdaki işlemlerden birini yap.
         except Exception as error:
@@ -319,8 +354,8 @@ for user in settings.users:
             lessons[index]['Durum'] = None
 
             # Hata sonrası Excel dosyasına bitenleri yaz
-            #  "Durum" sütununa her ders için durumu yaz
-            #  Bir sonraki çalıştırmada durumu "hazır" olanlar dışındaki dersler oluşturulacak
+            # "Durum" sütununa her ders için durumu yaz
+            # Bir sonraki çalıştırmada durumu "hazır" olanlar dışındaki dersler oluşturulacak
             excel = Excel(user['live_lessons_xl'])
             data = [ders['Durum'] for ders in lessons]
             excel.update_range(excel.headers['Durum']['column'], data, True)

@@ -1,12 +1,10 @@
-from selenium import webdriver
 import settings
 import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from openpyxl import Workbook, load_workbook
-from teachers.oguzkapan.classes.browser import Browser
-from teachers.oguzkapan.classes.eba import EBA
+from classes.browser_mat import Browser
+from classes.eba_mat import EBA
 import os
 
 ## Amaç : Tc kimlik numaraları bir excel dosyasında kayıtlı olan öğrencilere tek kullanımlık şifre verme.
@@ -18,7 +16,7 @@ browser = Browser(settings.driver_path)
 driver = browser.get()
 
 eba = EBA(driver)
-eba.login(settings.tc, settings.password)
+eba.login_mebbis(settings.tc, settings.password)
 
 
 def profil_sayfasina_gec():
@@ -37,8 +35,7 @@ i=2 ##  Excel dosyasında ilk satırda sütün başlıkları olduğu için döng
 ## Eba'ya giriş yapıldı
 
 ## Excel döküman ayarlarını yap.
-excel_dir="./excels/eba_sifre_ver/"
-xl_path = f"{excel_dir}/eba_ogrenci_bilgileri.xlsx"
+xl_path = f"./excels/eba_ogrenci_bilgileri.xlsx"
 if not os.path.exists(xl_path):
     wb = Workbook()
 else:
@@ -111,4 +108,4 @@ def table_is_loaded():
     tabloda öğrenci adları sütunu : //body[1]/form[2]/table[1]/tbody[1]/tr[3]/td[2]/table[1]/tbody[1]/tr[3]/td[1]/table[1]/tbody[1]/tr[9]/td[2]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[2]/td[1]/table[1]/tbody[1]/tr[2]/td[1]/table[1]/tbody[1]/tr[2]/td[2]
     
 
-""""""
+"""
