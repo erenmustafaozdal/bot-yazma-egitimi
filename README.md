@@ -2,6 +2,8 @@
 
 İstanbul Öğretmen Akademileri "Python ile Eğitim Ortamlarında Verimliliği Artırma / BOT Yazma Eğitimi - EBA Örnekleri" atölyesi kod örneklerinin bulunduğu depo
 
+> **❗❗❗ DİKKAT:** **Bot Yazma Eğitimi atölyemiz bitmiştir.** Sonradan yapılan çalışmaların değişmesine engel olmak amacıyla depo arşive alınmıştır. Çalışmalarınıza devam etmek için <u>_Fork_</u> işlemi ile çatallayıp, kendi hesabınız üzerinde devam edebilirsiniz.
+
 ---
 
 ## İÇİNDEKİLER
